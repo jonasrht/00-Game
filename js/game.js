@@ -24,8 +24,8 @@ let cursors;
 let showDebug = false;
 
 function preload() {
-    this.load.image("tiles", "../assets/tilesets/Serene_Village_16x16.png");
-    this.load.tilemapTiledJSON("map", "../assets/tilesets/tileset.json");
+    this.load.image("tiles", "assets/tilesets/Serene_Village_16x16.png");
+    this.load.tilemapTiledJSON("map", "assets/tilesets/tileset.json");
     this.load.atlas("atlas", "https://www.mikewesthad.com/phaser-3-tilemap-blog-posts/post-1/assets/atlas/atlas.png", "https://www.mikewesthad.com/phaser-3-tilemap-blog-posts/post-1/assets/atlas/atlas.json");
 }
 
@@ -40,7 +40,7 @@ function create() {
     const worldLayer = map.createStaticLayer("world", tileset, 0, 0);
     const aboveLayer = map.createStaticLayer("top", tileset, 0, 0);
 
-    worldLayer.setCollisionByProperty({ collides: true });
+    worldLayer.setCollisionByProperty({ colides: true });
 
     // Phaser supports multiple cameras, but you can access the default camera like this:
     const camera = this.cameras.main;
