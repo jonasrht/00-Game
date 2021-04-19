@@ -45,24 +45,6 @@ function create() {
     // Phaser supports multiple cameras, but you can access the default camera like this:
     const camera = this.cameras.main;
 
-    // Set up the arrows to control the camera
-    const cursors = this.input.keyboard.createCursorKeys();
-    controls = new Phaser.Cameras.Controls.FixedKeyControl({
-        camera: camera,
-        left: cursors.left,
-        right: cursors.right,
-        up: cursors.up,
-        down: cursors.down,
-        speed: 0.5
-    });
-
-    const debugGraphics = this.add.graphics().setAlpha(0.75);
-    worldLayer.renderDebug(debugGraphics, {
-        tileColor: null, // Color of non-colliding tiles
-        collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-        faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-    });
-
     // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
@@ -93,32 +75,32 @@ function create() {
     });
 
     // Watch the player and worldLayer for collisions, for the duration of the scene:
-    player = this.physics.add.sprite(400, 350, "atlas", "misa-front");
+    player = this.physics.add.sprite(200, 150, "atlas", "misa-front");
     this.physics.add.collider(player, worldLayer);
+    camera.startFollow(player);
+    cursors = this.input.keyboard.createCursorKeys();
 }
 
 function update(time, delta) {
-
+    const speed = 175;
     player.body.setVelocity(0);
 
-    // // Horizontal movement
-    // if (cursors.left.isDown) {
-    //     player.body.setVelocityX(-100);
-    // } else if (cursors.right.isDown) {
-    //     player.body.setVelocityX(100);
-    // }
+    // Horizontal movement
+    if (cursors.left.isDown) {
+        player.body.setVelocityX(-100);
+    } else if (cursors.right.isDown) {
+        player.body.setVelocityX(100);
+    }
 
-    // // Vertical movement
-    // if (cursors.up.isDown) {
-    //     player.body.setVelocityY(-100);
-    // } else if (cursors.down.isDown) {
-    //     player.body.setVelocityY(100);
-    // }
+    // Vertical movement
+    if (cursors.up.isDown) {
+        player.body.setVelocityY(-100);
+    } else if (cursors.down.isDown) {
+        player.body.setVelocityY(100);
+    }
 
     // Normalize and scale the velocity so that player can't move faster along a diagonal
-    // player.body.velocity.normalize().scale(speed);
+    player.body.velocity.normalize().scale(speed);
 
-    // Apply the controls to the camera each update tick of the game
-    controls.update(delta);
 }
 
