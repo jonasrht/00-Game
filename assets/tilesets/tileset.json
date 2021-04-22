@@ -56,15 +56,15 @@
          "name":"doors",
          "objects":[
                 {
-                 "height":34,
+                 "height":20.5,
                  "id":4,
                  "name":"door",
                  "rotation":0,
                  "type":"",
                  "visible":false,
                  "width":14.5,
-                 "x":94.5,
-                 "y":312
+                 "x":97,
+                 "y":256.5
                 }],
          "opacity":1,
          "type":"objectgroup",
