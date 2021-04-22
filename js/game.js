@@ -2,15 +2,16 @@ import MainScene from "./MainScene.js";
 import Menu from "./Menu.js";
 import PreloadScene from "./PreloadScene.js";
 import homeScene from "./homeScene.js";
+import villageScene from "./villageScene.js";
 
 const config = {
     type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
-    width: 960,
-    height: 640,
+    width: 1280,
+    height: 720,
 
     pixelArt: true,
     parent: "game", // HTML ID 
-    scene: [PreloadScene, Menu, MainScene, homeScene],
+    scene: [PreloadScene, Menu, villageScene, homeScene],
     physics: {
         default: "arcade",
         arcade: {
