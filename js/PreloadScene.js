@@ -9,6 +9,7 @@ export default class PreloadScene extends Phaser.Scene {
         //Tilemaps
         this.load.tilemapTiledJSON("map", "assets/tilesets/tileset.json");
         this.load.image("tiles", "assets/tilesets/Serene_Village_16x16.png");
+        this.load.image("sTiles", "assets/tilesets/sophie16x16.png");
 
         this.load.tilemapTiledJSON("homeroom", "assets/tilesets/room.json")
         this.load.image("homeground", "assets/tilesets/Room_Builder_free_16x16.png");
@@ -24,6 +25,7 @@ export default class PreloadScene extends Phaser.Scene {
 
         //Audio
         this.load.audio("menuMusic", "assets/sounds/menumusic.mp3")
+        this.load.audio("startGame", "assets/sounds/gamestart.mp3")
     }
 
     create() {

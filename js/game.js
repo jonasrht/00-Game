@@ -17,6 +17,10 @@ const config = {
         arcade: {
             gravity: { y: 0 }, // no gravity
             debug: true
+        },
+        scale: {
+            mode: Phaser.Scale.RESIZE,
+            zoom: 3
         }
     }
 };

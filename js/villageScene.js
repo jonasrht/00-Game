@@ -1,5 +1,4 @@
 let controls;
-let player;
 let cursors;
 
 export default class villageScene extends Phaser.Scene {
@@ -8,22 +7,27 @@ export default class villageScene extends Phaser.Scene {
     }
 
     preload() {
-
+        this.load.scenePlugin({
+            key: 'AnimatedTiles',
+            url: './lib/plugins/AnimatedTiles.js',
+            sceneKey: 'animatedTiles'
+        });
     }
 
     create() {
         const map = this.make.tilemap({ key: "map" });
         // Tileset
         const tileset = map.addTilesetImage("Serene_Village_16x16", "tiles");
+        const sTileset = map.addTilesetImage("tileset", "sTiles");
 
         // Tileset Ebenen
-        const belowLayer = map.createLayer("bottom", tileset, 0, 0);
-        const worldLayer = map.createLayer("world", tileset, 0, 0);
-        const aboveLayer = map.createLayer("top", tileset, 0, 0);
-
+        const belowLayer = map.createLayer("bottom", [tileset, sTileset], 0, 0);
+        const worldLayer = map.createLayer("world", [tileset, sTileset], 0, 0);
+        //this.sys.AnimatedTiles.init(this.map);
+        //this.sys.animatedTiles.init(map);
         worldLayer.setCollisionByProperty({ colides: true });
-
         this.createPlayer();
+        const aboveLayer = map.createLayer("top", [tileset, sTileset], 0, 0);
 
         this.physics.add.collider(this.player, worldLayer);
 
@@ -32,7 +36,7 @@ export default class villageScene extends Phaser.Scene {
         const camera = this.cameras.main;
         camera.startFollow(this.player);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        camera.setZoom(3);
+        //camera.setZoom(3);
 
 
         cursors = this.input.keyboard.createCursorKeys();
@@ -65,9 +69,12 @@ export default class villageScene extends Phaser.Scene {
     }
     createPlayer() {
         // Erzeugt den Player
-        this.player = this.physics.add.sprite(200, 150, "atlas", "misa-front").setOffset(0, 24);
+        this.player = this.physics.add.sprite(200, 150, "atlas", "misa-front");
+        this.player.body.setSize(30, 50, true);
+        console.log(this.player.width, this.player.height);
+        this.player.body.velocity.x = -100;
         this.player.setScale(0.5); // Skalierung des Sprites
-        this.player.setSize(30, 30); // Hitbox
+        //this.player.setSize(20, 40); // Hitbox
 
         // Animation
         const anims = this.anims;
@@ -134,12 +141,11 @@ export default class villageScene extends Phaser.Scene {
             this.player.anims.stop();
 
             // If we were moving, pick and idle frame to use
-            if (prevVelocity.x < 0) player.setTexture("atlas", "misa-left");
-            else if (prevVelocity.x > 0) player.setTexture("atlas", "misa-right");
-            else if (prevVelocity.y < 0) player.setTexture("atlas", "misa-back");
-            else if (prevVelocity.y > 0) player.setTexture("atlas", "misa-front");
+            if (prevVelocity.x < 0) this.player.setTexture("atlas", "misa-left");
+            else if (prevVelocity.x > 0) this.player.setTexture("atlas", "misa-right");
+            else if (prevVelocity.y < 0) this.player.setTexture("atlas", "misa-back");
+            else if (prevVelocity.y > 0) this.player.setTexture("atlas", "misa-front");
         }
-        console.log("testttt");
     }
 
 }
