@@ -50,7 +50,8 @@ export default class Menu extends Phaser.Scene {
     startScene() {
         this.bgMusic.pause();
         this.startGameSound.play({ volume: 0.1 });
-        this.scene.start('villageScene');
+        this.scene.start('selectPlayerScene');
+
     }
 
     update() {

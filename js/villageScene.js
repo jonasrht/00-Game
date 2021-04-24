@@ -5,6 +5,10 @@ export default class villageScene extends Phaser.Scene {
     constructor() {
         super("villageScene");
     }
+    init(data) {
+        this.selectedCharacter = data.character;
+        console.log(data.character);
+    }
 
     preload() {
         this.load.scenePlugin({
@@ -36,7 +40,7 @@ export default class villageScene extends Phaser.Scene {
         const camera = this.cameras.main;
         camera.startFollow(this.player);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        //camera.setZoom(3);
+        camera.setZoom(3);
 
 
         cursors = this.input.keyboard.createCursorKeys();
@@ -69,7 +73,7 @@ export default class villageScene extends Phaser.Scene {
     }
     createPlayer() {
         // Erzeugt den Player
-        this.player = this.physics.add.sprite(200, 150, "atlas", "misa-front");
+        this.player = this.physics.add.sprite(200, 150, this.selectedCharacter, "misa-front");
         this.player.body.setSize(30, 50, true);
         console.log(this.player.width, this.player.height);
         this.player.body.velocity.x = -100;
@@ -80,25 +84,25 @@ export default class villageScene extends Phaser.Scene {
         const anims = this.anims;
         anims.create({
             key: "misa-left-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-left-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-left-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: "misa-right-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: "misa-front-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-front-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-front-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: "misa-back-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-back-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-back-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });
@@ -141,11 +145,49 @@ export default class villageScene extends Phaser.Scene {
             this.player.anims.stop();
 
             // If we were moving, pick and idle frame to use
-            if (prevVelocity.x < 0) this.player.setTexture("atlas", "misa-left");
-            else if (prevVelocity.x > 0) this.player.setTexture("atlas", "misa-right");
-            else if (prevVelocity.y < 0) this.player.setTexture("atlas", "misa-back");
-            else if (prevVelocity.y > 0) this.player.setTexture("atlas", "misa-front");
+            if (prevVelocity.x < 0) this.player.setTexture(this.selectedCharacter, "misa-left");
+            else if (prevVelocity.x > 0) this.player.setTexture(this.selectedCharacter, "misa-right");
+            else if (prevVelocity.y < 0) this.player.setTexture(this.selectedCharacter, "misa-back");
+            else if (prevVelocity.y > 0) this.player.setTexture(this.selectedCharacter, "misa-front");
         }
     }
 
+}
+
+export function createPlayer() {
+    // // Erzeugt den Player
+    // this.player = this.physics.add.sprite(200, 150, "atlas", "misa-front");
+    // this.player.body.setSize(30, 50, true);
+    // console.log(this.player.width, this.player.height);
+    // this.player.body.velocity.x = -100;
+    // this.player.setScale(0.5); // Skalierung des Sprites
+    // //this.player.setSize(20, 40); // Hitbox
+
+    // // Animation
+    // const anims = this.anims;
+    // anims.create({
+    //     key: "misa-left-walk",
+    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-left-walk.", start: 0, end: 3, zeroPad: 3 }),
+    //     frameRate: 10,
+    //     repeat: -1
+    // });
+    // anims.create({
+    //     key: "misa-right-walk",
+    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
+    //     frameRate: 10,
+    //     repeat: -1
+    // });
+    // anims.create({
+    //     key: "misa-front-walk",
+    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-front-walk.", start: 0, end: 3, zeroPad: 3 }),
+    //     frameRate: 10,
+    //     repeat: -1
+    // });
+    // anims.create({
+    //     key: "misa-back-walk",
+    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-back-walk.", start: 0, end: 3, zeroPad: 3 }),
+    //     frameRate: 10,
+    //     repeat: -1
+    // });
+    console.log("wow");
 }

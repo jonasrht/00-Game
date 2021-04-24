@@ -3,6 +3,7 @@ import Menu from "./Menu.js";
 import PreloadScene from "./PreloadScene.js";
 import homeScene from "./homeScene.js";
 import villageScene from "./villageScene.js";
+import selectPlayerScene from "./selectPlayerScene.js";
 
 const config = {
     type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
@@ -11,7 +12,7 @@ const config = {
 
     pixelArt: true,
     parent: "game", // HTML ID 
-    scene: [PreloadScene, Menu, villageScene, homeScene],
+    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene],
     physics: {
         default: "arcade",
         arcade: {
@@ -24,5 +25,6 @@ const config = {
         }
     }
 };
+
 
 const game = new Phaser.Game(config);

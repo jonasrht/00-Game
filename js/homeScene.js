@@ -1,4 +1,6 @@
 import MainScene from "./MainScene.js";
+import villageScene from "./villageScene.js";
+//import createPlayer from './villageScene.js';
 let cursors;
 
 export default class homeScene extends MainScene {
@@ -20,10 +22,19 @@ export default class homeScene extends MainScene {
         //this.scene.get("villageScene").createPlayer();
         const spawnPoint = homeroom.findObject(
             "spawn",
-            (obj) => obj.name === "playerspawn"
+            (obj) => obj.name === "playerspawn2"
         );
 
-        this.createPlayer(spawnPoint.x, spawnPoint.y);
+        this.spawn = homeroom.createFromObjects('spawn', 1);
+        this.spawns = this.add.group()
+        this.spawn.forEach((spawn) => {
+            this.physics.world.enable(spawn);
+            spawn.body.allowGravity = false;
+            spawn.body.immovable = true;
+            this.spawns.add(spawn);
+        });
+        console.log(this.spawns);
+        this.createPlayer(spawns[1].x, spawns[1].y);
 
         this.cameras.main.fadeIn(1000);
         this.cameras.main.startFollow(this.player);

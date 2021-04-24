@@ -15,7 +15,10 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.image("homeground", "assets/tilesets/Room_Builder_free_16x16.png");
         this.load.image("interior", "assets/tilesets/Interiors_free_16x16.png");
 
+        // Player
         this.load.atlas("atlas", "assets/tilesets/atlas.png", "assets/tilesets/atlas.json");
+        this.load.atlas("atlasPink", "assets/tilesets/atlas-pink.png", "assets/tilesets/atlas.json");
+
 
         //Menu Background
         this.load.image("bg", "assets/img/parallax-mountain-bg.png");
