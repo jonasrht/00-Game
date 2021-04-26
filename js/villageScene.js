@@ -1,3 +1,5 @@
+// import eventsCenter from './EventsCenter.js';
+
 let controls;
 let cursors;
 
@@ -7,18 +9,39 @@ export default class villageScene extends Phaser.Scene {
     }
     init(data) {
         this.selectedCharacter = data.character;
-        console.log(data.character);
+
+        console.log("Data: ->" + data);
+        if (data == "doorHomeBack") {
+            this.spawnX = 105;
+            this.spawnY = 280;
+        } else if (data == "doorShopBack") {
+            this.spawnX = 290;
+            this.spawnY = 160;
+        }
+        else {
+            this.spawnX = 10;
+            this.spawnY = 10;
+        }
     }
 
     preload() {
-        this.load.scenePlugin({
-            key: 'AnimatedTiles',
-            url: './lib/plugins/AnimatedTiles.js',
-            sceneKey: 'animatedTiles'
-        });
+        // this.load.scenePlugin({
+        //     key: 'AnimatedTiles',
+        //     url: './lib/plugins/AnimatedTiles.js',
+        //     sceneKey: 'animatedTiles'
+        // });
     }
 
     create() {
+        this.coinEmitter = new Phaser.Events.EventEmitter();
+        var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+        spaceBar.on('up', () => {
+            console.log("space");
+            this.coinEmitter.emit('coinCount');
+        });
+
+        this.scene.run('uiScene', { eventEmitter: this.coinEmitter });
         const map = this.make.tilemap({ key: "map" });
         // Tileset
         const tileset = map.addTilesetImage("Serene_Village_16x16", "tiles");
@@ -30,7 +53,7 @@ export default class villageScene extends Phaser.Scene {
         //this.sys.AnimatedTiles.init(this.map);
         //this.sys.animatedTiles.init(map);
         worldLayer.setCollisionByProperty({ colides: true });
-        this.createPlayer();
+        this.createPlayer(this.spawnX, this.spawnY);
         const aboveLayer = map.createLayer("top", [tileset, sTileset], 0, 0);
 
         this.physics.add.collider(this.player, worldLayer);
@@ -60,22 +83,40 @@ export default class villageScene extends Phaser.Scene {
             this.doors.add(door);
         });
 
-        this.physics.add.collider(this.player, this.doors, () => { this.scene.start('homeScene') });
+        // this.physics.add.collider(this.player, this.doors, () => {
+        //     console.log(this.doors);
+        //     this.switchScene('homeScene')
+        // });
+
+        // Tür nach Hause
+        this.doorHome = map.createFromObjects('doors', { name: 'doorHome' });
+        this.physics.world.enable(this.doorHome);
+
+        this.physics.add.collider(this.player, this.doorHome, () => {
+            this.switchScene('homeScene', this.doorHome[0].name)
+        });
+
+        // Tür zum Shop
+        this.doorShop = map.createFromObjects('doors', { name: 'doorShop' });
+        this.physics.world.enable(this.doorShop);
+
+        this.physics.add.collider(this.player, this.doorShop, () => {
+            this.switchScene('homeScene', this.doorShop[0].name)
+        });
 
         this.wasd = this.input.keyboard.addKeys({
             esc: Phaser.Input.Keyboard.KeyCodes.ESC,
         })
 
     }
-    switchScene(scene) {
+    switchScene(scene, name) {
         this.cameras.main.fadeOut(1000);
-        this.scene.start(scene)
+        this.scene.start(scene, { name })
     }
-    createPlayer() {
+    createPlayer(x, y) {
         // Erzeugt den Player
-        this.player = this.physics.add.sprite(200, 150, this.selectedCharacter, "misa-front");
+        this.player = this.physics.add.sprite(x, y, this.selectedCharacter, "misa-front");
         this.player.body.setSize(30, 50, true);
-        console.log(this.player.width, this.player.height);
         this.player.body.velocity.x = -100;
         this.player.setScale(0.5); // Skalierung des Sprites
         //this.player.setSize(20, 40); // Hitbox
@@ -152,42 +193,4 @@ export default class villageScene extends Phaser.Scene {
         }
     }
 
-}
-
-export function createPlayer() {
-    // // Erzeugt den Player
-    // this.player = this.physics.add.sprite(200, 150, "atlas", "misa-front");
-    // this.player.body.setSize(30, 50, true);
-    // console.log(this.player.width, this.player.height);
-    // this.player.body.velocity.x = -100;
-    // this.player.setScale(0.5); // Skalierung des Sprites
-    // //this.player.setSize(20, 40); // Hitbox
-
-    // // Animation
-    // const anims = this.anims;
-    // anims.create({
-    //     key: "misa-left-walk",
-    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-left-walk.", start: 0, end: 3, zeroPad: 3 }),
-    //     frameRate: 10,
-    //     repeat: -1
-    // });
-    // anims.create({
-    //     key: "misa-right-walk",
-    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
-    //     frameRate: 10,
-    //     repeat: -1
-    // });
-    // anims.create({
-    //     key: "misa-front-walk",
-    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-front-walk.", start: 0, end: 3, zeroPad: 3 }),
-    //     frameRate: 10,
-    //     repeat: -1
-    // });
-    // anims.create({
-    //     key: "misa-back-walk",
-    //     frames: anims.generateFrameNames("atlas", { prefix: "misa-back-walk.", start: 0, end: 3, zeroPad: 3 }),
-    //     frameRate: 10,
-    //     repeat: -1
-    // });
-    console.log("wow");
 }

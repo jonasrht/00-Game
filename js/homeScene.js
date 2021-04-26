@@ -8,6 +8,18 @@ export default class homeScene extends MainScene {
         super("homeScene")
     }
 
+    init(data) {
+        console.log(data);
+        if (data.name == "doorHome") {
+            this.spawnX = 87;
+            this.spawnY = 114;
+        }
+        if (data.name == "doorShop") {
+            this.spawnX = 561;
+            this.spawnY = 648;
+        }
+    }
+
     preload() {
 
     }
@@ -34,7 +46,8 @@ export default class homeScene extends MainScene {
             this.spawns.add(spawn);
         });
         console.log(this.spawns);
-        this.createPlayer(spawns[1].x, spawns[1].y);
+        this.createPlayer(this.spawnX, this.spawnY);
+        //this.createPlayer(spawns[1].x, spawns[1].y);
 
         this.cameras.main.fadeIn(1000);
         this.cameras.main.startFollow(this.player);
@@ -51,14 +64,30 @@ export default class homeScene extends MainScene {
             this.doors.add(door);
         });
 
-        this.physics.add.collider(this.player, this.doors, () => { this.startScene('villageScene') });
+        // Türen
+
+        // Home door zurück
+        this.doorHomeBack = homeroom.createFromObjects('doors', { name: 'doorHomeBack' });
+        this.physics.world.enable(this.doorHomeBack);
+
+        this.physics.add.collider(this.player, this.doorHomeBack, () => {
+            this.switchScene('villageScene', this.doorHomeBack[0].name)
+        });
+
+        // Shop door züruck
+        this.doorShopBack = homeroom.createFromObjects('doors', { name: 'doorShopBack' });
+        this.physics.world.enable(this.doorShopBack);
+
+        this.physics.add.collider(this.player, this.doorShopBack, () => {
+            this.switchScene('villageScene', this.doorShopBack[0].name)
+        });
 
     }
 
-    startScene(scene) {
+    switchScene(scene, name) {
         this.cameras.main.fadeIn(1000);
         this.doorSound.play({ volume: 0.05 });
-        this.scene.start(scene);
+        this.scene.start(scene, name);
     }
 
     createPlayer(x, y) {

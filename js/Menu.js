@@ -11,14 +11,12 @@ export default class Menu extends Phaser.Scene {
     create() {
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
-        console.log(windowWidth, windowHeight);
 
         this.bg = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg");
         this.bg1 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg1");
         this.bg2 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg2");
         this.bg3 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg3");
 
-        console.log("Hallo");
         this.add.text(20, 20, "Menu")
         const startButton = this.add.text(1280 / 2, 360, "Start Game");
         startButton.setOrigin(0.5);
@@ -55,8 +53,8 @@ export default class Menu extends Phaser.Scene {
     }
 
     update() {
-        this.bg1.tilePositionX += 0.1;
-        this.bg2.tilePositionX -= 0.05;
-        this.bg3.tilePositionX += 0.1;
+        this.bg1.tilePositionX += 0.05;
+        this.bg2.tilePositionX += 0.1;
+        this.bg3.tilePositionX += 0.13;
     }
 }

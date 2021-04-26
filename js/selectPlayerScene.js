@@ -16,7 +16,6 @@ export default class selectPlayerScene extends Phaser.Scene {
         this.btnPlayerOne.setDepth(1);
         this.btnPlayerOne.setInteractive();
         this.btnPlayerOne.on("pointerover", () => {
-            console.log("over");
             this.btnPlayerOne.setPipeline('Light2D');
             this.light = this.lights.addLight(this.xPos - 100, this.yPos - 200, 200).setScrollFactor(0.0);
             this.lights.enable().setAmbientColor(0x555555);
@@ -24,7 +23,6 @@ export default class selectPlayerScene extends Phaser.Scene {
 
         });
         this.btnPlayerOne.on("pointerdown", () => {
-            console.log("over");
             this.selectedPlayer = "atlasPink";
             this.scene.start("villageScene", { character: "atlasPink" });
         });
@@ -34,7 +32,6 @@ export default class selectPlayerScene extends Phaser.Scene {
         this.btnPlayerTwo.setDepth(1);
         this.btnPlayerTwo.setInteractive();
         this.btnPlayerTwo.on("pointerdown", () => {
-            console.log("over");
             this.selectedPlayer = "atlas";
             this.scene.start("villageScene", { character: "atlas" });
         });
