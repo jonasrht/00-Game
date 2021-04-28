@@ -19,6 +19,8 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.atlas("atlas", "assets/tilesets/atlas.png", "assets/tilesets/atlas.json");
         this.load.atlas("atlasPink", "assets/tilesets/atlas-pink.png", "assets/tilesets/atlas.json");
 
+        // NPC
+        this.load.atlas("npc", "assets/tilesets/npc.png", "assets/tilesets/npc.json")
 
         //Menu Background
         this.load.image("bg", "assets/img/parallax-mountain-bg.png");
@@ -29,6 +31,8 @@ export default class PreloadScene extends Phaser.Scene {
         //Audio
         this.load.audio("menuMusic", "assets/sounds/menumusic.mp3")
         this.load.audio("startGame", "assets/sounds/gamestart.mp3")
+
+        //Plugins
     }
 
     create() {

@@ -1,9 +1,6 @@
-import MainScene from "./MainScene.js";
-import villageScene from "./villageScene.js";
-//import createPlayer from './villageScene.js';
 let cursors;
 
-export default class homeScene extends MainScene {
+export default class homeScene extends Phaser.Scene {
     constructor() {
         super("homeScene")
     }
@@ -18,6 +15,7 @@ export default class homeScene extends MainScene {
             this.spawnX = 561;
             this.spawnY = 648;
         }
+        this.selectedCharacter = data.char;
     }
 
     preload() {
@@ -25,34 +23,27 @@ export default class homeScene extends MainScene {
     }
 
     create() {
+        // Fade in Effekt
+        this.cameras.main.fadeIn(1000, 0, 0, 0)
+
+        // Steuerung
         cursors = this.input.keyboard.createCursorKeys();
+
+        // Tilesets zuweisen
         const homeroom = this.make.tilemap({ key: "homeroom" });
         const tileset = homeroom.addTilesetImage("room", "homeground");
         const interiorTileset = homeroom.addTilesetImage("tileset", "interior");
         const groundLayer = homeroom.createLayer("ground", [tileset, interiorTileset], 0, 0);
         const interior = homeroom.createLayer("interior", [tileset, interiorTileset], 0, 0);
-        //this.scene.get("villageScene").createPlayer();
-        const spawnPoint = homeroom.findObject(
-            "spawn",
-            (obj) => obj.name === "playerspawn2"
-        );
 
-        this.spawn = homeroom.createFromObjects('spawn', 1);
-        this.spawns = this.add.group()
-        this.spawn.forEach((spawn) => {
-            this.physics.world.enable(spawn);
-            spawn.body.allowGravity = false;
-            spawn.body.immovable = true;
-            this.spawns.add(spawn);
-        });
-        console.log(this.spawns);
+        // Spieler an die zuvor an die Scene übergebenden Koordinaten erstellen
         this.createPlayer(this.spawnX, this.spawnY);
-        //this.createPlayer(spawns[1].x, spawns[1].y);
 
-        this.cameras.main.fadeIn(1000);
+        //Kamera soll dem Spieler folgen und Zoom der Kamera auf drei
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setZoom(3);
 
+        // Soundeffekt
         this.doorSound = this.sound.add("startGame");
 
         this.door = homeroom.createFromObjects('doors', 1);
@@ -84,16 +75,18 @@ export default class homeScene extends MainScene {
 
     }
 
+    // Funktion um in eine andere Scene zu wechseln
     switchScene(scene, name) {
-        this.cameras.main.fadeIn(1000);
+        this.cameras.main.fadeOut(1000);
         this.doorSound.play({ volume: 0.05 });
-        this.scene.start(scene, name);
+        this.scene.start(scene, { name, character: this.selectedCharacter });
     }
 
+    // Funktion um den Spieler zu erstellen
     createPlayer(x, y) {
 
         // Erzeugt den Player
-        this.player = this.physics.add.sprite(x, y, "atlas", "misa-front").setOffset(0, 24);
+        this.player = this.physics.add.sprite(x, y, this.selectedCharacter, "misa-front").setOffset(0, 24);
         this.player.setScale(0.5); // Skalierung des Sprites
         this.player.setSize(30, 30); // Hitbox
 
@@ -101,25 +94,25 @@ export default class homeScene extends MainScene {
         const anims = this.anims;
         anims.create({
             key: "misa-left-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-left-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-left-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: "misa-right-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: "misa-front-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-front-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-front-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });
         anims.create({
             key: "misa-back-walk",
-            frames: anims.generateFrameNames("atlas", { prefix: "misa-back-walk.", start: 0, end: 3, zeroPad: 3 }),
+            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-back-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
             repeat: -1
         });

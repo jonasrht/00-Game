@@ -1,7 +1,14 @@
-// import eventsCenter from './EventsCenter.js';
+import Npc from "./objects/npc.js";
 
 let controls;
 let cursors;
+
+const COLOR_PRIMARY = 0x4e342e;
+const COLOR_LIGHT = 0x7b5e57;
+const COLOR_DARK = 0x260e04;
+
+var content = 'Hi';
+
 
 export default class villageScene extends Phaser.Scene {
     constructor() {
@@ -11,10 +18,10 @@ export default class villageScene extends Phaser.Scene {
         this.selectedCharacter = data.character;
 
         console.log("Data: ->" + data);
-        if (data == "doorHomeBack") {
+        if (data.name == "doorHomeBack") {
             this.spawnX = 105;
             this.spawnY = 280;
-        } else if (data == "doorShopBack") {
+        } else if (data.name == "doorShopBack") {
             this.spawnX = 290;
             this.spawnY = 160;
         }
@@ -25,14 +32,16 @@ export default class villageScene extends Phaser.Scene {
     }
 
     preload() {
-        // this.load.scenePlugin({
-        //     key: 'AnimatedTiles',
-        //     url: './lib/plugins/AnimatedTiles.js',
-        //     sceneKey: 'animatedTiles'
-        // });
+        this.load.scenePlugin({
+            key: 'rexuiplugin',
+            url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
+            sceneKey: 'rexUI'
+        });
+        this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
     }
 
     create() {
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.coinEmitter = new Phaser.Events.EventEmitter();
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
@@ -63,16 +72,16 @@ export default class villageScene extends Phaser.Scene {
         const camera = this.cameras.main;
         camera.startFollow(this.player);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        camera.setZoom(3);
+        camera.setZoom(3.1);
 
+        // NPC
+        const npcs = this.physics.add.group({
+            classType: Npc
+        });
+
+        npcs.get(20, 250, "npc");
 
         cursors = this.input.keyboard.createCursorKeys();
-        // this.add.text(16, 16, "Pfeiltasten zum bewegen", {
-        //     font: "18px monospace",
-        //     fill: "#ffffff",
-        //     padding: { x: 20, y: 10 },
-        //     backgroundColor: "#000000"
-        // }).setScrollFactor(0);
 
         this.door = map.createFromObjects('doors', 1);
         this.doors = this.add.group()
@@ -83,10 +92,6 @@ export default class villageScene extends Phaser.Scene {
             this.doors.add(door);
         });
 
-        // this.physics.add.collider(this.player, this.doors, () => {
-        //     console.log(this.doors);
-        //     this.switchScene('homeScene')
-        // });
 
         // Tür nach Hause
         this.doorHome = map.createFromObjects('doors', { name: 'doorHome' });
@@ -108,10 +113,24 @@ export default class villageScene extends Phaser.Scene {
             esc: Phaser.Input.Keyboard.KeyCodes.ESC,
         })
 
+        // createTextBox(this, 50, 50, {
+        //     wrapWidth: 250,
+        // })
+        //     .start(content, 100);
+
+        // createTextBox(this, 100, 400, {
+        //     wrapWidth: 500,
+        //     fixedWidth: 500,
+        //     fixedHeight: 65,
+        // })
+        //     .start(content, 50);
+
     }
     switchScene(scene, name) {
-        this.cameras.main.fadeOut(1000);
-        this.scene.start(scene, { name })
+        this.cameras.main.fadeOut(1000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.scene.start(scene, { name, char: this.selectedCharacter })
+        });
     }
     createPlayer(x, y) {
         // Erzeugt den Player
@@ -193,4 +212,95 @@ export default class villageScene extends Phaser.Scene {
         }
     }
 
+
+}
+
+const GetValue = Phaser.Utils.Objects.GetValue;
+var createTextBox = function (scene, x, y, config) {
+    var wrapWidth = GetValue(config, 'wrapWidth', 0);
+    var fixedWidth = GetValue(config, 'fixedWidth', 0);
+    var fixedHeight = GetValue(config, 'fixedHeight', 0);
+    var textBox = scene.rexUI.add.textBox({
+        x: x,
+        y: y,
+
+        background: scene.rexUI.add.roundRectangle(0, 0, 2, 2, 20, COLOR_PRIMARY)
+            .setStrokeStyle(2, COLOR_LIGHT),
+
+        icon: scene.rexUI.add.roundRectangle(0, 0, 2, 2, 20, COLOR_DARK),
+
+        // text: getBuiltInText(scene, wrapWidth, fixedWidth, fixedHeight),
+        text: getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
+
+        action: scene.add.image(0, 0, 'nextPage').setTint(COLOR_LIGHT).setVisible(false),
+
+        space: {
+            left: 20,
+            right: 20,
+            top: 20,
+            bottom: 20,
+            icon: 10,
+            text: 10,
+        }
+    })
+        .setOrigin(0)
+        .layout();
+
+    textBox
+        .setInteractive()
+        .on('pointerdown', function () {
+            var icon = this.getElement('action').setVisible(false);
+            this.resetChildVisibleState(icon);
+            if (this.isTyping) {
+                this.stop(true);
+            } else {
+                this.typeNextPage();
+            }
+        }, textBox)
+        .on('pageend', function () {
+            if (this.isLastPage) {
+                return;
+            }
+
+            var icon = this.getElement('action').setVisible(true);
+            this.resetChildVisibleState(icon);
+            icon.y -= 30;
+            var tween = scene.tweens.add({
+                targets: icon,
+                y: '+=30', // '+=100'
+                ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                duration: 500,
+                repeat: 0, // -1: infinity
+                yoyo: false
+            });
+        }, textBox)
+    //.on('type', function () {
+    //})
+
+    return textBox;
+}
+
+var getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
+    return scene.add.text(0, 0, '', {
+        fontSize: '20px',
+        wordWrap: {
+            width: wrapWidth
+        },
+        maxLines: 3
+    })
+        .setFixedSize(fixedWidth, fixedHeight);
+}
+
+var getBBcodeText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
+    return scene.rexUI.add.BBCodeText(0, 0, '', {
+        fixedWidth: fixedWidth,
+        fixedHeight: fixedHeight,
+
+        fontSize: '20px',
+        wrap: {
+            mode: 'word',
+            width: wrapWidth
+        },
+        maxLines: 3
+    })
 }
