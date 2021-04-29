@@ -1,4 +1,4 @@
-let cursors;
+import Player from "./objects/Player.js";
 
 export default class homeScene extends Phaser.Scene {
     constructor() {
@@ -9,7 +9,7 @@ export default class homeScene extends Phaser.Scene {
         console.log(data);
         if (data.name == "doorHome") {
             this.spawnX = 87;
-            this.spawnY = 114;
+            this.spawnY = 100;
         }
         if (data.name == "doorShop") {
             this.spawnX = 561;
@@ -19,15 +19,15 @@ export default class homeScene extends Phaser.Scene {
     }
 
     preload() {
-
+        // Steuerung
+        this.cursors = this.input.keyboard.createCursorKeys();
     }
 
     create() {
         // Fade in Effekt
         this.cameras.main.fadeIn(1000, 0, 0, 0)
 
-        // Steuerung
-        cursors = this.input.keyboard.createCursorKeys();
+
 
         // Tilesets zuweisen
         const homeroom = this.make.tilemap({ key: "homeroom" });
@@ -37,7 +37,7 @@ export default class homeScene extends Phaser.Scene {
         const interior = homeroom.createLayer("interior", [tileset, interiorTileset], 0, 0);
 
         // Spieler an die zuvor an die Scene übergebenden Koordinaten erstellen
-        this.createPlayer(this.spawnX, this.spawnY);
+        this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
 
         //Kamera soll dem Spieler folgen und Zoom der Kamera auf drei
         this.cameras.main.startFollow(this.player);
@@ -82,82 +82,8 @@ export default class homeScene extends Phaser.Scene {
         this.scene.start(scene, { name, character: this.selectedCharacter });
     }
 
-    // Funktion um den Spieler zu erstellen
-    createPlayer(x, y) {
-
-        // Erzeugt den Player
-        this.player = this.physics.add.sprite(x, y, this.selectedCharacter, "misa-front").setOffset(0, 24);
-        this.player.setScale(0.5); // Skalierung des Sprites
-        this.player.setSize(30, 40); // Hitbox
-        this.player.setOffset(0, 24)
-
-        // Animation
-        const anims = this.anims;
-        anims.create({
-            key: "misa-left-walk",
-            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-left-walk.", start: 0, end: 3, zeroPad: 3 }),
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: "misa-right-walk",
-            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: "misa-front-walk",
-            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-front-walk.", start: 0, end: 3, zeroPad: 3 }),
-            frameRate: 10,
-            repeat: -1
-        });
-        anims.create({
-            key: "misa-back-walk",
-            frames: anims.generateFrameNames(this.selectedCharacter, { prefix: "misa-back-walk.", start: 0, end: 3, zeroPad: 3 }),
-            frameRate: 10,
-            repeat: -1
-        });
-    }
 
     update() {
-        //this.scene.get("villageScene").update();
-        const speed = 175;
-        this.player.body.setVelocity(0);
-        const prevVelocity = this.player.body.velocity.clone();
-
-        // Horizontal movement
-        if (cursors.left.isDown) {
-            this.player.body.setVelocityX(-100);
-        } else if (cursors.right.isDown) {
-            this.player.body.setVelocityX(100);
-        }
-
-        // Vertical movement
-        if (cursors.up.isDown) {
-            this.player.body.setVelocityY(-100);
-        } else if (cursors.down.isDown) {
-            this.player.body.setVelocityY(100);
-        }
-
-        // Normalize and scale the velocity so that player can't move faster along a diagonal
-        this.player.body.velocity.normalize().scale(speed);
-
-        if (cursors.left.isDown) {
-            this.player.anims.play("misa-left-walk", true);
-        } else if (cursors.right.isDown) {
-            this.player.anims.play("misa-right-walk", true);
-        } else if (cursors.up.isDown) {
-            this.player.anims.play("misa-back-walk", true);
-        } else if (cursors.down.isDown) {
-            this.player.anims.play("misa-front-walk", true);
-        } else {
-            this.player.anims.stop();
-
-            // If we were moving, pick and idle frame to use
-            if (prevVelocity.x < 0) this.player.setTexture("atlas", "misa-left");
-            else if (prevVelocity.x > 0) this.player.setTexture("atlas", "misa-right");
-            else if (prevVelocity.y < 0) this.player.setTexture("atlas", "misa-back");
-            else if (prevVelocity.y > 0) this.player.setTexture("atlas", "misa-front");
-        }
+        this.player.update(this.cursors, this.selectedCharacter);
     }
 }

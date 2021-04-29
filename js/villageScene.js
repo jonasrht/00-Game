@@ -1,9 +1,6 @@
 import Npc from "./objects/npc.js";
 import Player from "./objects/Player.js"
 
-let controls;
-let cursors;
-
 export default class villageScene extends Phaser.Scene {
 
     constructor() {
@@ -41,8 +38,7 @@ export default class villageScene extends Phaser.Scene {
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         spaceBar.on('up', () => {
-            console.log("space");
-            this.coinEmitter.emit('coinCount');
+            //this.coinEmitter.emit('coinCount');
         });
 
         // User interace Scene, die parallel zur Scene ausgeführt wird
@@ -53,20 +49,20 @@ export default class villageScene extends Phaser.Scene {
         const sTileset = map.addTilesetImage("tileset", "sTiles");
 
         // Tileset Ebenen
-        const belowLayer = map.createLayer("bottom", [tileset, sTileset], 0, 0);
-        const worldLayer = map.createLayer("world", [tileset, sTileset], 0, 0);
-        const aboveLayer = map.createLayer("top", [tileset, sTileset], 0, 0);
+        this.belowLayer = map.createLayer("bottom", [tileset, sTileset], 0, 0);
+        this.worldLayer = map.createLayer("world", [tileset, sTileset], 0, 0);
+        this.aboveLayer = map.createLayer("top", [tileset, sTileset], 0, 0);
 
         // Spieler erstellen
         this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
 
         //Ebenen tiefe einstellen, so dass das "aboveLayer" über dem Spieler ist
         this.player.setDepth(10);
-        aboveLayer.setDepth(11);
+        this.aboveLayer.setDepth(11);
 
         // Collider
-        worldLayer.setCollisionByProperty({ colides: true });
-        this.physics.add.collider(this.player, worldLayer,);
+        this.worldLayer.setCollisionByProperty({ colides: true });
+        this.physics.add.collider(this.player, this.worldLayer,);
 
         //Kamera
         const camera = this.cameras.main;
@@ -79,13 +75,14 @@ export default class villageScene extends Phaser.Scene {
             classType: Npc
         });
         npcs.get(20, 250, "npc");
-        this.physics.add.collider(this.player, npcs, () => console.log("NPC"));
+        npcs.children.entries[0].body.immovable = true;
+        this.physics.add.collider(this.player, npcs, () => this.createBox());
 
 
         // Tür nach Hause
         this.doorHome = map.createFromObjects('doors', { name: 'doorHome' });
         this.physics.world.enable(this.doorHome);
-
+        this.doorHome[0].body.immovable = true;
         this.physics.add.collider(this.player, this.doorHome, () => {
             this.switchScene('homeScene', this.doorHome[0].name)
         });
@@ -93,7 +90,7 @@ export default class villageScene extends Phaser.Scene {
         // Tür zum Shop
         this.doorShop = map.createFromObjects('doors', { name: 'doorShop' });
         this.physics.world.enable(this.doorShop);
-
+        this.doorShop[0].body.immovable = true;
         this.physics.add.collider(this.player, this.doorShop, () => {
             this.switchScene('homeScene', this.doorShop[0].name)
         });
@@ -111,9 +108,12 @@ export default class villageScene extends Phaser.Scene {
         });
     }
 
+    createBox() {
+        this.coinEmitter.emit('coinCount');
+    }
+
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.wasd.esc)) {
-            console.log("esc");
             this.scene.start('mainMenu');
         }
 

@@ -9,8 +9,9 @@ export default class uiScene extends Phaser.Scene {
     }
 
     init(data) {
+        console.log(data);
         if (data && data.eventEmitter) {
-            data.eventEmitter.on('coinCount', this.updateMoney, this)
+            data.eventEmitter.on('coinCount', this.createBox, this)
         }
         this._money = 0;
     }
@@ -27,17 +28,25 @@ export default class uiScene extends Phaser.Scene {
     create() {
         this.moneyText = this.add.text(10, 10, ": 0", { fontSize: 32 });
 
+
+    }
+
+    createBox() {
         createTextBox(this, 100, 600, {
             wrapWidth: 500,
             fixedWidth: 500,
             fixedHeight: 65,
-        })
-            .start(content, 50);
+        }).start(content, 50);
     }
-
     updateMoney() {
         this._money++;
         this.moneyText.setText(': ' + this._money);
+    }
+
+    update() {
+        if (this._money == 10) {
+
+        }
     }
 }
 

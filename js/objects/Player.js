@@ -87,16 +87,3 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 }
-
-// Phaser.GameObjects.GameObjectFactory.register('faune', function (x, y, texture, frame) {
-//     sprite: function (x, y, key, frame)
-//     {
-//         var sprite = new ArcadeSprite(this.scene, x, y, key, frame);
-
-//         this.sys.displayList.add(sprite);
-//         this.sys.updateList.add(sprite);
-
-//         this.world.enableBody(sprite, CONST.DYNAMIC_BODY);
-
-//         return sprite;
-//     }
