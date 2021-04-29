@@ -15,6 +15,7 @@ export default class selectPlayerScene extends Phaser.Scene {
         this.btnPlayerOne = this.add.image(this.xPos - 100, this.yPos - 200, "atlasPink");
         this.btnPlayerOne.setDepth(1);
         this.btnPlayerOne.setInteractive();
+        this.btnPlayerOne.setSize()
         this.btnPlayerOne.on("pointerover", () => {
             this.btnPlayerOne.setPipeline('Light2D');
             this.light = this.lights.addLight(this.xPos - 100, this.yPos - 200, 200).setScrollFactor(0.0);

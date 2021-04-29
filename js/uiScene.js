@@ -26,20 +26,6 @@ export default class uiScene extends Phaser.Scene {
 
     create() {
         this.moneyText = this.add.text(10, 10, ": 0", { fontSize: 32 });
-        //var rect = scene.add.rectangle(50, 50, 100, 100, 0xff0000);
-        // listen to 'update-count' event and call `updateCount()`
-        // when it fires
-        // eventsCenter.on('update-count', this.updateCount, this)
-
-        // // clean up when Scene is shutdown
-        // this.events.on(Phaser.Scenes.Events.SHUTDOWN, () => {
-        //     eventsCenter.off('update-count', this.updateCount, this)
-        // })
-
-        // createTextBox(this, 50, 50, {
-        //     wrapWidth: 500,
-        // })
-        //     .start(content, 100);
 
         createTextBox(this, 100, 600, {
             wrapWidth: 500,

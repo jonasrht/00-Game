@@ -65,7 +65,7 @@ export default class villageScene extends Phaser.Scene {
         this.createPlayer(this.spawnX, this.spawnY);
         const aboveLayer = map.createLayer("top", [tileset, sTileset], 0, 0);
 
-        this.physics.add.collider(this.player, worldLayer);
+        this.physics.add.collider(this.player, worldLayer,);
 
 
         //Kamera
@@ -135,9 +135,10 @@ export default class villageScene extends Phaser.Scene {
     createPlayer(x, y) {
         // Erzeugt den Player
         this.player = this.physics.add.sprite(x, y, this.selectedCharacter, "misa-front");
-        this.player.body.setSize(30, 50, true);
+        this.player.body.setSize(30, 40, true);
         this.player.body.velocity.x = -100;
         this.player.setScale(0.5); // Skalierung des Sprites
+        this.player.setOffset(0, 24)
         //this.player.setSize(20, 40); // Hitbox
 
         // Animation
