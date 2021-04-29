@@ -88,7 +88,8 @@ export default class homeScene extends Phaser.Scene {
         // Erzeugt den Player
         this.player = this.physics.add.sprite(x, y, this.selectedCharacter, "misa-front").setOffset(0, 24);
         this.player.setScale(0.5); // Skalierung des Sprites
-        this.player.setSize(30, 30); // Hitbox
+        this.player.setSize(30, 40); // Hitbox
+        this.player.setOffset(0, 24)
 
         // Animation
         const anims = this.anims;
