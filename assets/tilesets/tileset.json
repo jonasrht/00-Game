@@ -63,8 +63,8 @@
                  "type":"",
                  "visible":false,
                  "width":14.5,
-                 "x":106,
-                 "y":224.5
+                 "x":106.5,
+                 "y":207.5
                 }, 
                 {
                  "height":20.5,
@@ -75,7 +75,7 @@
                  "visible":false,
                  "width":14.5,
                  "x":298.25,
-                 "y":127.75
+                 "y":112.75
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -8530,7 +8530,7 @@
                         {
                          "name":"colides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -8539,7 +8539,7 @@
                         {
                          "name":"colides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
