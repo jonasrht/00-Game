@@ -126,7 +126,7 @@
                  "name":"doorShopBack",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":560.181818181818,
                  "y":681.090909090909

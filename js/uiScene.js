@@ -32,11 +32,16 @@ export default class uiScene extends Phaser.Scene {
     }
 
     createBox() {
-        createTextBox(this, 100, 600, {
+        this.box = createTextBox(this, 100, 600, {
             wrapWidth: 500,
             fixedWidth: 500,
             fixedHeight: 65,
-        }).start(content, 50);
+        })
+        this.box.start(content, 50);
+        this.time.delayedCall(2000, () => {
+            this.rexUI.remove(this.box)
+        });
+
     }
     updateMoney() {
         this._money++;
@@ -83,7 +88,7 @@ var createTextBox = function (scene, x, y, config) {
 
     textBox
         .setInteractive()
-        .on('pointerdown', function () {
+        .on('keydown-A', function () {
             var icon = this.getElement('action').setVisible(false);
             this.resetChildVisibleState(icon);
             if (this.isTyping) {
@@ -111,7 +116,6 @@ var createTextBox = function (scene, x, y, config) {
         }, textBox)
     //.on('type', function () {
     //})
-
     return textBox;
 }
 

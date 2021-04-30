@@ -7,9 +7,9 @@ export default class selectPlayerScene extends Phaser.Scene {
     create() {
         this.xPos = this.game.config.width / 2;
         this.yPos = this.game.config.height / 2;
-        var text = this.add.text(0, 0, "Wähle deinen Spieler", { font: '"Press Start 2P"', fontSize: '65px', fontStyle: 'bold', fill: 'rgb(255, 255, 255)' });
+        var text = this.add.text(0, 0, "Wähle deinen Spieler", { fontFamily: 'mainfont', fontSize: '20px', fontStyle: 'bold', fill: 'rgb(255, 255, 255)' });
         text.x = this.game.config.width / 2 - text.width / 2;
-        text.y = this.game.config.height / 2 - text.height / 2 - 350;
+        text.y = this.game.config.height / 2 - text.height / 2 - 140;
 
         //Pink player
         this.btnPlayerOne = this.add.image(this.xPos - 100, this.yPos - 200, "atlasPink");

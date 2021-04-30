@@ -18,7 +18,7 @@ export default class Menu extends Phaser.Scene {
         this.bg3 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg3");
 
         this.add.text(20, 20, "Menu")
-        const startButton = this.add.text(1280 / 2, 360, "Start Game");
+        const startButton = this.add.text(1280 / 2, 360, "Start Game").setFontFamily('mainfont');
         startButton.setOrigin(0.5);
         startButton.setFontSize(50);
         startButton.setInteractive();

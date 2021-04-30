@@ -5,8 +5,9 @@ import villageScene from "./villageScene.js";
 import selectPlayerScene from "./selectPlayerScene.js";
 import uiScene from "./uiScene.js";
 import GzDialog from "./plugins/GzDialog.js"
+import instructionsScene from "./instructionsScene.js";
 
-const config = {
+export const config = {
     type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
     width: 1280,
     height: 720,
@@ -18,7 +19,7 @@ const config = {
             { key: 'gzDialog', plugin: GzDialog, mapping: 'gzDialog' }
         ]
     },
-    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene],
+    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene, instructionsScene],
     physics: {
         default: "arcade",
         arcade: {
@@ -28,6 +29,6 @@ const config = {
 
     }
 };
-
+console.log(config);
 
 const game = new Phaser.Game(config);

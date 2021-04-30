@@ -1,5 +1,6 @@
 import Npc from "./objects/npc.js";
-import Player from "./objects/Player.js"
+import Player from "./objects/Player.js";
+import instructionsScene from "./instructionsScene.js";
 
 export default class villageScene extends Phaser.Scene {
 
@@ -32,7 +33,7 @@ export default class villageScene extends Phaser.Scene {
     }
 
     create() {
-
+        this.scene.run('instructionsScene');
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.coinEmitter = new Phaser.Events.EventEmitter();
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
