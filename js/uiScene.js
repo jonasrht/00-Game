@@ -27,6 +27,15 @@ export default class uiScene extends Phaser.Scene {
 
     create() {
         this.moneyText = this.add.text(10, 10, ": 0", { fontSize: 32 });
+
+        // Iventar Icon
+        this.invIcon = this.add.image(50, 670, 'invIcon');
+        this.invIcon.setScale(2.5);
+        this.invIcon.setInteractive({ useHandCursor: true });
+        // Inventat öffnen
+        this.invIcon.on('pointerdown', function (pointer) {
+            this.scene.pause().launch('inventoryScene');
+        }, this);
     }
 
     playerMovement() {

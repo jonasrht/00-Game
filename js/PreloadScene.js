@@ -28,6 +28,14 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.image("bg2", "assets/img/parallax-mountain-mountains.png");
         this.load.image("bg3", "assets/img/parallax-mountain-trees.png");
 
+        // Buttons
+        this.load.image('exitButton', 'assets/img/exitButton4.png');
+        this.load.image('MenuTop', 'assets/img/MenuTop.png');
+        this.load.image('MenuMapTop', 'assets/img/MenuMapTop.png');
+
+        // Inventar
+        this.load.image("invIcon", "assets/img/invenIcon.png");
+
         //Audio
         this.load.audio("menuMusic", "assets/sounds/menumusic.mp3")
         this.load.audio("startGame", "assets/sounds/gamestart.mp3")

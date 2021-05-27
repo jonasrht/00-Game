@@ -9,8 +9,7 @@ export default class shopScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('exitButton', 'assets/img/exitButton4.png');
-        this.load.image('MenuTop', 'assets/img/MenuTop.png');
+
     }
 
     create() {
