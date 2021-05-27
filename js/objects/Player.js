@@ -15,6 +15,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         //this.setVelocity(4, 50);
         this.create(texture);
+        this.movement = true;
     }
 
     create(texture) {
@@ -50,21 +51,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.body.setVelocity(0);
         const prevVelocity = this.body.velocity.clone();
+        if (this.movement) {
+            // Horizontal movement
+            if (cursors.left.isDown) {
+                this.body.setVelocityX(-100);
+            } else if (cursors.right.isDown) {
+                this.body.setVelocityX(100);
+            }
 
-        // Horizontal movement
-        if (cursors.left.isDown) {
-            this.body.setVelocityX(-100);
-        } else if (cursors.right.isDown) {
-            this.body.setVelocityX(100);
+            // Vertical movement
+            if (cursors.up.isDown) {
+                this.body.setVelocityY(-100);
+            } else if (cursors.down.isDown) {
+                this.body.setVelocityY(100);
+            }
         }
-
-        // Vertical movement
-        if (cursors.up.isDown) {
-            this.body.setVelocityY(-100);
-        } else if (cursors.down.isDown) {
-            this.body.setVelocityY(100);
-        }
-
         // Normalize and scale the velocity so that can't move faster along a diagonal
         this.body.velocity.normalize().scale(175);
 

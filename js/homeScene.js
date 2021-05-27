@@ -5,6 +5,7 @@ export default class homeScene extends Phaser.Scene {
         super("homeScene")
     }
 
+
     init(data) {
         console.log(data);
         if (data.name == "doorHome") {
@@ -84,6 +85,8 @@ export default class homeScene extends Phaser.Scene {
 
 
     update() {
-        this.player.update(this.cursors, this.selectedCharacter);
+        if (movement) {
+            this.player.update(this.cursors, this.selectedCharacter);
+        }
     }
 }

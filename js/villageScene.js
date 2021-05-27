@@ -111,6 +111,7 @@ export default class villageScene extends Phaser.Scene {
     }
 
     createBox() {
+        this.player.movement = false;
         this.coinEmitter.emit('coinCount');
     }
 

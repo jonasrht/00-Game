@@ -38,9 +38,6 @@ export default class uiScene extends Phaser.Scene {
             fixedHeight: 65,
         })
         this.box.start(content, 50);
-        this.time.delayedCall(2000, () => {
-
-        });
 
     }
     updateMoney() {
@@ -97,6 +94,7 @@ var createTextBox = function (scene, x, y, config) {
                 this.typeNextPage();
             } else {
                 this.stop(true);
+
                 this.visible = false;
             }
         }, textBox)
