@@ -39,7 +39,7 @@ export default class uiScene extends Phaser.Scene {
         })
         this.box.start(content, 50);
         this.time.delayedCall(2000, () => {
-            this.rexUI.remove(this.box)
+
         });
 
     }

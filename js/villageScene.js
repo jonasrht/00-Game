@@ -10,11 +10,11 @@ export default class villageScene extends Phaser.Scene {
     init(data) {
         this.selectedCharacter = data.character;
         if (data.name == "doorHomeBack") {
-            this.spawnX = 105;
-            this.spawnY = 280;
+            this.spawnX = 115;
+            this.spawnY = 227;
         } else if (data.name == "doorShopBack") {
-            this.spawnX = 290;
-            this.spawnY = 160;
+            this.spawnX = 307;
+            this.spawnY = 134;
         }
         else {
             this.spawnX = 10;
@@ -98,6 +98,7 @@ export default class villageScene extends Phaser.Scene {
 
         this.wasd = this.input.keyboard.addKeys({
             esc: Phaser.Input.Keyboard.KeyCodes.ESC,
+            six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
 
 
@@ -114,8 +115,12 @@ export default class villageScene extends Phaser.Scene {
     }
 
     update() {
+
         if (Phaser.Input.Keyboard.JustDown(this.wasd.esc)) {
             this.scene.start('mainMenu');
+        }
+        if (Phaser.Input.Keyboard.JustDown(this.wasd.six)) {
+            console.log("x" + this.player.x, "y:" + this.player.y);
         }
 
         this.player.update(this.cursors, this.selectedCharacter);
