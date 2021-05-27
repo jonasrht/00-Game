@@ -85,8 +85,6 @@ export default class homeScene extends Phaser.Scene {
 
 
     update() {
-        if (movement) {
-            this.player.update(this.cursors, this.selectedCharacter);
-        }
+        this.player.update(this.cursors, this.selectedCharacter);
     }
 }

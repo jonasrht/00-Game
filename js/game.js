@@ -11,7 +11,7 @@ export const config = {
     type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
     width: 1280,
     height: 720,
-
+    test: true,
     pixelArt: true,
     parent: "game", // HTML ID 
     plugins: {
@@ -32,3 +32,4 @@ export const config = {
 console.log(config);
 
 const game = new Phaser.Game(config);
+game.config.test = true;

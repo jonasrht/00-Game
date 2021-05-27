@@ -2,7 +2,7 @@ const COLOR_PRIMARY = 0x4e342e;
 const COLOR_LIGHT = 0x7b5e57;
 const COLOR_DARK = 0x260e04;
 
-var content = 'Moin Meister';
+var content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
 export default class uiScene extends Phaser.Scene {
     constructor() {
         super("uiScene");
@@ -27,8 +27,10 @@ export default class uiScene extends Phaser.Scene {
 
     create() {
         this.moneyText = this.add.text(10, 10, ": 0", { fontSize: 32 });
+    }
 
-
+    playerMovement() {
+        this.game.config.test = true;
     }
 
     createBox() {
@@ -38,7 +40,7 @@ export default class uiScene extends Phaser.Scene {
             fixedHeight: 65,
         })
         this.box.start(content, 50);
-
+        this.game.config.test = false;
     }
     updateMoney() {
         this._money++;
@@ -54,6 +56,7 @@ export default class uiScene extends Phaser.Scene {
 
 const GetValue = Phaser.Utils.Objects.GetValue;
 var createTextBox = function (scene, x, y, config) {
+    var keyObj = scene.input.keyboard.addKey('ENTER');
     var wrapWidth = GetValue(config, 'wrapWidth', 0);
     var fixedWidth = GetValue(config, 'fixedWidth', 0);
     var fixedHeight = GetValue(config, 'fixedHeight', 0);
@@ -83,21 +86,23 @@ var createTextBox = function (scene, x, y, config) {
         .setOrigin(0)
         .layout();
 
+    keyObj.on('down', function () {
+        var icon = this.getElement('action').setVisible(false);
+        this.resetChildVisibleState(icon);
+        if (this.isTyping) {
+            this.stop(true);
+        } else if (!this.isLastPage) {
+            this.typeNextPage();
+        } else {
+            this.stop(true);
+            if (this.isLastPage) {
+                scene.playerMovement();
+            }
+            this.visible = false;
+        }
+    }, textBox);
     textBox
         .setInteractive()
-        .on('pointerdown', function () {
-            var icon = this.getElement('action').setVisible(false);
-            this.resetChildVisibleState(icon);
-            if (this.isTyping) {
-                this.stop(true);
-            } else if (!this.isLastPage) {
-                this.typeNextPage();
-            } else {
-                this.stop(true);
-
-                this.visible = false;
-            }
-        }, textBox)
         .on('pageend', function () {
             if (this.isLastPage) {
                 return;

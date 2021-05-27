@@ -116,6 +116,9 @@ export default class villageScene extends Phaser.Scene {
     }
 
     update() {
+        if (this.game.config.test) {
+            this.player.movement = true
+        }
 
         if (Phaser.Input.Keyboard.JustDown(this.wasd.esc)) {
             this.scene.start('mainMenu');
@@ -125,6 +128,7 @@ export default class villageScene extends Phaser.Scene {
         }
 
         this.player.update(this.cursors, this.selectedCharacter);
+
     }
 
 
