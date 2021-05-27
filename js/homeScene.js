@@ -28,8 +28,6 @@ export default class homeScene extends Phaser.Scene {
         // Fade in Effekt
         this.cameras.main.fadeIn(1000, 0, 0, 0)
 
-
-
         // Tilesets zuweisen
         const homeroom = this.make.tilemap({ key: "homeroom" });
         const tileset = homeroom.addTilesetImage("room", "homeground");
@@ -74,6 +72,13 @@ export default class homeScene extends Phaser.Scene {
             this.switchScene('villageScene', this.doorShopBack[0].name)
         });
 
+        // Shop
+        this.shop = homeroom.createFromObjects('shop', { name: 'shopVil' });
+        this.physics.world.enable(this.shop);
+        console.log(this.shop);
+        this.physics.add.collider(this.player, this.shop, () => {
+            this.scene.pause().launch('shopScene');
+        });
     }
 
     // Funktion um in eine andere Scene zu wechseln

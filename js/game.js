@@ -6,6 +6,7 @@ import selectPlayerScene from "./selectPlayerScene.js";
 import uiScene from "./uiScene.js";
 import GzDialog from "./plugins/GzDialog.js"
 import instructionsScene from "./instructionsScene.js";
+import shopScene from "./shopScene.js";
 
 export const config = {
     type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
@@ -19,7 +20,7 @@ export const config = {
             { key: 'gzDialog', plugin: GzDialog, mapping: 'gzDialog' }
         ]
     },
-    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene, instructionsScene],
+    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene, instructionsScene, shopScene],
     physics: {
         default: "arcade",
         arcade: {
