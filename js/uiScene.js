@@ -2,7 +2,7 @@ const COLOR_PRIMARY = 0x4e342e;
 const COLOR_LIGHT = 0x7b5e57;
 const COLOR_DARK = 0x260e04;
 
-var content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+var content = 'Moin Meister';
 export default class uiScene extends Phaser.Scene {
     constructor() {
         super("uiScene");
@@ -88,13 +88,16 @@ var createTextBox = function (scene, x, y, config) {
 
     textBox
         .setInteractive()
-        .on('keydown-A', function () {
+        .on('pointerdown', function () {
             var icon = this.getElement('action').setVisible(false);
             this.resetChildVisibleState(icon);
             if (this.isTyping) {
                 this.stop(true);
-            } else {
+            } else if (!this.isLastPage) {
                 this.typeNextPage();
+            } else {
+                this.stop(true);
+                this.visible = false;
             }
         }, textBox)
         .on('pageend', function () {
