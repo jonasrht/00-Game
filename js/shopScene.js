@@ -17,10 +17,13 @@ export default class shopScene extends Phaser.Scene {
 
         // Get von anderen Scenen
         var uiScene = this.scene.get('uiScene');
+        var invScene = this.scene.get('inventoryScene');
+
 
         // Exit Button
         this.exitButton = this.add.image(718, 84, 'exitButton').setInteractive({ useHandCursor: true });
         this.exitButton.on('pointerdown', function (pointer) {
+            uiScene.removeHeart();
             this.scene.stop().resume('homeScene');
         }, this);
 
@@ -30,6 +33,15 @@ export default class shopScene extends Phaser.Scene {
         this.menuTop = this.add.image(600, 260, 'MenuTop');
         this.shopHeader = this.add.text(599, 90, 'SHOP', { fontFamily: 'mainfont', fontSize: '13px', color: '#62232f', stroke: '#62232f', align: 'center' }).setOrigin(0.5, 0.5);
         this.itemsHeader = this.add.text(463, 125, 'Item           Wt. Preis', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+    
+        // Herzen
+        this.hearts = this.add.image(600, 150, 'heartIcon');
+        this.hearts.setInteractive();
+        this.hearts.on('pointerdown', function(pointer) {
+            uiScene.addHeart();
+            //uiScene.money = uiScene.money - 10;
+            uiScene.updateMoney(-10);
+        }, this);
     }
 
     update() {

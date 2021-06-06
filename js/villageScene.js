@@ -33,7 +33,8 @@ export default class villageScene extends Phaser.Scene {
     }
 
     create() {
-        this.scene.run('instructionsScene');
+        //this.scene.run('instructionsScene');
+        this.scene.run('shopScene');
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.coinEmitter = new Phaser.Events.EventEmitter();
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);

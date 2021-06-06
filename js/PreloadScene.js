@@ -35,6 +35,8 @@ export default class PreloadScene extends Phaser.Scene {
 
         // Inventar
         this.load.image("invIcon", "assets/img/invenIcon.png");
+        this.load.image("heartIcon", "assets/img/Sprite_heart.png");
+        this.load.image("coinIcon", "assets/img/coin18.png")
 
         //Audio
         this.load.audio("menuMusic", "assets/sounds/menumusic.mp3")

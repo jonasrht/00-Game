@@ -6,6 +6,9 @@ var content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
 export default class uiScene extends Phaser.Scene {
     constructor() {
         super("uiScene");
+        this.x = 50;
+        this.money = 100;
+        this.heartContainer = [];
     }
 
     init(data) {
@@ -13,7 +16,7 @@ export default class uiScene extends Phaser.Scene {
         if (data && data.eventEmitter) {
             data.eventEmitter.on('coinCount', this.createBox, this)
         }
-        this._money = 0;
+        this._money = 100;
     }
 
     preload() {
@@ -26,7 +29,8 @@ export default class uiScene extends Phaser.Scene {
 
 
     create() {
-        this.moneyText = this.add.text(10, 10, ": 0", { fontSize: 32 });
+        this.coinIcon = this.add.image(10, 10, 'coinIcon');
+        this.moneyText = this.add.text(10, 10, ": " + this.money, { fontSize: 32 });
 
         // Iventar Icon
         this.invIcon = this.add.image(50, 670, 'invIcon');
@@ -36,10 +40,26 @@ export default class uiScene extends Phaser.Scene {
         this.invIcon.on('pointerdown', function (pointer) {
             this.scene.pause().launch('inventoryScene');
         }, this);
+
+        
     }
 
     playerMovement() {
         this.game.config.test = true;
+    }
+
+    addHeart() {
+
+        this.heartIcon = this.add.image(this.x, 50, 'heartIcon');
+        this.x = this.x + 20;
+
+        this.heartContainer.push(this.heartIcon);
+        console.log(this.heartContainer);
+    }
+
+    removeHeart() {
+        this.x = this.x - 20;
+        this.heartContainer[this.heartContainer.length -1].destroy();
     }
 
     createBox() {
@@ -51,15 +71,17 @@ export default class uiScene extends Phaser.Scene {
         this.box.start(content, 50);
         this.game.config.test = false;
     }
-    updateMoney() {
-        this._money++;
-        this.moneyText.setText(': ' + this._money);
+    updateMoney(money) {
+        this.money = this.money + money; 
+        if (this.money > 0 ) {
+            this.moneyText.setText(': ' + this.money);
+        }
     }
 
-    update() {
-        if (this._money == 10) {
 
-        }
+
+    update() {
+
     }
 }
 
