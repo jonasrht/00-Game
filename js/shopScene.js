@@ -35,7 +35,8 @@ export default class shopScene extends Phaser.Scene {
         this.itemsHeader = this.add.text(463, 125, 'Item           Wt. Preis', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
     
         // Herzen
-        this.hearts = this.add.image(600, 150, 'heartIcon');
+        this.hearts = this.add.image(490, 167, 'heartIcon').setScale(1.5);
+        this.itemsHeader = this.add.text(463, 160, '               1    10$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
         this.hearts.setInteractive();
         this.hearts.on('pointerdown', function(pointer) {
             uiScene.addHeart();

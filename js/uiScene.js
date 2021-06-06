@@ -30,13 +30,13 @@ export default class uiScene extends Phaser.Scene {
 
     create() {
         this.coinIcon = this.add.image(10, 10, 'coinIcon');
-        this.moneyText = this.add.text(10, 10, ": " + this.money, { fontSize: 32 });
+        this.moneyText = this.add.text(10, 10, ": " + this.money, { fontFamily: 'mainfont', fontSize: '18px', color: '#fffbed', stroke: '#62232f', align: 'center' });
 
         // Iventar Icon
         this.invIcon = this.add.image(50, 670, 'invIcon');
         this.invIcon.setScale(2.5);
         this.invIcon.setInteractive({ useHandCursor: true });
-        // Inventat öffnen
+        // Inventar öffnen
         this.invIcon.on('pointerdown', function (pointer) {
             this.scene.pause().launch('inventoryScene');
         }, this);
@@ -71,14 +71,13 @@ export default class uiScene extends Phaser.Scene {
         this.box.start(content, 50);
         this.game.config.test = false;
     }
+
     updateMoney(money) {
         this.money = this.money + money; 
         if (this.money > 0 ) {
             this.moneyText.setText(': ' + this.money);
         }
     }
-
-
 
     update() {
 
