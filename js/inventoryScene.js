@@ -8,9 +8,11 @@ export default class inventoryScene extends Phaser.Scene {
     }
 
     create() {
+        this.buttonSound = this.sound.add("buttonSound");
         // Exit Button
         this.exitButton = this.add.image(718, 84, 'exitButton').setInteractive({ useHandCursor: true });
         this.exitButton.on('pointerdown', function (pointer) {
+            this.buttonSound.play();
             this.scene.stop().resume('uiScene');
         }, this);
 

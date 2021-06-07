@@ -29,6 +29,10 @@ export default class uiScene extends Phaser.Scene {
 
 
     create() {
+        this.heartSound = this.sound.add("heartSound");
+        for (let i = 0; i < 3; i++) {
+            this.addHeart();
+        }
         this.coinIcon = this.add.image(10, 10, 'coinIcon');
         this.moneyText = this.add.text(10, 10, ": " + this.money, { fontFamily: 'mainfont', fontSize: '18px', color: '#fffbed', stroke: '#62232f', align: 'center' });
 
@@ -41,7 +45,7 @@ export default class uiScene extends Phaser.Scene {
             this.scene.pause().launch('inventoryScene');
         }, this);
 
-        
+
     }
 
     playerMovement() {
@@ -49,17 +53,24 @@ export default class uiScene extends Phaser.Scene {
     }
 
     addHeart() {
-
         this.heartIcon = this.add.image(this.x, 50, 'heartIcon');
         this.x = this.x + 20;
-
+        this.heartSound.play();
         this.heartContainer.push(this.heartIcon);
         console.log(this.heartContainer);
     }
 
     removeHeart() {
-        this.x = this.x - 20;
-        this.heartContainer[this.heartContainer.length -1].destroy();
+        if (this.heartContainer.length > 1) {
+            this.x = this.x - 20;
+            this.heartContainer[this.heartContainer.length - 1].destroy();
+        } else {
+            this.handleGameover();
+        }
+    }
+
+    handleGameover() {
+        console.log("GameOver :(((");
     }
 
     createBox() {
@@ -73,8 +84,8 @@ export default class uiScene extends Phaser.Scene {
     }
 
     updateMoney(money) {
-        this.money = this.money + money; 
-        if (this.money > 0 ) {
+        this.money = this.money + money;
+        if (this.money > 0) {
             this.moneyText.setText(': ' + this.money);
         }
     }

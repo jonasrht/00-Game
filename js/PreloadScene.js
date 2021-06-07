@@ -41,6 +41,10 @@ export default class PreloadScene extends Phaser.Scene {
         //Audio
         this.load.audio("menuMusic", "assets/sounds/menumusic.mp3")
         this.load.audio("startGame", "assets/sounds/gamestart.mp3")
+        this.load.audio("buttonSound", "assets/sounds/button.wav")
+        this.load.audio("heartSound", "assets/sounds/heart.wav")
+        this.load.audio("dooropenSound", "assets/sounds/dooropen.wav")
+
 
         //Plugins
     }

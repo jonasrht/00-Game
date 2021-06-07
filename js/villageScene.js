@@ -33,8 +33,9 @@ export default class villageScene extends Phaser.Scene {
     }
 
     create() {
-        //this.scene.run('instructionsScene');
-        this.scene.run('shopScene');
+        this.dooropenSound = this.sound.add("dooropenSound");
+        this.scene.run('instructionsScene');
+        //this.scene.run('shopScene');
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.coinEmitter = new Phaser.Events.EventEmitter();
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -86,6 +87,7 @@ export default class villageScene extends Phaser.Scene {
         this.physics.world.enable(this.doorHome);
         this.doorHome[0].body.immovable = true;
         this.physics.add.collider(this.player, this.doorHome, () => {
+            this.dooropenSound.play();
             this.switchScene('homeScene', this.doorHome[0].name)
         });
 
@@ -94,6 +96,7 @@ export default class villageScene extends Phaser.Scene {
         this.physics.world.enable(this.doorShop);
         this.doorShop[0].body.immovable = true;
         this.physics.add.collider(this.player, this.doorShop, () => {
+            this.dooropenSound.play();
             this.switchScene('homeScene', this.doorShop[0].name)
         });
 
