@@ -44,6 +44,7 @@ export default class homeScene extends Phaser.Scene {
 
         // Soundeffekt
         this.doorSound = this.sound.add("startGame");
+        this.doorcloseSound = this.sound.add("doorcloseSound");
 
         this.door = homeroom.createFromObjects('doors', 1);
         this.doors = this.add.group()
@@ -61,6 +62,7 @@ export default class homeScene extends Phaser.Scene {
         this.physics.world.enable(this.doorHomeBack);
 
         this.physics.add.collider(this.player, this.doorHomeBack, () => {
+            this.doorcloseSound.play();
             this.switchScene('villageScene', this.doorHomeBack[0].name)
         });
 
@@ -69,12 +71,14 @@ export default class homeScene extends Phaser.Scene {
         this.physics.world.enable(this.doorShopBack);
 
         this.physics.add.collider(this.player, this.doorShopBack, () => {
+            this.doorcloseSound.play();
             this.switchScene('villageScene', this.doorShopBack[0].name)
         });
 
         // Shop
         this.shop = homeroom.createFromObjects('shop', { name: 'shopVil' });
         this.physics.world.enable(this.shop);
+        this.shop[0].body.immovable = true;
         console.log(this.shop);
         this.physics.add.collider(this.player, this.shop, () => {
             this.scene.pause().launch('shopScene');

@@ -1,6 +1,7 @@
 import Npc from "./objects/npc.js";
 import Player from "./objects/Player.js";
 import instructionsScene from "./instructionsScene.js";
+import uiScene from "./uiScene.js";
 
 export default class villageScene extends Phaser.Scene {
 
@@ -9,6 +10,7 @@ export default class villageScene extends Phaser.Scene {
     }
     init(data) {
         this.selectedCharacter = data.character;
+        // Spawn Pukte
         if (data.name == "doorHomeBack") {
             this.spawnX = 115;
             this.spawnY = 227;
@@ -33,6 +35,8 @@ export default class villageScene extends Phaser.Scene {
     }
 
     create() {
+        var uiScene = this.scene.get('uiScene');
+
         this.dooropenSound = this.sound.add("dooropenSound");
         this.scene.run('instructionsScene');
         //this.scene.run('shopScene');
@@ -45,7 +49,7 @@ export default class villageScene extends Phaser.Scene {
         });
 
         // User interace Scene, die parallel zur Scene ausgeführt wird
-        this.scene.run('uiScene', { eventEmitter: this.coinEmitter });
+        //this.scene.run('uiScene', { eventEmitter: this.coinEmitter });
         const map = this.make.tilemap({ key: "map" });
         // Tileset
         const tileset = map.addTilesetImage("Serene_Village_16x16", "tiles");
@@ -77,7 +81,20 @@ export default class villageScene extends Phaser.Scene {
         const npcs = this.physics.add.group({
             classType: Npc
         });
-        npcs.get(20, 250, "npc");
+        this.npc1 = npcs.get(20, 250, "npc");
+        this.anims.create({
+            key: 'idle',
+            repeat: -1,
+            frameRate: 5,
+            frames: this.anims.generateFrameNames('npc', {
+                prefix: 'tile',
+                suffix: '.png',
+                start: 4,
+                end: 5,
+                zeroPad: 3
+            })
+        });
+        this.npc1.play('idle')
         npcs.children.entries[0].body.immovable = true;
         this.physics.add.collider(this.player, npcs, () => this.createBox());
 
@@ -100,6 +117,15 @@ export default class villageScene extends Phaser.Scene {
             this.switchScene('homeScene', this.doorShop[0].name)
         });
 
+        // Tür nur mit Schlüssel
+        this.doorSchmied = map.createFromObjects('doors', { name: 'doorSchmied' });
+        this.physics.world.enable(this.doorSchmied);
+        this.doorSchmied[0].body.immovable = true;
+        this.physics.add.collider(this.player, this.doorSchmied, () => {
+            this.dooropenSound.play();
+            this.switchScene('homeScene', this.doorShop[0].name)
+        });
+
         this.wasd = this.input.keyboard.addKeys({
             esc: Phaser.Input.Keyboard.KeyCodes.ESC,
             six: Phaser.Input.Keyboard.KeyCodes.SIX
@@ -115,8 +141,10 @@ export default class villageScene extends Phaser.Scene {
     }
 
     createBox() {
+        var uiScene = this.scene.get('uiScene');
+        uiScene.createBox();
         this.player.movement = false;
-        this.coinEmitter.emit('coinCount');
+        // this.coinEmitter.emit('coinCount');
     }
 
     update() {

@@ -44,6 +44,7 @@ export default class PreloadScene extends Phaser.Scene {
         this.load.audio("buttonSound", "assets/sounds/button.wav")
         this.load.audio("heartSound", "assets/sounds/heart.wav")
         this.load.audio("dooropenSound", "assets/sounds/dooropen.wav")
+        this.load.audio("doorcloseSound", "assets/sounds/doorclose.wav")
 
 
         //Plugins
