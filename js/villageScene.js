@@ -123,7 +123,7 @@ export default class villageScene extends Phaser.Scene {
         this.doorSchmied[0].body.immovable = true;
         this.physics.add.collider(this.player, this.doorSchmied, () => {
             this.dooropenSound.play();
-            this.switchScene('homeScene', this.doorShop[0].name)
+            this.switchScene('Dungeon', this.doorShop[0].name)
         });
 
         this.wasd = this.input.keyboard.addKeys({
