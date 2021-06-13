@@ -1,4 +1,4 @@
-const COLOR_PRIMARY = 0x4e342e;
+const COLOR_PRIMARY = 0x000000;
 const COLOR_LIGHT = 0x7b5e57;
 const COLOR_DARK = 0x260e04;
 
@@ -61,9 +61,11 @@ export default class uiScene extends Phaser.Scene {
     }
 
     removeHeart() {
-        if (this.heartContainer.length > 1) {
+        if (this.heartContainer.length > 0) {
             this.x = this.x - 20;
             this.heartContainer[this.heartContainer.length - 1].destroy();
+            console.log(this.heartContainer.length);
+            console.log("minus eins");
         } else {
             this.handleGameover();
         }

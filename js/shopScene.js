@@ -42,9 +42,14 @@ export default class shopScene extends Phaser.Scene {
         this.itemsHeader = this.add.text(463, 160, '               1    10$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
         this.hearts.setInteractive({ useHandCursor: true });
         this.hearts.on('pointerdown', function (pointer) {
-            uiScene.addHeart();
-            //uiScene.money = uiScene.money - 10;
-            uiScene.updateMoney(-10);
+            if (uiScene.money > 10) {
+                uiScene.addHeart();
+                //uiScene.money = uiScene.money - 10;
+                uiScene.updateMoney(-10);
+            } else {
+                // TODO: Error für zu wenig Geld
+            }
+
         }, this);
     }
 
