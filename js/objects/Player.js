@@ -1,7 +1,6 @@
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture) {
         super(scene, x, y, texture)
-
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.setScale(0.5);
@@ -24,7 +23,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             repeat: -1
         });
         anims.create({
-
             key: "misa-right-walk",
             frames: anims.generateFrameNames(texture, { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,

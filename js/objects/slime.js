@@ -23,6 +23,5 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
             //this.setRotation(this.rotation);
             this.scene.physics.velocityFromRotation(this.rotation, 50, this.body.velocity)
         }
-
     }
 }
