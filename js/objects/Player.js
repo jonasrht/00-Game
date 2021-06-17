@@ -4,22 +4,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
         this.setScale(0.5);
         this.setBounce(1, 1);
         this.body.setSize(30, 40, true);
-        this.body.velocity.x = -100;
         this.setScale(0.5); // Skalierung des Sprites
         this.setOffset(0, 24)
         this.setCollideWorldBounds(true);
-
-        //this.setVelocity(4, 50);
         this.create(texture);
         this.movement = true;
+        this.direction = 'down';
     }
 
     create(texture) {
-        console.log(texture);
         const anims = this.anims;
         anims.create({
             key: "misa-left-walk",
@@ -47,6 +43,36 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         });
     }
 
+    pushBack() {
+        if (this.direction === 'right') {
+            this.body.x = this.body.x - 20;
+        }
+        if (this.direction === 'left') {
+            this.body.x = this.body.x + 20;
+        }
+        if (this.direction === 'up') {
+            this.body.y = this.body.y + 20;
+        }
+        if (this.direction === 'down') {
+            this.body.y = this.body.y - 20;
+        }
+    }
+
+    dash() {
+        if (this.direction === 'right') {
+            this.body.x = this.body.x + 20;
+        }
+        if (this.direction === 'left') {
+            this.body.x = this.body.x - 20;
+        }
+        if (this.direction === 'up') {
+            this.body.y = this.body.y - 20;
+        }
+        if (this.direction === 'down') {
+            this.body.y = this.body.y + 20;
+        }
+    }
+
     update(cursors, selectedCharacter) {
 
         this.body.setVelocity(0);
@@ -55,15 +81,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             // Horizontal movement
             if (cursors.left.isDown) {
                 this.body.setVelocityX(-100);
+                this.direction = 'left';
             } else if (cursors.right.isDown) {
                 this.body.setVelocityX(100);
+                this.direction = 'right';
             }
 
             // Vertical movement
             if (cursors.up.isDown) {
                 this.body.setVelocityY(-100);
+                this.direction = 'up';
             } else if (cursors.down.isDown) {
                 this.body.setVelocityY(100);
+                this.direction = 'down';
             }
         }
         // Normalize and scale the velocity so that can't move faster along a diagonal

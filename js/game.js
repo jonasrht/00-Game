@@ -32,7 +32,6 @@ export const config = {
 
     }
 };
-console.log(config);
 
 const game = new Phaser.Game(config);
 game.config.test = true;

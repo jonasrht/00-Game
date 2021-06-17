@@ -9,7 +9,7 @@ export default class villageScene extends Phaser.Scene {
         super("villageScene");
     }
     init(data) {
-        this.selectedCharacter = data.character;
+        this.selectedCharacter = data.char;
         // Spawn Pukte
         if (data.name == "doorHomeBack") {
             this.spawnX = 115;
@@ -75,7 +75,7 @@ export default class villageScene extends Phaser.Scene {
         const camera = this.cameras.main;
         camera.startFollow(this.player);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        camera.setZoom(3.1);
+        camera.setZoom(3.0);
 
         // NPC
         const npcs = this.physics.add.group({

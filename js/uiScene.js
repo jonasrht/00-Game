@@ -12,7 +12,6 @@ export default class uiScene extends Phaser.Scene {
     }
 
     init(data) {
-        console.log(data);
         if (data && data.eventEmitter) {
             data.eventEmitter.on('coinCount', this.createBox, this)
         }
@@ -29,6 +28,7 @@ export default class uiScene extends Phaser.Scene {
 
 
     create() {
+        this.scene.bringToTop();
         this.heartSound = this.sound.add("heartSound");
         for (let i = 0; i < 3; i++) {
             this.addHeart();
@@ -64,8 +64,9 @@ export default class uiScene extends Phaser.Scene {
         if (this.heartContainer.length > 0) {
             this.x = this.x - 20;
             this.heartContainer[this.heartContainer.length - 1].destroy();
+            this.heartContainer.pop();
+            console.log(this.heartContainer);
             console.log(this.heartContainer.length);
-            console.log("minus eins");
         } else {
             this.handleGameover();
         }

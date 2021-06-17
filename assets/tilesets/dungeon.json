@@ -93,7 +93,7 @@
                  "name":"orc3",
                  "rotation":0,
                  "type":"orc",
-                 "visible":true,
+                 "visible":false,
                  "width":16,
                  "x":127.667,
                  "y":157.333
@@ -105,7 +105,7 @@
                  "name":"orc2",
                  "rotation":0,
                  "type":"orc",
-                 "visible":true,
+                 "visible":false,
                  "width":16,
                  "x":49,
                  "y":160
@@ -117,10 +117,32 @@
                  "name":"orc1",
                  "rotation":0,
                  "type":"orc",
-                 "visible":true,
+                 "visible":false,
                  "width":16,
                  "x":88.6667,
                  "y":186.333
+                }, 
+                {
+                 "height":0,
+                 "id":15,
+                 "name":"orc4",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":0,
+                 "x":172.333333333333,
+                 "y":125
+                }, 
+                {
+                 "height":0,
+                 "id":16,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":243,
+                 "y":296
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -129,7 +151,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":15,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",

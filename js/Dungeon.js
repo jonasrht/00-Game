@@ -1,4 +1,5 @@
 import Player from "./objects/Player.js";
+import Slime from "./objects/slime.js";
 
 export default class Dungeon extends Phaser.Scene {
     constructor() {
@@ -14,6 +15,9 @@ export default class Dungeon extends Phaser.Scene {
     }
 
     create() {
+        this.physics.world.createDebugGraphic();
+        var uiScene = this.scene.get('uiScene');
+
         //tilemap einfügen
         const map = this.make.tilemap({ key: "dungeonMap" });
         const tileset = map.addTilesetImage("Dungeon", "dungeonTiles");
@@ -27,19 +31,37 @@ export default class Dungeon extends Phaser.Scene {
 
         //fügt den button q hinzu
         this.q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.e = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
         //collision mit der wand in tiled einstellen
         this.worldLayer.setCollisionByProperty({ collides: true });
         chestLayer.setCollisionByProperty({ collides: true });
 
         //spawnpoint in tiled festlegen
-        const spawnPoint = map.findObject(
+        this.spawnPoint = map.findObject(
             "Objects",
             (obj) => obj.name === "Spawn Point"
         );
-        console.log(spawnPoint.x);
-        //player erstellen
-        this.player = new Player(this, spawnPoint.x, spawnPoint.y, this.selectedCharacter);
+
+        // Spieler erstellen
+        this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
+
+        // Slime Gruppe
+        this.slimeGroup = [];
+
+        this.slime = map.createFromObjects('orc');
+        this.slime.forEach((slime) => {
+            this.slime = new Slime(this, slime.x, slime.y, 'npc', 1);
+            this.slimeGroup.push(this.slime)
+        })
+        console.log(this.slimeGroup);
+        this.physics.add.collider(this.player, this.slimeGroup, () => {
+            uiScene.removeHeart();
+            this.player.pushBack();
+        });
+
+        //player erstellen 
+
 
         //collider hinzufügen
         this.physics.add.collider(this.player, this.worldLayer);
@@ -64,6 +86,10 @@ export default class Dungeon extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(this.q)) {
             this.shootBeam();
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.e)) {
+            this.player.dash();
         }
 
         for (var i = 0; i < this.projectiles.getChildren().length; i++) {

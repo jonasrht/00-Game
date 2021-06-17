@@ -26,7 +26,7 @@ export default class selectPlayerScene extends Phaser.Scene {
         this.btnPlayerOne.on("pointerdown", () => {
             this.selectedPlayer = "atlasPink";
             this.scene.start("uiScene");
-            this.scene.start("villageScene", { character: "atlasPink" });
+            this.scene.start("villageScene", { char: "atlasPink" });
         });
 
         //Yellow player
@@ -36,7 +36,7 @@ export default class selectPlayerScene extends Phaser.Scene {
         this.btnPlayerTwo.on("pointerdown", () => {
             this.selectedPlayer = "atlas";
             this.scene.start("uiScene");
-            this.scene.start("villageScene", { character: "atlas" });
+            this.scene.start("Dungeon", { char: "atlas" });
         });
 
 
