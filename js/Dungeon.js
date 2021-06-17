@@ -60,12 +60,10 @@ export default class Dungeon extends Phaser.Scene {
             this.player.pushBack();
         });
 
-        //player erstellen 
-
-
         //collider hinzufügen
         this.physics.add.collider(this.player, this.worldLayer);
         this.physics.add.collider(this.player, chestLayer);
+        this.physics.add.collider(this.slimeGroup, this.worldLayer);
 
         //funktion damit die kamera einen verfolgt
         const camera = this.cameras.main;
@@ -77,12 +75,20 @@ export default class Dungeon extends Phaser.Scene {
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         this.projectiles = this.add.group();
+
+    }
+
+    angriff() {
+        console.log("atack");
     }
 
     update(time, delta) {
         const speed = 175;
         const prevVelocity = this.player.body.velocity.clone();
         this.player.update(this.cursors, "atlas");
+        this.slimeGroup.forEach((slime) => {
+            slime.update();
+        });
 
         if (Phaser.Input.Keyboard.JustDown(this.q)) {
             this.shootBeam();
@@ -92,9 +98,11 @@ export default class Dungeon extends Phaser.Scene {
             this.player.dash();
         }
 
-        for (var i = 0; i < this.projectiles.getChildren().length; i++) {
-            var beam = this.projectiles.getChildren()[i];
-            beam.update(this.cursors);
+
+        this.rotation = Phaser.Math.Angle.Between(this.player, this.slimeGroup[0])
+
+        if (this.distance < 200) {
+            //this.angriff();
         }
     }
     //Beam schießen amk
