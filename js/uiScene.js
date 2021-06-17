@@ -57,7 +57,6 @@ export default class uiScene extends Phaser.Scene {
         this.x = this.x + 20;
         this.heartSound.play();
         this.heartContainer.push(this.heartIcon);
-        console.log(this.heartContainer);
     }
 
     removeHeart() {
@@ -65,8 +64,6 @@ export default class uiScene extends Phaser.Scene {
             this.x = this.x - 20;
             this.heartContainer[this.heartContainer.length - 1].destroy();
             this.heartContainer.pop();
-            console.log(this.heartContainer);
-            console.log(this.heartContainer.length);
         } else {
             this.handleGameover();
         }
