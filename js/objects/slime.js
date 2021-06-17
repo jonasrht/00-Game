@@ -10,6 +10,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         this.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
         this.create();
+      this.health = 3;
     }
 
     create() {
