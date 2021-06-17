@@ -154,13 +154,13 @@
  "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.5.0",
+ "tiledversion":"1.4.3",
  "tileheight":16,
  "tilesets":[
         {
          "columns":32,
          "firstgid":1,
-         "image":"..\/..\/..\/MelihGame\/Haramadan\/assets\/tiles\/0x72_DungeonTilesetII_v1.3.png",
+         "image":"D:\/Tiled\/ARt\/0x72_DungeonTilesetII_v1.3.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -9390,7 +9390,7 @@
         {
          "columns":32,
          "firstgid":1025,
-         "image":"..\/..\/..\/MelihGame\/Haramadan\/assets\/tiles\/0x72_DungeonTilesetII_v1.3.png",
+         "image":"D:\/Tiled\/ARt\/0x72_DungeonTilesetII_v1.3.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -9402,6 +9402,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.5,
+ "version":1.4,
  "width":50
 }

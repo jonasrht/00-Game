@@ -62,7 +62,6 @@ export default class Dungeon extends Phaser.Scene {
       this.slime = new Slime(this, slime.x, slime.y, "npc", 1);
       this.slimeGroup.push(this.slime);
     });
-    console.log(this.slimeGroup);
     this.physics.add.collider(this.player, this.slimeGroup, () => {
       uiScene.removeHeart();
       this.player.pushBack();
@@ -98,10 +97,10 @@ export default class Dungeon extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(this.q)) {
       if (this.counterArrow > 0) {
         this.counterArrow -= 1;
-        if (this.cursors.left.isDown) this.arrowDirection = "left";
-        if (this.cursors.right.isDown) this.arrowDirection = "right";
-        if (this.cursors.up.isDown) this.arrowDirection = "up";
-        if (this.cursors.down.isDown) this.arrowDirection = "down";
+        if (this.player.direction === "left") this.arrowDirection = "left";
+        if (this.player.direction === "right") this.arrowDirection = "right";
+        if (this.player.direction === "up") this.arrowDirection = "up";
+        if (this.player.direction === "down") this.arrowDirection = "down";
         if (this.arrowDirection) this.shootArrow(this.arrowDirection);
       }
     }
@@ -112,6 +111,7 @@ export default class Dungeon extends Phaser.Scene {
       });
     }
   }
+
   //Arrow schießen
   shootArrow(direction) {
     var arrow = new Arrow(this, direction);
