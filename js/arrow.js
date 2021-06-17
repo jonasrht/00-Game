@@ -28,9 +28,7 @@ export default class Arrow extends Phaser.GameObjects.Sprite {
       if (slime.health == 0) {
         slime.destroy();
       }
-
       this.destroy();
-
       scene.counterArrow += 1;
     });
 

@@ -1,5 +1,6 @@
 import Player from "./objects/Player.js";
 import Slime from "./objects/slime.js";
+import Arrow from "./arrow.js";
 
 export default class Dungeon extends Phaser.Scene {
     constructor() {
@@ -89,12 +90,8 @@ export default class Dungeon extends Phaser.Scene {
         const prevVelocity = this.player.body.velocity.clone();
         this.player.update(this.cursors, "atlas");
         this.slimeGroup.forEach((slime) => {
-            slime.update();
+            slime.update(slime);
         });
-
-        if (Phaser.Input.Keyboard.JustDown(this.q)) {
-            this.shootArrow();
-        }
 
         if (Phaser.Input.Keyboard.JustDown(this.e)) {
             this.player.dash();
@@ -126,6 +123,7 @@ export default class Dungeon extends Phaser.Scene {
     }
     //Beam schießen amk
     shootArrow(direction) {
+        console.log(direction);
         var arrow = new Arrow(this, direction);
         this.projectiles.add(arrow);
     }
