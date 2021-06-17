@@ -9,9 +9,20 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         this.body.setSize(18, 18, true);
         this.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
+        this.create();
     }
 
-    preUpdate(t, dt) {
-        super.preUpdate(t, dt);
+    create() {
+        this.target = this.scene.player;
+    }
+
+    update() {
+        this.distance = Phaser.Math.Distance.BetweenPoints(this.target, this)
+        if (this.distance < 150) {
+            this.rotation = Phaser.Math.Angle.Between(this.x, this.y, this.target.x, this.target.y);
+            //this.setRotation(this.rotation);
+            this.scene.physics.velocityFromRotation(this.rotation, 50, this.body.velocity)
+        }
+
     }
 }

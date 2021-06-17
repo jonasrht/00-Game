@@ -24,6 +24,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             repeat: -1
         });
         anims.create({
+
             key: "misa-right-walk",
             frames: anims.generateFrameNames(texture, { prefix: "misa-right-walk.", start: 0, end: 3, zeroPad: 3 }),
             frameRate: 10,
