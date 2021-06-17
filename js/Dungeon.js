@@ -94,7 +94,7 @@ export default class Dungeon extends Phaser.Scene {
         });
 
         if (Phaser.Input.Keyboard.JustDown(this.q)) {
-            this.shootBeam();
+            this.shootArrow();
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.e)) {
