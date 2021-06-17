@@ -123,7 +123,6 @@ export default class Dungeon extends Phaser.Scene {
     }
     //Beam schießen amk
     shootArrow(direction) {
-        console.log(direction);
         var arrow = new Arrow(this, direction);
         this.projectiles.add(arrow);
     }
