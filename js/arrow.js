@@ -1,4 +1,5 @@
 import Player from "./objects/Player.js";
+import Slime from "./objects/slime.js";
 
 export default class Arrow extends Phaser.GameObjects.Sprite {
   constructor(scene, direction) {
@@ -15,13 +16,22 @@ export default class Arrow extends Phaser.GameObjects.Sprite {
     if (direction) this.direction = direction;
   }
 
-  preload() {}
-
   create(scene) {
     scene.physics.add.collider(this, scene.worldLayer, (arrow, worldLayer) => {
       this.destroy();
       scene.counterArrow += 1;
       scene.projectiles.remove(this);
+    });
+
+    scene.physics.add.collider(this, scene.slimeGroup, (arrow, slime) => {
+      slime.health = slime.health - 1;
+      if (slime.health == 0) {
+        slime.destroy();
+      }
+
+      this.destroy();
+
+      scene.counterArrow += 1;
     });
 
     this.cursors = this.scene.input.keyboard.createCursorKeys(); //For the Arrow Keys
