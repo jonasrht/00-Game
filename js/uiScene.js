@@ -83,6 +83,11 @@ export default class uiScene extends Phaser.Scene {
         this.game.config.test = false;
     }
 
+    createSpells() {
+        this.invIcon = this.add.image(500, 670, 'arrowBtn');
+        this.invIcon.setScale(2.5);
+    }
+
     updateMoney(money) {
         this.money = this.money + money;
         if (this.money > 0) {
