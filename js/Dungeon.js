@@ -20,6 +20,7 @@ export default class Dungeon extends Phaser.Scene {
     create() {
         this.physics.world.createDebugGraphic();
         var uiScene = this.scene.get('uiScene');
+        this.invScene = this.scene.get('inventoryScene');
 
         //tilemap einfügen
         const map = this.make.tilemap({ key: "dungeonMap" });
@@ -90,7 +91,7 @@ export default class Dungeon extends Phaser.Scene {
         const prevVelocity = this.player.body.velocity.clone();
         this.player.update(this.cursors, "atlas");
         this.slimeGroup.forEach((slime) => {
-            slime.update(slime);
+            slime.update(slime, this);
         });
 
         if (Phaser.Input.Keyboard.JustDown(this.e)) {
