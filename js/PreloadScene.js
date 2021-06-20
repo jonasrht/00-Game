@@ -42,6 +42,13 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/npc.json"
     );
 
+    // Arrow Button
+    this.load.atlas(
+      "arrowBtn",
+      "assets/tilesets/spritesheet_arrow.png",
+      "assets/tilesets/arrow.json"
+    );
+
     //Menu Background
     this.load.image("bg", "assets/img/parallax-mountain-bg.png");
     this.load.image("bg1", "assets/img/parallax-mountain-montain-far.png");
@@ -67,7 +74,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("doorcloseSound", "assets/sounds/doorclose.wav");
 
     //Arrow
-    this.load.image("arrow", "/assets/tilesets/arrow.png");
+    this.load.image("arrow", "assets/tilesets/arrow.png");
     //Plugins
   }
 

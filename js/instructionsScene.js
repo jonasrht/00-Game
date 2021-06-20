@@ -20,6 +20,9 @@ export default class instructionsScene extends Phaser.Scene {
         this.keyObj = this.input.keyboard.addKey('ENTER');
     }
 
+    addItem(item) {
+        // TODO
+    }
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.keyObj)) {
