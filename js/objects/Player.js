@@ -13,6 +13,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.movement = true;
         this.direction = 'down';
         this.scene = scene;
+        this.counter = 0;
     }
 
     create(texture) {
@@ -76,28 +77,49 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     sword() {
+        console.log(this.counter);
         if (this.direction === 'right') {
-            this.swordHitbox = this.scene.add.rectangle(this.x + 20, this.y, 10, 10, 0x6666ff);
+            this.swordHitbox = this.scene.add.rectangle(this.x + 12, this.y, 10, 20);
         }
         if (this.direction === 'left') {
-            this.swordHitbox = this.scene.add.rectangle(this.x - 20, this.y, 10, 10, 0x6666ff);
+            this.swordHitbox = this.scene.add.rectangle(this.x - 12, this.y, 10, 20);
         }
         if (this.direction === 'up') {
-            this.swordHitbox = this.scene.add.rectangle(this.x, this.y - 20, 10, 10, 0x6666ff);
+            this.swordHitbox = this.scene.add.rectangle(this.x, this.y - 12, 20, 10);
         }
         if (this.direction === 'down') {
-            this.swordHitbox = this.scene.add.rectangle(this.x, this.y + 20, 10, 10, 0x6666ff);
+            this.swordHitbox = this.scene.add.rectangle(this.x, this.y + 12, 20, 10);
         }
+        this.scene.physics.add.existing(this.swordHitbox);
 
+        this.scene.physics.add.collider(this.swordHitbox, this.scene.slimeGroup, (arrow, slime) => {
+            slime.health = slime.health - 1;
+            if (slime.health == 0) {
+                slime.destroy();
+            }
+        });
+        //this.movement = false;
+        //this.swordHitbox.destroy();
+
+
+        //this.scene.physics.world.enableBody(this.swordHitbox);
+
+        //this.swordHitbox.destroy();
+
+        // this.swordHitbox.body.enable = false
+        // this.scene.physics.world.remove(this.swordHitbox.body)
     }
 
     update(cursors, selectedCharacter) {
 
         this.body.setVelocity(0);
         const prevVelocity = this.body.velocity.clone();
+
+        //this.swordHitbox = this.scene.add.rectangle(this.x + 12, this.y, 10, 20, 0x6666ff);
         if (Phaser.Input.Keyboard.JustDown(this.w)) {
             this.sword();
         }
+
         if (this.movement) {
             // Horizontal movement
             if (cursors.left.isDown) {

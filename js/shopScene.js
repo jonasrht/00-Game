@@ -1,8 +1,3 @@
-//init activeItem in global namespace
-var activeItem = '';
-var activeBuyOrSell = '';
-var activeBuyOrSellSign = '';
-
 export default class shopScene extends Phaser.Scene {
     constructor() {
         super({ key: 'shopScene', active: false });
@@ -30,8 +25,6 @@ export default class shopScene extends Phaser.Scene {
             this.scene.stop().resume('homeScene');
         }, this);
 
-        var buyButtons = []
-
         // Shop Text
         this.menuTop = this.add.image(600, 260, 'MenuTop');
         this.shopHeader = this.add.text(599, 90, 'SHOP', { fontFamily: 'mainfont', fontSize: '13px', color: '#62232f', stroke: '#62232f', align: 'center' }).setOrigin(0.5, 0.5);
@@ -51,9 +44,5 @@ export default class shopScene extends Phaser.Scene {
             }
 
         }, this);
-    }
-
-    update() {
-
     }
 }
