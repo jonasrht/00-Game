@@ -12,6 +12,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.create(texture);
         this.movement = true;
         this.direction = 'down';
+        this.scene = scene;
     }
 
     create(texture) {
@@ -40,6 +41,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             frameRate: 10,
             repeat: -1
         });
+
+        this.w = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     }
 
     pushBack() {
@@ -72,10 +75,29 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    sword() {
+        if (this.direction === 'right') {
+            this.swordHitbox = this.scene.add.rectangle(this.x + 20, this.y, 10, 10, 0x6666ff);
+        }
+        if (this.direction === 'left') {
+            this.swordHitbox = this.scene.add.rectangle(this.x - 20, this.y, 10, 10, 0x6666ff);
+        }
+        if (this.direction === 'up') {
+            this.swordHitbox = this.scene.add.rectangle(this.x, this.y - 20, 10, 10, 0x6666ff);
+        }
+        if (this.direction === 'down') {
+            this.swordHitbox = this.scene.add.rectangle(this.x, this.y + 20, 10, 10, 0x6666ff);
+        }
+
+    }
+
     update(cursors, selectedCharacter) {
 
         this.body.setVelocity(0);
         const prevVelocity = this.body.velocity.clone();
+        if (Phaser.Input.Keyboard.JustDown(this.w)) {
+            this.sword();
+        }
         if (this.movement) {
             // Horizontal movement
             if (cursors.left.isDown) {
