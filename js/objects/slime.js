@@ -16,12 +16,24 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
     }
 
     create() {
-        
+
         this.target = this.scene.player;
     }
 
     itemDrop(slime, scene) {
-        this.item = new Item(scene, slime.x, slime.y);
+        this.number = Phaser.Math.Between(0, 100);
+        console.log(this.number);
+        if (this.number > 0 && this.number < 11) {
+            this.item = new Item(scene, slime.x, slime.y, "heartIcon");
+        }
+        if (this.number > 11 && this.number < 18) {
+            console.log("Leben");
+            this.item = new Item(scene, slime.x, slime.y, "arrow");
+        }
+        if (this.number > 20 && this.number < 40) {
+            console.log("Coin");
+            this.item = new Item(scene, slime.x, slime.y, "coinIcon");
+        }
     }
 
     update(slime, scene) {
