@@ -67,6 +67,19 @@ export default class Menu extends Phaser.Scene {
         this.load.image('logo10', 'assets/tilesets/logo/tnq-frame10.png');
         this.load.image('logo11', 'assets/tilesets/logo/tnq-frame11.png');
 
+        // Slime
+        
+        this.load.image('slime1', 'assets/tilesets/slimebg/schleim-frame1.png');
+        this.load.image('slime2', 'assets/tilesets/slimebg/schleim-frame2.png');
+        this.load.image('slime3', 'assets/tilesets/slimebg/schleim-frame3.png');
+        this.load.image('slime4', 'assets/tilesets/slimebg/schleim-frame4.png');
+        this.load.image('slime5', 'assets/tilesets/slimebg/schleim-frame5.png');
+        this.load.image('slime6', 'assets/tilesets/slimebg/schleim-frame6.png');
+        this.load.image('slime7', 'assets/tilesets/slimebg/schleim-frame7.png');
+        this.load.image('slime8', 'assets/tilesets/slimebg/schleim-frame8.png');
+        this.load.image('slime9', 'assets/tilesets/slimebg/schleim-frame9.png');
+        this.load.image('slime10', 'assets/tilesets/slimebg/schleim-frame10.png');
+        this.load.image('slime11', 'assets/tilesets/slimebg/schleim-frame11.png');
     }
 
 
@@ -154,15 +167,37 @@ export default class Menu extends Phaser.Scene {
             repeat: -1
         });
 
+        this.anims.create({
+            key: 'slime',
+            frames: [
+                { key: 'slime1' },
+                { key: 'slime2' },
+                { key: 'slime3' },
+                { key: 'slime4' },
+                { key: 'slime5' },
+                { key: 'slime6' },
+                { key: 'slime7' },
+                { key: 'slime8' },
+                { key: 'slime9' },
+                { key: 'slime10' },
+                { key: 'slime11' }
+            ],
+            frameRate: 11,
+            repeatDelay: 0,
+            repeat: 0
+        });
+
         // this.bg = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg");
         // this.bg1 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg1");
         // this.bg2 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg2");
         // this.bg3 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg3");
         this.menuBg = this.add.sprite(640, 360, 'menubg');
+        this.slime = this.add.sprite(640, 385, 'slime1').play('slime');
         this.light = this.add.sprite(640, 360, 'light1').play('light');
         this.rain = this.add.sprite(640, 360, 'rain1').play('rain');
         this.rain.setAlpha(0.2);
-        this.logo = this.add.sprite(640, 360, 'logo1').play('logo')
+        this.logo = this.add.sprite(640, 360, 'logo1').play('logo');
+        this.slime.setScale(2)
 
         const startButton = this.add.text(1280 / 2, 360, "Start Game", { color: '#664879' }).setFontFamily('mainfont');
         startButton.setOrigin(0.5);
