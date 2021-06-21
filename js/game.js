@@ -9,6 +9,7 @@ import instructionsScene from "./instructionsScene.js";
 import shopScene from "./shopScene.js";
 import inventoryScene from "./inventoryScene.js";
 import Dungeon from "./Dungeon.js";
+import audioManager from "./audioManager.js";
 
 export const config = {
     type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
@@ -22,7 +23,7 @@ export const config = {
             { key: 'gzDialog', plugin: GzDialog, mapping: 'gzDialog' }
         ]
     },
-    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene, instructionsScene, shopScene, inventoryScene, Dungeon],
+    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene, instructionsScene, shopScene, inventoryScene, Dungeon, audioManager],
     physics: {
         default: "arcade",
         arcade: {
