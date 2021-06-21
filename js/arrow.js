@@ -1,6 +1,3 @@
-import Player from "./objects/Player.js";
-import Slime from "./objects/slime.js";
-
 export default class Arrow extends Phaser.GameObjects.Sprite {
   constructor(scene, direction) {
     var x = scene.player.x;

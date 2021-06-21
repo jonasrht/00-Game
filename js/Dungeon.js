@@ -19,7 +19,7 @@ export default class Dungeon extends Phaser.Scene {
 
     create() {
         this.physics.world.createDebugGraphic();
-        var uiScene = this.scene.get('uiScene');
+        this.uiScene = this.scene.get('uiScene');
         this.invScene = this.scene.get('inventoryScene');
 
         //tilemap einfügen
@@ -60,7 +60,7 @@ export default class Dungeon extends Phaser.Scene {
         })
         console.log(this.slimeGroup);
         this.physics.add.collider(this.player, this.slimeGroup, () => {
-            uiScene.removeHeart();
+            this.uiScene.removeHeart();
             this.player.pushBack();
         });
 

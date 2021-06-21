@@ -89,7 +89,8 @@ export default class homeScene extends Phaser.Scene {
     switchScene(scene, name) {
         this.cameras.main.fadeOut(1000);
         this.doorSound.play({ volume: 0.05 });
-        this.scene.start(scene, { name, character: this.selectedCharacter });
+
+        this.scene.start(scene, { name, char: this.selectedCharacter });
     }
 
 
