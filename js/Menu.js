@@ -68,7 +68,7 @@ export default class Menu extends Phaser.Scene {
         this.load.image('logo11', 'assets/tilesets/logo/tnq-frame11.png');
 
         // Slime
-        
+
         this.load.image('slime1', 'assets/tilesets/slimebg/schleim-frame1.png');
         this.load.image('slime2', 'assets/tilesets/slimebg/schleim-frame2.png');
         this.load.image('slime3', 'assets/tilesets/slimebg/schleim-frame3.png');
@@ -80,6 +80,7 @@ export default class Menu extends Phaser.Scene {
         this.load.image('slime9', 'assets/tilesets/slimebg/schleim-frame9.png');
         this.load.image('slime10', 'assets/tilesets/slimebg/schleim-frame10.png');
         this.load.image('slime11', 'assets/tilesets/slimebg/schleim-frame11.png');
+        this.load.image('slime12', 'assets/tilesets/slimebg/schleim-frame12.png');
     }
 
 
@@ -180,10 +181,10 @@ export default class Menu extends Phaser.Scene {
                 { key: 'slime8' },
                 { key: 'slime9' },
                 { key: 'slime10' },
-                { key: 'slime11' }
+                { key: 'slime11' },
+                { key: 'slime12' }
             ],
-            frameRate: 11,
-            repeatDelay: 0,
+            frameRate: 8,
             repeat: 0
         });
 
@@ -192,12 +193,12 @@ export default class Menu extends Phaser.Scene {
         // this.bg2 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg2");
         // this.bg3 = this.add.tileSprite(0, 0, 1280 * 2, 720 * 2, "bg3");
         this.menuBg = this.add.sprite(640, 360, 'menubg');
-        this.slime = this.add.sprite(640, 385, 'slime1').play('slime');
+        this.slime = this.add.sprite(640, 360, 'slime1').play('slime');
         this.light = this.add.sprite(640, 360, 'light1').play('light');
         this.rain = this.add.sprite(640, 360, 'rain1').play('rain');
         this.rain.setAlpha(0.2);
         this.logo = this.add.sprite(640, 360, 'logo1').play('logo');
-        this.slime.setScale(2)
+        //this.slime.setScale(2)
 
         const startButton = this.add.text(1280 / 2, 360, "Start Game", { color: '#664879' }).setFontFamily('mainfont');
         startButton.setOrigin(0.5);
@@ -231,7 +232,7 @@ export default class Menu extends Phaser.Scene {
     startScene() {
         this.bgMusic.pause();
         this.startGameSound.play({ volume: 0.1 });
-        this.scene.start('selectPlayerScene');
+        this.scene.launch('selectPlayerScene');
 
 
     }
