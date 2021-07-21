@@ -13,11 +13,48 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         this.body.onWorldBounds = true;
         this.create();
         this.health = 3;
+        this.scene = scene;
     }
 
     create() {
+        console.log(this);
+
+        this.createAnims();
+
+        this.anims.play("slimeDown");
 
         this.target = this.scene.player;
+    }
+
+    createAnims() {
+        this.anims.create({
+            key: "slimeUp",
+            frames: this.anims.generateFrameNames("slime", { frames: ["slimenachoben2.png", "slimenachoben3.png"] }),
+            frameRate: 6,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: "slimeDown",
+            frames: this.anims.generateFrameNames("slime", { frames: ["slimenachunten2.png", "slimenachunten3.png"] }),
+            frameRate: 6,
+            repeat: -1
+        })
+    }
+
+    pushBack() {
+        if (this.scene.player.direction === 'right') {
+            this.body.x = this.body.x + 20;
+        }
+        if (this.scene.player.direction === 'left') {
+            this.body.x = this.body.x - 20;
+        }
+        if (this.scene.player.direction === 'up') {
+            this.body.y = this.body.y - 20;
+        }
+        if (this.scene.player.direction === 'down') {
+            this.body.y = this.body.y + 20;
+        }
     }
 
     itemDrop(slime, scene) {
@@ -43,6 +80,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         }
         this.distance = Phaser.Math.Distance.BetweenPoints(this.target, this)
         if (this.distance < 150 && (slime.health > 0)) {
+
             this.rotation = Phaser.Math.Angle.Between(this.x, this.y, this.target.x, this.target.y);
             scene.physics.velocityFromRotation(this.rotation, 50, this.body.velocity)
         }

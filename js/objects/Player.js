@@ -1,3 +1,7 @@
+import playerStateMachine from "./playerStateMachine.js";
+import State from "./State.js";
+
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture) {
         super(scene, x, y, texture)
@@ -17,6 +21,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     create(texture) {
+        this.playerStateMachine = new playerStateMachine('idle', {
+            idle: new IdleState(),
+            move: new MoveState(),
+            swing: new SwingState(),
+            ult: new UltState()
+        }, [this.scene, this]);
+
         const anims = this.anims;
         anims.create({
             key: "misa-left-walk",
@@ -42,6 +53,45 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             frameRate: 10,
             repeat: -1
         });
+
+        this.anims.create({
+            key: "sword-ult",
+            frames: this.anims.generateFrameNames("swordult", { prefix: "schwertanimation", start: 1, end: 7, zeroPad: 0, suffix: ".png" }),
+            frameRate: 12,
+            repeat: 0
+        })
+
+        this.anims.create({
+            key: "sword-ult",
+            frames: this.anims.generateFrameNames("swordult", { prefix: "schwertanimation", start: 1, end: 7, zeroPad: 0, suffix: ".png" }),
+            frameRate: 12,
+            repeat: 0
+        })
+
+        this.scene.anims.create({
+            key: "sword-left",
+            frames: this.anims.generateFrameNames("sword", { frames: ["schwert1.png", "schwert2.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
+        this.scene.anims.create({
+            key: "sword-up",
+            frames: this.anims.generateFrameNames("sword", { frames: ["schwert3.png", "schwert7.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
+        this.scene.anims.create({
+            key: "sword-down",
+            frames: this.anims.generateFrameNames("sword", { frames: ["schwert5.png", "schwert5.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
+        this.scene.anims.create({
+            key: "sword-right",
+            frames: this.anims.generateFrameNames("sword", { frames: ["schwert4.png", "schwert6.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
 
         this.w = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     }
@@ -98,66 +148,168 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                 slime.destroy();
             }
         });
-        //this.movement = false;
-        //this.swordHitbox.destroy();
-
-
-        //this.scene.physics.world.enableBody(this.swordHitbox);
-
-        //this.swordHitbox.destroy();
-
-        // this.swordHitbox.body.enable = false
-        // this.scene.physics.world.remove(this.swordHitbox.body)
     }
 
     update(cursors, selectedCharacter) {
-
         this.body.setVelocity(0);
-        const prevVelocity = this.body.velocity.clone();
+        this.playerStateMachine.step();
+    }
+}
 
-        //this.swordHitbox = this.scene.add.rectangle(this.x + 12, this.y, 10, 20, 0x6666ff);
-        if (Phaser.Input.Keyboard.JustDown(this.w)) {
-            this.sword();
+class IdleState extends State {
+    enter(scene, hero) {
+        hero.setVelocity(0);
+        //hero.anims.play(`walk-${hero.direction}`);
+        hero.anims.stop();
+    }
+
+    execute(scene, hero) {
+        const { left, right, up, down, space, shift } = scene.cursors;
+        this.w = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+
+        // Transition to swing if pressing space
+        if (space.isDown) {
+            this.stateMachine.transition('ult');
+            return;
         }
 
-        if (this.movement) {
-            // Horizontal movement
-            if (cursors.left.isDown) {
-                this.body.setVelocityX(-100);
-                this.direction = 'left';
-            } else if (cursors.right.isDown) {
-                this.body.setVelocityX(100);
-                this.direction = 'right';
+        if (this.w.isDown) {
+            this.stateMachine.transition('swing');
+        }
+
+        // Transition to dash if pressing shift
+        if (shift.isDown) {
+            this.stateMachine.transition('dash');
+            return;
+        }
+
+        // Transition to move if pressing a movement key
+        if (left.isDown || right.isDown || up.isDown || down.isDown) {
+            this.stateMachine.transition('move');
+            return;
+        }
+    }
+}
+
+class MoveState extends State {
+    execute(scene, hero) {
+        const { left, right, up, down, space, shift } = scene.cursors;
+        this.w = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+
+        // Transition to swing if pressing space
+        if (space.isDown) {
+            this.stateMachine.transition('ult');
+            return;
+        }
+
+        if (this.w.isDown) {
+            this.stateMachine.transition('swing');
+            return;
+        }
+
+        // Transition to dash if pressing shift
+        if (shift.isDown) {
+            this.stateMachine.transition('dash');
+            return;
+        }
+
+        // Transition to idle if not pressing movement keys
+        if (!(left.isDown || right.isDown || up.isDown || down.isDown)) {
+            this.stateMachine.transition('idle');
+            return;
+        }
+
+        hero.setVelocity(0);
+        if (up.isDown) {
+            hero.setVelocityY(-100);
+            hero.direction = 'up';
+        } else if (down.isDown) {
+            hero.setVelocityY(100);
+            hero.direction = 'down';
+        }
+        if (left.isDown) {
+            hero.setVelocityX(-100);
+            hero.direction = 'left';
+        } else if (right.isDown) {
+            hero.setVelocityX(100);
+            hero.direction = 'right';
+        }
+        hero.body.velocity.normalize().scale(175);
+
+        if (left.isDown) {
+            hero.anims.play("misa-left-walk", true);
+        } else if (right.isDown) {
+            hero.anims.play("misa-right-walk", true);
+        } else if (up.isDown) {
+            hero.anims.play("misa-back-walk", true);
+        } else if (down.isDown) {
+            hero.anims.play("misa-front-walk", true);
+        }
+        //hero.anims.play(`walk-${hero.direction}`, true);
+    }
+}
+
+class UltState extends State {
+    enter(scene, hero) {
+        hero.setVelocity(0);
+        hero.anims.play("sword-ult");
+        this.swordHitbox = scene.add.rectangle(hero.x, hero.y, 30, 30);
+        scene.physics.add.existing(this.swordHitbox);
+        scene.physics.add.collider(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
+            slime.health = slime.health - 1;
+            if (slime.health == 0) {
+                slime.destroy();
             }
+        });
 
-            // Vertical movement
-            if (cursors.up.isDown) {
-                this.body.setVelocityY(-100);
-                this.direction = 'up';
-            } else if (cursors.down.isDown) {
-                this.body.setVelocityY(100);
-                this.direction = 'down';
+        hero.once('animationcomplete', () => {
+            this.swordHitbox.destroy();
+            this.stateMachine.transition('idle');
+        });
+    }
+}
+
+class SwingState extends State {
+    enter(scene, hero) {
+        this.swordanim;
+        hero.setVelocity(0);
+        hero.setAlpha(0);
+        switch (hero.direction) {
+            case 'up':
+                //hero.anims.play("sword-up");
+                this.swordanim = scene.add.sprite(hero.x, hero.y + 3).play("sword-up");
+                this.swordHitbox = scene.add.rectangle(hero.x, hero.y - 12, 20, 10);
+                break;
+            case 'down':
+                this.swordanim = scene.add.sprite(hero.x, hero.y + 9).play("sword-down");
+                this.swordHitbox = scene.add.rectangle(hero.x, hero.y + 18, 20, 10);
+                break;
+            case 'left':
+                this.swordanim = scene.add.sprite(hero.x - 2, hero.y + 6).play("sword-left");
+                this.swordHitbox = scene.add.rectangle(hero.x - 12, hero.y + 8, 10, 20);
+                break;
+            case 'right':
+                this.swordanim = scene.add.sprite(hero.x + 2, hero.y + 6).play("sword-right");
+                this.swordHitbox = scene.add.rectangle(hero.x + 12, hero.y + 8, 10, 20);
+                break;
+            default:
+                break;
+        }
+        this.swordanim.setScale(0.5);
+        scene.physics.add.existing(this.swordHitbox);
+        scene.physics.add.collider(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
+            slime.health = slime.health - 1;
+            slime.pushBack();
+            if (slime.health == 0) {
+                slime.destroy();
             }
-        }
-        // Normalize and scale the velocity so that can't move faster along a diagonal
-        this.body.velocity.normalize().scale(175);
+        });
 
-        if (cursors.left.isDown) {
-            this.anims.play("misa-left-walk", true);
-        } else if (cursors.right.isDown) {
-            this.anims.play("misa-right-walk", true);
-        } else if (cursors.up.isDown) {
-            this.anims.play("misa-back-walk", true);
-        } else if (cursors.down.isDown) {
-            this.anims.play("misa-front-walk", true);
-        } else {
-            this.anims.stop();
-
-            // If we were moving, pick and idle frame to use
-            if (prevVelocity.x < 0) this.setTexture(selectedCharacter, "misa-left");
-            else if (prevVelocity.x > 0) this.setTexture(selectedCharacter, "misa-right");
-            else if (prevVelocity.y < 0) this.setTexture(selectedCharacter, "misa-back");
-            else if (prevVelocity.y > 0) this.setTexture(selectedCharacter, "misa-front");
-        }
+        this.swordanim.once('animationcomplete', () => {
+            this.swordHitbox.destroy();
+            this.swordanim.destroy();
+            hero.setAlpha(100);
+            this.stateMachine.transition('move');
+        });
     }
 }
