@@ -15,6 +15,7 @@ export default class Dungeon extends Phaser.Scene {
 
     preload() {
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.load.image('block', 'https://labs.phaser.io/assets/sprites/block.png');
     }
 
     create() {
@@ -36,6 +37,7 @@ export default class Dungeon extends Phaser.Scene {
         //fügt den button q hinzu
         this.q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.e = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+        this.six = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
 
         //collision mit der wand in tiled einstellen
         this.worldLayer.setCollisionByProperty({ collides: true });
@@ -58,7 +60,7 @@ export default class Dungeon extends Phaser.Scene {
             this.slime = new Slime(this, slime.x, slime.y, 'npc', 1);
             this.slimeGroup.push(this.slime)
         })
-        console.log(this.slimeGroup);
+
         this.physics.add.collider(this.player, this.slimeGroup, () => {
             this.uiScene.removeHeart();
             this.player.pushBack();
@@ -80,6 +82,25 @@ export default class Dungeon extends Phaser.Scene {
 
         this.projectiles = this.add.group();
 
+        var block = this.physics.add.image(100, 500, 'block').setImmovable(true).setVelocity(100, -100);
+
+        block.body.setAllowGravity(false);
+
+        this.tweens.timeline({
+            targets: block.body.velocity,
+            loop: -1,
+            tweens: [
+                { x: 0, y: -200, duration: 2000, ease: 'Stepped' },
+                //{ x: 0, y: 0, duration: 1000, ease: 'Stepped' },
+                { x: 150, y: 100, duration: 4000, ease: 'Stepped' },
+                { x: 0, y: -200, duration: 2000, ease: 'Stepped' },
+                { x: 0, y: 0, duration: 1000, ease: 'Stepped' },
+                { x: -150, y: 100, duration: 4000, ease: 'Stepped' }
+            ]
+        });
+
+
+
     }
 
     angriff() {
@@ -93,6 +114,10 @@ export default class Dungeon extends Phaser.Scene {
         this.slimeGroup.forEach((slime) => {
             slime.update(slime, this);
         });
+
+        if (Phaser.Input.Keyboard.JustDown(this.six)) {
+            console.log("x" + this.player.x, "y:" + this.player.y);
+        }
 
         if (Phaser.Input.Keyboard.JustDown(this.e)) {
             this.player.dash();

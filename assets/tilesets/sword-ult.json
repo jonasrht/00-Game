@@ -1,0 +1,156 @@
+{
+	"frames": {
+		"schwertanimation1.png": {
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 46
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 46
+			},
+			"sourceSize": {
+				"w": 28,
+				"h": 46
+			}
+		},
+		"schwertanimation2.png": {
+			"frame": {
+				"x": 0,
+				"y": 117,
+				"w": 61,
+				"h": 70
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 61,
+				"h": 70
+			},
+			"sourceSize": {
+				"w": 61,
+				"h": 70
+			}
+		},
+		"schwertanimation3.png": {
+			"frame": {
+				"x": 54,
+				"y": 55,
+				"w": 52,
+				"h": 62
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 52,
+				"h": 62
+			},
+			"sourceSize": {
+				"w": 52,
+				"h": 62
+			}
+		},
+		"schwertanimation4.png": {
+			"frame": {
+				"x": 61,
+				"y": 117,
+				"w": 55,
+				"h": 70
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 55,
+				"h": 70
+			},
+			"sourceSize": {
+				"w": 55,
+				"h": 70
+			}
+		},
+		"schwertanimation5.png": {
+			"frame": {
+				"x": 28,
+				"y": 0,
+				"w": 59,
+				"h": 55
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 59,
+				"h": 55
+			},
+			"sourceSize": {
+				"w": 59,
+				"h": 55
+			}
+		},
+		"schwertanimation6.png": {
+			"frame": {
+				"x": 0,
+				"y": 55,
+				"w": 54,
+				"h": 61
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 54,
+				"h": 61
+			},
+			"sourceSize": {
+				"w": 54,
+				"h": 61
+			}
+		},
+		"schwertanimation7.png": {
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 46
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 46
+			},
+			"sourceSize": {
+				"w": 28,
+				"h": 46
+			}
+		}
+	},
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "sword-ult.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 116,
+			"h": 187
+		},
+		"scale": "1",
+		"smartupdate": "$TexturePacker:SmartUpdate:f4d1b2734fe3158df0fbb87ecb870940:0c44c585a6dc99509ba738427777f582:4309792834f3eaa3ff8b5f4347b99ef9$"
+	}
+}
