@@ -19,7 +19,7 @@ export default class Dungeon extends Phaser.Scene {
     }
 
     create() {
-        this.physics.world.createDebugGraphic();
+        //this.physics.world.createDebugGraphic();
         this.uiScene = this.scene.get('uiScene');
         this.invScene = this.scene.get('inventoryScene');
 
@@ -57,7 +57,7 @@ export default class Dungeon extends Phaser.Scene {
 
         this.slime = map.createFromObjects('orc');
         this.slime.forEach((slime) => {
-            this.slime = new Slime(this, slime.x, slime.y, 'npc', 1);
+            this.slime = new Slime(this, slime.x, slime.y, 'slime', 1);
             this.slimeGroup.push(this.slime)
         })
 
@@ -101,10 +101,6 @@ export default class Dungeon extends Phaser.Scene {
 
 
 
-    }
-
-    angriff() {
-        console.log("atack");
     }
 
     update(time, delta) {

@@ -1,0 +1,92 @@
+{"frames": {
+
+"slimenachlinks2.png":
+{
+	"frame": {"x":0,"y":0,"w":24,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":17},
+	"sourceSize": {"w":24,"h":17}
+},
+"slimenachlinksStand.png":
+{
+	"frame": {"x":0,"y":17,"w":22,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":16},
+	"sourceSize": {"w":22,"h":16}
+},
+"slimenachoben2.png":
+{
+	"frame": {"x":0,"y":33,"w":24,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":17},
+	"sourceSize": {"w":24,"h":17}
+},
+"slimenachoben3.png":
+{
+	"frame": {"x":0,"y":50,"w":24,"h":15},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":15},
+	"sourceSize": {"w":24,"h":15}
+},
+"slimenachobenStand.png":
+{
+	"frame": {"x":0,"y":65,"w":22,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":16},
+	"sourceSize": {"w":22,"h":16}
+},
+"slimenachrechts2.png":
+{
+	"frame": {"x":0,"y":81,"w":24,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":17},
+	"sourceSize": {"w":24,"h":17}
+},
+"slimenachrechtsStand.png":
+{
+	"frame": {"x":0,"y":98,"w":22,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":16},
+	"sourceSize": {"w":22,"h":16}
+},
+"slimenachunten2.png":
+{
+	"frame": {"x":0,"y":114,"w":24,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":17},
+	"sourceSize": {"w":24,"h":17}
+},
+"slimenachunten3.png":
+{
+	"frame": {"x":0,"y":131,"w":24,"h":15},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":15},
+	"sourceSize": {"w":24,"h":15}
+},
+"slimenachuntenStand.png":
+{
+	"frame": {"x":0,"y":146,"w":22,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":16},
+	"sourceSize": {"w":22,"h":16}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "slime.png",
+	"format": "RGBA8888",
+	"size": {"w":24,"h":162},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:d90bb73ad55c8135ebe542b111bc1f33:7b943a217c50869c2ee4d0b838b2fdc5:5969a7bd39dc609f49b3bb3f3e71107a$"
+}
+}

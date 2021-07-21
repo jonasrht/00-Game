@@ -54,6 +54,13 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/npc.json"
     );
 
+    // Slime
+    this.load.atlas(
+      "slime",
+      "assets/tilesets/slime.png",
+      "assets/tilesets/slime.json"
+    )
+
     // Arrow Button
     this.load.atlas(
       "arrowBtn",
