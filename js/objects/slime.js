@@ -20,7 +20,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         console.log(this);
 
         this.createAnims();
-
+        this.setPipeline('Light2D');
         this.anims.play("slimeDown");
 
         this.target = this.scene.player;

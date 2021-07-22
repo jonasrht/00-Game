@@ -164,23 +164,18 @@ class IdleState extends State {
     }
 
     execute(scene, hero) {
-        const { left, right, up, down, space, shift } = scene.cursors;
+        const { left, right, up, down } = scene.cursors;
         this.w = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.e = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
         // Transition to swing if pressing space
-        if (space.isDown) {
+        if (this.e.isDown) {
             this.stateMachine.transition('ult');
             return;
         }
 
         if (this.w.isDown) {
             this.stateMachine.transition('swing');
-        }
-
-        // Transition to dash if pressing shift
-        if (shift.isDown) {
-            this.stateMachine.transition('dash');
-            return;
         }
 
         // Transition to move if pressing a movement key
@@ -193,23 +188,18 @@ class IdleState extends State {
 
 class MoveState extends State {
     execute(scene, hero) {
-        const { left, right, up, down, space, shift } = scene.cursors;
+        const { left, right, up, down } = scene.cursors;
         this.w = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.e = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
         // Transition to swing if pressing space
-        if (space.isDown) {
+        if (this.e.isDown) {
             this.stateMachine.transition('ult');
             return;
         }
 
         if (this.w.isDown) {
             this.stateMachine.transition('swing');
-            return;
-        }
-
-        // Transition to dash if pressing shift
-        if (shift.isDown) {
-            this.stateMachine.transition('dash');
             return;
         }
 

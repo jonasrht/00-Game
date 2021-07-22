@@ -2,6 +2,8 @@ import Player from "./objects/Player.js";
 import Slime from "./objects/slime.js";
 import Arrow from "./arrow.js";
 
+var light;
+
 export default class Dungeon extends Phaser.Scene {
     constructor() {
         super("Dungeon");
@@ -28,20 +30,33 @@ export default class Dungeon extends Phaser.Scene {
         const tileset = map.addTilesetImage("Dungeon", "dungeonTiles");
 
         //Eben createn
-        const belowLayer = map.createLayer("boden", tileset, 0, 0);
+        this.belowLayer = map.createLayer("boden", tileset, 0, 0);
         this.worldLayer = map.createLayer("wand", tileset, 0, 0);
-        const chestLayer = map.createLayer("chest", tileset, 0, 0);
-        const buttonLayer = map.createLayer("button", tileset, 0, 0);
-        const mobsLayer = map.createLayer("mobs", tileset, 0, 0);
+        this.chestLayer = map.createLayer("chest", tileset, 0, 0);
+        this.saeulen = map.createLayer("saeulen", tileset, 0, 0);
+        this.buttonLayer = map.createLayer("button", tileset, 0, 0);
+        this.mobsLayer = map.createLayer("mobs", tileset, 0, 0);
+
+        this.worldLayer.setPipeline('Light2D');
+        this.belowLayer.setPipeline('Light2D');
+        this.saeulen.setPipeline('Light2D');
 
         //fügt den button q hinzu
         this.q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.e = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.six = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
 
+        this.lights.enable().setAmbientColor(0x333333);
+        light = this.lights.addLight(180, 80, 200).setColor(0xffffff).setIntensity(2);
+
+        this.input.on('pointermove', function (pointer) {
+
+        });
+
         //collision mit der wand in tiled einstellen
         this.worldLayer.setCollisionByProperty({ collides: true });
-        chestLayer.setCollisionByProperty({ collides: true });
+        this.saeulen.setCollisionByProperty({ collides: true });
+        this.chestLayer.setCollisionByProperty({ collides: true });
 
         //spawnpoint in tiled festlegen
         this.spawnPoint = map.findObject(
@@ -68,7 +83,8 @@ export default class Dungeon extends Phaser.Scene {
 
         //collider hinzufügen
         this.physics.add.collider(this.player, this.worldLayer);
-        this.physics.add.collider(this.player, chestLayer);
+        this.physics.add.collider(this.player, this.saeulen);
+        this.physics.add.collider(this.player, this.chestLayer);
         this.physics.add.collider(this.slimeGroup, this.worldLayer);
 
         //funktion damit die kamera einen verfolgt
@@ -111,12 +127,13 @@ export default class Dungeon extends Phaser.Scene {
             slime.update(slime, this);
         });
 
+
+        light.x = this.player.x;
+        light.y = this.player.y;
+
+
         if (Phaser.Input.Keyboard.JustDown(this.six)) {
             console.log("x" + this.player.x, "y:" + this.player.y);
-        }
-
-        if (Phaser.Input.Keyboard.JustDown(this.e)) {
-            this.player.dash();
         }
 
 
