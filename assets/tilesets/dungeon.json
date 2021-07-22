@@ -83,6 +83,89 @@
         }, 
         {
          "draworder":"topdown",
+         "id":11,
+         "name":"Stachelboden",
+         "objects":[
+                {
+                 "gid":354,
+                 "height":16,
+                 "id":20,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":16,
+                 "x":416,
+                 "y":335.5
+                }, 
+                {
+                 "gid":354,
+                 "height":16,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":16,
+                 "x":433,
+                 "y":336
+                }, 
+                {
+                 "gid":354,
+                 "height":16,
+                 "id":22,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":16,
+                 "x":448.5,
+                 "y":336
+                }, 
+                {
+                 "gid":354,
+                 "height":16,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":16,
+                 "x":464.5,
+                 "y":336
+                }, 
+                {
+                 "gid":354,
+                 "height":16,
+                 "id":24,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":16,
+                 "x":480.5,
+                 "y":336
+                }, 
+                {
+                 "gid":354,
+                 "height":16,
+                 "id":25,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":16,
+                 "x":496.5,
+                 "y":336.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":9,
          "name":"orc",
          "objects":[
@@ -140,8 +223,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":11,
- "nextobjectid":19,
+ "nextlayerid":12,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.5.0",

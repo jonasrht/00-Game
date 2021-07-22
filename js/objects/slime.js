@@ -17,8 +17,6 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
     }
 
     create() {
-        console.log(this);
-
         this.createAnims();
         this.setPipeline('Light2D');
         this.anims.play("slimeDown");
@@ -78,7 +76,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
             slime.health = slime.health - 1
             this.itemDrop(slime, scene);
         }
-        this.distance = Phaser.Math.Distance.BetweenPoints(this.target, this)
+        this.distance = 100000//Phaser.Math.Distance.BetweenPoints(this.target, this);
         if (this.distance < 150 && (slime.health > 0)) {
 
             this.rotation = Phaser.Math.Angle.Between(this.x, this.y, this.target.x, this.target.y);

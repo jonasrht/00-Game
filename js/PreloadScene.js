@@ -23,6 +23,11 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/0x72_DungeonTilesetII_v1.3.png"
     );
 
+    this.load.image("spike1", "assets/tilesets/spikes/spikes1.png");
+    this.load.image("spike2", "assets/tilesets/spikes/spikes2.png");
+    this.load.image("spike3", "assets/tilesets/spikes/spikes3.png");
+    this.load.image("spike4", "assets/tilesets/spikes/spikes4.png");
+
     // Player
     this.load.atlas(
       "atlas",
