@@ -15,6 +15,9 @@ export const config = {
     type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
     width: 1280,
     height: 720,
+    fps: {
+        target: 30 // 30x per second
+    },
     test: true,
     pixelArt: true,
     parent: "game", // HTML ID 

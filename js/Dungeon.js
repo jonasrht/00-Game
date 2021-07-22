@@ -1,6 +1,7 @@
 import Player from "./objects/Player.js";
 import Slime from "./objects/slime.js";
 import Arrow from "./arrow.js";
+import spikes from "./objects/spikes.js";
 
 var light;
 
@@ -64,8 +65,19 @@ export default class Dungeon extends Phaser.Scene {
             (obj) => obj.name === "Spawn Point"
         );
 
+        //Stachelboden
+        this.stachelBoden = map.createFromObjects('Stachelboden');
+        console.log(this.stachelBoden);
+        this.stachelBoden.forEach((stachel) => {
+            this.stachel = new spikes(this, stachel.x, stachel.y, 1)
+            this.stachel.setPipeline('Light2D');
+        })
+
+
         // Spieler erstellen
-        this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
+        //this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
+        this.player = new Player(this, 398, 321, this.selectedCharacter);
+
 
         // Slime Gruppe
         this.slimeGroup = [];
@@ -98,22 +110,22 @@ export default class Dungeon extends Phaser.Scene {
 
         this.projectiles = this.add.group();
 
-        var block = this.physics.add.image(100, 500, 'block').setImmovable(true).setVelocity(100, -100);
+        //var block = this.physics.add.image(100, 500, 'block').setImmovable(true).setVelocity(100, -100);
 
-        block.body.setAllowGravity(false);
+        //block.body.setAllowGravity(false);
 
-        this.tweens.timeline({
-            targets: block.body.velocity,
-            loop: -1,
-            tweens: [
-                { x: 0, y: -200, duration: 2000, ease: 'Stepped' },
-                //{ x: 0, y: 0, duration: 1000, ease: 'Stepped' },
-                { x: 150, y: 100, duration: 4000, ease: 'Stepped' },
-                { x: 0, y: -200, duration: 2000, ease: 'Stepped' },
-                { x: 0, y: 0, duration: 1000, ease: 'Stepped' },
-                { x: -150, y: 100, duration: 4000, ease: 'Stepped' }
-            ]
-        });
+        // this.tweens.timeline({
+        //     targets: block.body.velocity,
+        //     loop: -1,
+        //     tweens: [
+        //         { x: 0, y: -200, duration: 2000, ease: 'Stepped' },
+        //         //{ x: 0, y: 0, duration: 1000, ease: 'Stepped' },
+        //         { x: 150, y: 100, duration: 4000, ease: 'Stepped' },
+        //         { x: 0, y: -200, duration: 2000, ease: 'Stepped' },
+        //         { x: 0, y: 0, duration: 1000, ease: 'Stepped' },
+        //         { x: -150, y: 100, duration: 4000, ease: 'Stepped' }
+        //     ]
+        // });
 
 
 
