@@ -7,7 +7,7 @@ var c = 0;
 export default class spikes extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, frame) {
         super(scene, x, y, frame)
-        this.setTexture("spike1")
+        this.setTexture("spike1");
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
@@ -21,7 +21,7 @@ export default class spikes extends Phaser.GameObjects.Sprite {
             callback: function () { this.createSpike(scene) },
             callbackScope: this,
             loop: true
-        })
+        });
         //scene.add.image(this.x, this.y, "spike1");
 
     }
@@ -39,7 +39,7 @@ export default class spikes extends Phaser.GameObjects.Sprite {
         if (pic === "spike4") {
             this.spike.active = true;
             this.spike.body.setImmovable(true);
-            this.collider = scene.physics.add.collider(this.spike, scene.player, () => { console.log("ouch"); })
+            this.collider = scene.physics.add.collider(this.spike, scene.player, () => { console.log("ouch"); });
         } else {
             if (this.collider != null) {
                 scene.physics.world.removeCollider(this.collider);
