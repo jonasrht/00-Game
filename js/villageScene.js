@@ -96,7 +96,7 @@ export default class villageScene extends Phaser.Scene {
         });
         this.npc1.play('idle')
         npcs.children.entries[0].body.immovable = true;
-        this.physics.add.collider(this.player, npcs, () => this.createBox());
+        this.physics.add.collider(this.player, npcs, () => this.createBox("Moin Servus Moin, wie gets? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero e"));
 
 
         // Tür nach Hause
@@ -140,9 +140,9 @@ export default class villageScene extends Phaser.Scene {
         });
     }
 
-    createBox() {
+    createBox(text) {
         var uiScene = this.scene.get('uiScene');
-        uiScene.createBox();
+        uiScene.createBox(text);
         this.player.movement = false;
         // this.coinEmitter.emit('coinCount');
     }

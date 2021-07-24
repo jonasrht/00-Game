@@ -179,7 +179,7 @@ class IdleState extends State {
         }
 
         // Transition to move if pressing a movement key
-        if (left.isDown || right.isDown || up.isDown || down.isDown) {
+        if ((left.isDown || right.isDown || up.isDown || down.isDown) && hero.movement) {
             this.stateMachine.transition('move');
             return;
         }
@@ -224,7 +224,7 @@ class MoveState extends State {
             hero.setVelocityX(100);
             hero.direction = 'right';
         }
-        hero.body.velocity.normalize().scale(175);
+        //hero.body.velocity.normalize().scale(100);
 
         if (left.isDown) {
             hero.anims.play("misa-left-walk", true);
@@ -243,9 +243,9 @@ class UltState extends State {
     enter(scene, hero) {
         hero.setVelocity(0);
         hero.anims.play("sword-ult");
-        this.swordHitbox = scene.add.rectangle(hero.x, hero.y, 30, 30);
+        this.swordHitbox = scene.add.rectangle(hero.x, hero.y, 50, 50);
         scene.physics.add.existing(this.swordHitbox);
-        scene.physics.add.collider(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
+        scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
             slime.health = slime.health - 1;
             if (slime.health == 0) {
                 slime.destroy();
@@ -287,7 +287,7 @@ class SwingState extends State {
         }
         this.swordanim.setScale(0.5);
         scene.physics.add.existing(this.swordHitbox);
-        scene.physics.add.collider(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
+        scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
             slime.health = slime.health - 1;
             slime.pushBack();
             if (slime.health == 0) {

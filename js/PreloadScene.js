@@ -73,12 +73,10 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/arrow.json"
     );
 
-    //Menu Background
-    this.load.image("bg", "assets/img/parallax-mountain-bg.png");
-    this.load.image("bg1", "assets/img/parallax-mountain-montain-far.png");
-    this.load.image("bg2", "assets/img/parallax-mountain-mountains.png");
-    this.load.image("bg3", "assets/img/parallax-mountain-trees.png");
-
+    // UI
+    this.load.image("uiAttack", "assets/img/gui-ingame.png");
+    this.load.image("dialogbox", "assets/img/dialogbox.png");  
+  
     // Buttons
     this.load.image("exitButton", "assets/img/exitButton4.png");
     this.load.image("MenuTop", "assets/img/MenuTop.png");
