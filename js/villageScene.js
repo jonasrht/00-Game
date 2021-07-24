@@ -53,12 +53,15 @@ export default class villageScene extends Phaser.Scene {
         const map = this.make.tilemap({ key: "map" });
         // Tileset
         const tileset = map.addTilesetImage("Serene_Village_16x16", "tiles");
-        const sTileset = map.addTilesetImage("tileset", "sTiles");
+        const schmiedTilset = map.addTilesetImage("schmied16x16", "schmiedTiles");
+        const dorfTiles = map.addTilesetImage("dorf", "dorfTiles");
+        const shopTiles = map.addTilesetImage("shophouse", "shopHaus");
 
         // Tileset Ebenen
-        this.belowLayer = map.createLayer("bottom", [tileset, sTileset], 0, 0);
-        this.worldLayer = map.createLayer("world", [tileset, sTileset], 0, 0);
-        this.aboveLayer = map.createLayer("top", [tileset, sTileset], 0, 0);
+        this.belowLayer = map.createLayer("bottom", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
+        this.belowLayer2 = map.createLayer("bottom2", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
+        this.worldLayer = map.createLayer("world", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
+        this.aboveLayer = map.createLayer("top", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
 
         // Spieler erstellen
         this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
@@ -68,7 +71,7 @@ export default class villageScene extends Phaser.Scene {
         this.aboveLayer.setDepth(11);
 
         // Collider
-        this.worldLayer.setCollisionByProperty({ colides: true });
+        this.worldLayer.setCollisionByProperty({ collide: true });
         this.physics.add.collider(this.player, this.worldLayer,);
 
         //Kamera
