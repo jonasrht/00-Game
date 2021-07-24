@@ -47,6 +47,7 @@ export default class Dungeon extends Phaser.Scene {
         this.e = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.six = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
 
+        // Lichter
         this.lights.enable().setAmbientColor(0x333333);
         light = this.lights.addLight(180, 80, 200).setColor(0xffffff).setIntensity(2);
 
@@ -97,7 +98,9 @@ export default class Dungeon extends Phaser.Scene {
         this.physics.add.collider(this.player, this.worldLayer);
         this.physics.add.collider(this.player, this.saeulen);
         this.physics.add.collider(this.player, this.chestLayer);
-        this.physics.add.collider(this.slimeGroup, this.worldLayer);
+        this.physics.add.collider(this.slimeGroup, this.worldLayer, (slime, world) => {
+            slime.handleCollide();
+        });
 
         //funktion damit die kamera einen verfolgt
         const camera = this.cameras.main;
@@ -127,9 +130,29 @@ export default class Dungeon extends Phaser.Scene {
         //     ]
         // });
 
-
-
+        // Tür zu Level 2
+        this.doorDungeon2 = map.createFromObjects('doors', { name: 'doorDungeonTwo' });
+        this.physics.world.enable(this.doorDungeon2);
+        this.doorDungeon2[0].body.immovable = true;
+        this.colliderActivated = true;
+        this.physics.add.collider(this.player, this.doorDungeon2, () => {
+            if (this.slimeGroup.length > 0) {
+                this.uiScene.createBox("Du hast noch nicht alle Gegner besiegt!");
+            } else {
+                this.uiScene.createBox("Du hast es ins Level 2 geschafft :)");
+            }
+            // this.dooropenSound.play();
+            // this.switchScene('Dungeon', this.doorShop[0].name)
+        }, () => {return this.colliderActivated}, this);
     }
+
+    switchScene(scene, name) {
+        this.cameras.main.fadeOut(1000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.scene.start(scene, { name, char: this.selectedCharacter })
+        });
+    }
+
 
     update(time, delta) {
         const speed = 175;
@@ -139,7 +162,7 @@ export default class Dungeon extends Phaser.Scene {
             slime.update(slime, this);
         });
 
-
+        // Licht verfolgt spieler
         light.x = this.player.x;
         light.y = this.player.y;
 

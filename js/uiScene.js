@@ -1,3 +1,5 @@
+import villageScene from "./villageScene.js";
+
 const COLOR_PRIMARY = 0x4e342e;
 const COLOR_LIGHT = 0x7b5e57;
 const COLOR_DARK = 0x260e04;
@@ -28,6 +30,7 @@ export default class uiScene extends Phaser.Scene {
 
 
     create() {
+        
         this.scene.bringToTop();
         this.heartSound = this.sound.add("heartSound");
         for (let i = 0; i < 3; i++) {
@@ -40,12 +43,33 @@ export default class uiScene extends Phaser.Scene {
         this.invIcon = this.add.image(50, 670, 'invIcon');
         this.invIcon.setScale(2.5);
         this.invIcon.setInteractive({ useHandCursor: true });
+
+        // Attack Buttons
+        this.uiAttackBtn = this.add.image(640, 670, 'uiAttack');
+
         // Inventar öffnen
         this.invIcon.on('pointerdown', function (pointer) {
             this.scene.pause().launch('inventoryScene');
         }, this);
 
+        this.bgImg = this.add.image(425, 650, 'dialogbox').setVisible(false);
+        //this.createTypeTextBox("This is a test!")
+    }
 
+    createTypeTextBox(text) {
+        this.label = this.add.text(100, 100, '', { fontFamily: 'mainfont', fontSize: '18px', color: '#fffbed', stroke: '#62232f', align: 'center' })
+        {
+            const length = text.length
+            let i = 0
+            this.time.addEvent({
+                callback: () => {
+                    this.label.text += text[i]
+                    ++i
+                },
+                repeat: length - 1,
+                delay: 100
+            })
+        }
     }
 
     playerMovement() {
@@ -73,13 +97,17 @@ export default class uiScene extends Phaser.Scene {
         console.log("GameOver :(((");
     }
 
-    createBox() {
+    createBox(text) {
+        var villageScene = this.scene.get('villageScene');
+        villageScene.player.movement = false;
+        this.uiAttackBtn.setVisible(false);
+        this.bgImg.setVisible(true);
         this.box = createTextBox(this, 100, 600, {
             wrapWidth: 500,
             fixedWidth: 500,
             fixedHeight: 65,
         })
-        this.box.start(content, 50);
+        this.box.start(text, 50);
         this.game.config.test = false;
     }
 
@@ -111,7 +139,7 @@ var createTextBox = function (scene, x, y, config) {
         y: y,
 
         background: scene.rexUI.add.roundRectangle(0, 0, 2, 2, 20, COLOR_PRIMARY)
-            .setStrokeStyle(2, COLOR_LIGHT),
+            .setStrokeStyle(0, COLOR_LIGHT),
 
         icon: scene.rexUI.add.roundRectangle(0, 0, 2, 2, 20, COLOR_DARK),
 
@@ -143,6 +171,8 @@ var createTextBox = function (scene, x, y, config) {
             this.stop(true);
             if (this.isLastPage) {
                 scene.playerMovement();
+                scene.bgImg.setVisible(false);
+                scene.uiAttackBtn.setVisible(true);
             }
             this.visible = false;
         }
