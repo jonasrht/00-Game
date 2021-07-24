@@ -61,7 +61,11 @@ export default class villageScene extends Phaser.Scene {
         this.belowLayer = map.createLayer("bottom", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
         this.belowLayer2 = map.createLayer("bottom2", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
         this.worldLayer = map.createLayer("world", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
+        this.worldLayer1 = map.createLayer("world-1", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
+        this.worldLayer2 = map.createLayer("world2", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
+        this.worldLayer3 = map.createLayer("world3", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
         this.aboveLayer = map.createLayer("top", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
+        this.baumLayer = map.createLayer("baum", [tileset, schmiedTilset, dorfTiles, shopTiles], 0, 0);
 
         // Spieler erstellen
         this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
