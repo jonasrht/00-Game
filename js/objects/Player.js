@@ -150,9 +150,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         });
     }
 
+    setMovement(boolean) {
+        this.movement = boolean
+    }
+
     update(cursors, selectedCharacter) {
         this.body.setVelocity(0);
-        this.playerStateMachine.step();
+        if (this.movement == true) {
+            this.playerStateMachine.step();   
+        }
     }
 }
 

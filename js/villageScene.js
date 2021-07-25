@@ -19,8 +19,8 @@ export default class villageScene extends Phaser.Scene {
             this.spawnY = 134;
         }
         else {
-            this.spawnX = 10;
-            this.spawnY = 10;
+            this.spawnX = 631;
+            this.spawnY = 371;
         }
     }
 
@@ -35,7 +35,7 @@ export default class villageScene extends Phaser.Scene {
     }
 
     create() {
-        var uiScene = this.scene.get('uiScene');
+        this.uiScene = this.scene.get('uiScene');
 
         this.dooropenSound = this.sound.add("dooropenSound");
         this.scene.run('instructionsScene');
@@ -101,7 +101,7 @@ export default class villageScene extends Phaser.Scene {
                 zeroPad: 3
             })
         });
-        this.npc1.play('idle')
+        this.npc1.play('idle');
         npcs.children.entries[0].body.immovable = true;
         this.physics.add.collider(this.player, npcs, () => this.createBox("Moin Servus Moin, wie gets? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero e"));
 
@@ -137,9 +137,74 @@ export default class villageScene extends Phaser.Scene {
             esc: Phaser.Input.Keyboard.KeyCodes.ESC,
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
-
-
+        this.player.setMovement(false);
+        this.startScene();
     }
+
+    startScene() {
+        this.flaschenpost = this.add.image(626, 665, "flaschenpost");
+        this.zumStrand = this.tweens.add({
+            targets: this.player,
+            onStart: function (tween, targets) {
+                targets[0].movement = false;
+                targets[0].anims.play('misa-front-walk')
+            },
+            onComplete: function (tween, targets) {
+                targets[0].anims.stop();
+                targets[0].movement = true;
+                
+            }, 
+            delay: 2000,
+            duration: 4000,
+            y: 647
+        });
+        this.zumStrand.on('complete', () => {
+            this.time.addEvent({
+                delay: 500,
+                callback: () => {
+                    this.player.anims.play('misa-left-walk');
+                    this.player.anims.stop();
+                },
+                callbackScope: this
+            });
+            this.time.addEvent({
+                delay: 1000,
+                callback: () => {
+                    this.player.anims.play('misa-right-walk');
+                    this.player.anims.stop();
+                },
+                callbackScope: this
+            });
+            this.time.addEvent({
+                delay: 1500,
+                callback: () => {
+                    this.player.anims.play('misa-front-walk');
+                    this.player.anims.stop();
+                },
+                callbackScope: this
+            });
+            this.time.addEvent({
+                delay: 1600,
+                callback: () => {
+                    this.player.anims.stop();
+                    this.uiScene.createBox("Ohh was ist das denn?.... Eine alte Flasche, aber ... da ist ja was drin?!");
+                },
+                callbackScope: this
+            });
+
+            this.openFlaschenpost = this.input.keyboard.on('keydown-' + 'ENTER', function (event) {
+                this.brief = this.add.image(650, 650, 'brief').setScale(0.6).setDepth(50);
+                this.briefHeader = this.add.text(599, 90, 'Log Eintrag', { fontFamily: 'mainfont', fontSize: '13px', color: '#62232f', stroke: '#62232f', align: 'center' }).setOrigin(0.5, 0.5).setDepth(100);
+                this.uiScene.uiAttackBtn.setVisible(false);
+            }, this);
+        });
+        
+    }
+
+    frontWalk() {
+        this.player.anims.play('misa-front-walk', true);
+    }
+
     switchScene(scene, name) {
         this.cameras.main.fadeOut(1000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
