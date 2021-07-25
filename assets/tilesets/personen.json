@@ -1,0 +1,68 @@
+{"frames": {
+
+"bürgermeister.png":
+{
+	"frame": {"x":0,"y":0,"w":28,"h":43},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":43},
+	"sourceSize": {"w":28,"h":43}
+},
+"randomdorfguy1.png":
+{
+	"frame": {"x":0,"y":48,"w":196,"h":86},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":86},
+	"sourceSize": {"w":196,"h":86}
+},
+"randomdorfguy2.png":
+{
+	"frame": {"x":0,"y":134,"w":196,"h":86},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":86},
+	"sourceSize": {"w":196,"h":86}
+},
+"randomdorfguy3.png":
+{
+	"frame": {"x":0,"y":220,"w":196,"h":86},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":86},
+	"sourceSize": {"w":196,"h":86}
+},
+"schmiedperson.png":
+{
+	"frame": {"x":28,"y":0,"w":28,"h":43},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":43},
+	"sourceSize": {"w":28,"h":43}
+},
+"shopperson.png":
+{
+	"frame": {"x":56,"y":0,"w":28,"h":43},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":43},
+	"sourceSize": {"w":28,"h":43}
+},
+"shoppersonmap.png":
+{
+	"frame": {"x":84,"y":0,"w":32,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":48},
+	"sourceSize": {"w":32,"h":48}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "personen.png",
+	"format": "RGBA8888",
+	"size": {"w":196,"h":306},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:622af1dd702a296914818d697e193c31:a27fec49aef203278a6d8f9800a0c91e:a07fac6b287aa73dc13f78c207b738db$"
+}
+}
