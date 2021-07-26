@@ -1,6 +1,6 @@
 export default class audioManager extends Phaser.Scene {
     constructor() {
-        super({ key: 'audioManager', active: false })
+        super({ key: 'audioManager', active: true })
     }
 
     create() {
@@ -13,8 +13,5 @@ export default class audioManager extends Phaser.Scene {
             loop: true,
             delay: 0
         }
-
-        this.bgMusic = this.sound.add("menuMusic");
-
     }
 }

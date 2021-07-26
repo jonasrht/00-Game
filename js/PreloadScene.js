@@ -8,8 +8,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("map", "assets/tilesets/tileset.json");
     this.load.image("tiles", "assets/tilesets/Serene_Village_16x16.png");
     this.load.image("schmiedTiles", "assets/tilesets/schmied16x16.png");
-    this.load.image("dorfTiles", "assets/tilesets/dorfset.png")
-    this.load.image("shopHaus", "assets/tilesets/shop.png")
+    this.load.image("dorfTiles", "assets/tilesets/dorfset.png");
+    this.load.image("shopHaus", "assets/tilesets/shop.png");
 
     // Dungeon
     this.load.tilemapTiledJSON("homeroom", "assets/tilesets/room.json");
@@ -61,6 +61,27 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/npc.json"
     );
 
+    // Dorfbewohner
+
+    this.load.atlas(
+      "bewohner1",
+      "assets/tilesets/randomdorfguy1.png",
+      "assets/tilesets/atlas.json"
+    );
+
+    
+    this.load.atlas(
+      "bewohner2",
+      "assets/tilesets/randomdorfguy2.png",
+      "assets/tilesets/atlas.json"
+    );
+
+    this.load.atlas(
+      "bewohner3",
+      "assets/tilesets/randomdorfguy3.png",
+      "assets/tilesets/atlas.json"
+    );
+
     // Slime
     this.load.atlas(
       "slime",
@@ -78,6 +99,8 @@ export default class PreloadScene extends Phaser.Scene {
     // UI
     this.load.image("uiAttack", "assets/img/gui-ingame.png");
     this.load.image("dialogbox", "assets/img/dialogbox.png");  
+    this.load.image("flaschenpost", "assets/img/flaschenpost16x16.png");
+    this.load.image("brief", "assets/img/flaschenbrief.png");
   
     // Buttons
     this.load.image("exitButton", "assets/img/exitButton4.png");

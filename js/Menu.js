@@ -212,11 +212,16 @@ export default class Menu extends Phaser.Scene {
             delay: 0
         }
 
-        console.log(this.audioManager.bgMusic);
+        console.log(this.audioManager.musicConfig);
 
-        this.bgMusic = this.sound.add("menuMusic");
+        
         this.startGameSound = this.sound.add("startGame");
-        this.bgMusic.play(musicConfig);
+
+        // Einmal in der Scene
+        this.audioManager = this.scene.get('audioManager');
+        // Für jeden Sound
+        this.bgMusic = this.sound.add("menuMusic");
+        this.bgMusic.play(this.audioManager.musicConfig);
 
         startButton.on('pointerover', () => { });
 
