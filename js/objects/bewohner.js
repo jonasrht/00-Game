@@ -14,6 +14,7 @@ export default class bewohner extends Phaser.Physics.Arcade.Sprite {
     }
 
     create(texture) {
+        if (texture != "buergermeister") {
         const anims = this.anims;
         anims.create({
             key: "misa-left-walk",
@@ -39,8 +40,9 @@ export default class bewohner extends Phaser.Physics.Arcade.Sprite {
             frameRate: 10,
             repeat: -1
         });
-
-        this.anims.play("misa-front-walk");
-        this.anims.stop();
+        
+            this.anims.play("misa-front-walk");
+            this.anims.stop();
+        }
     }
 }

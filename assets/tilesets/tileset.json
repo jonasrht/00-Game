@@ -185,15 +185,15 @@
                 }, 
                 {
                  "height":0,
-                 "id":14,
-                 "name":"",
+                 "id":15,
+                 "name":"buergermeister",
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":false,
+                 "visible":true,
                  "width":0,
-                 "x":606,
-                 "y":382
+                 "x":1056.5,
+                 "y":441
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -202,7 +202,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":15,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.1",
