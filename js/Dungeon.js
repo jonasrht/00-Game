@@ -42,7 +42,7 @@ export default class Dungeon extends Phaser.Scene {
         this.belowLayer.setPipeline('Light2D');
         this.saeulen.setPipeline('Light2D');
 
-        //fügt den button q hinzu
+        //fügt den buttons hinzu
         this.q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
         this.e = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.six = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
@@ -50,10 +50,6 @@ export default class Dungeon extends Phaser.Scene {
         // Lichter
         this.lights.enable().setAmbientColor(0x333333);
         light = this.lights.addLight(180, 80, 200).setColor(0xffffff).setIntensity(2);
-
-        this.input.on('pointermove', function (pointer) {
-
-        });
 
         //collision mit der wand in tiled einstellen
         this.worldLayer.setCollisionByProperty({ collides: true });
@@ -76,8 +72,8 @@ export default class Dungeon extends Phaser.Scene {
 
 
         // Spieler erstellen
-        //this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
-        this.player = new Player(this, 398, 321, this.selectedCharacter);
+        this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
+        //this.player = new Player(this, 398, 321, this.selectedCharacter);
 
 
         // Slime Gruppe
@@ -129,6 +125,16 @@ export default class Dungeon extends Phaser.Scene {
         //         { x: -150, y: 100, duration: 4000, ease: 'Stepped' }
         //     ]
         // });
+
+
+        // Tür zum Dorf
+        this.d1Ausgang = map.createFromObjects('Objects', { name: 'd1Ausgang' });
+        console.log(this.d1Ausgang);
+        this.physics.world.enable(this.d1Ausgang);
+        this.d1Ausgang[0].body.immovable = true;
+        this.physics.add.collider(this.player, this.d1Ausgang, () => {
+            this.scene.start('villageScene', {name: 'd1Ausgang', char: this.selectedCharacter })
+        });
 
         // Tür zu Level 2
         this.doorDungeon2 = map.createFromObjects('doors', { name: 'doorDungeonTwo' });

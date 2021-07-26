@@ -13,11 +13,14 @@ export default class villageScene extends Phaser.Scene {
         this.selectedCharacter = data.char;
         // Spawn Pukte
         if (data.name == "doorHomeBack") {
-            this.spawnX = 115;
-            this.spawnY = 227;
+            this.spawnX = 496;
+            this.spawnY = 564;
         } else if (data.name == "doorShopBack") {
-            this.spawnX = 307;
-            this.spawnY = 134;
+            this.spawnX = 545;
+            this.spawnY = 469;
+        } else if (data.name == "d1Ausgang") {
+            this.spawnX = 1240;
+            this.spawnY = 55;
         }
         else {
             this.spawnX = 631;
@@ -134,6 +137,16 @@ export default class villageScene extends Phaser.Scene {
         });
 
         // Tür nur mit Schlüssel
+        this.caveEnte = map.createFromObjects('doors', { name: 'caveEnte' });
+        this.physics.world.enable(this.caveEnte);
+        this.caveEnte[0].body.immovable = true;
+        this.physics.add.collider(this.player, this.caveEnte, () => {
+            this.dooropenSound.play();
+            this.scene.start('Dungeon', {char: this.selectedCharacter })
+        });
+
+        
+        // Tür nur mit Schlüssel
         this.doorSchmied = map.createFromObjects('doors', { name: 'doorSchmied' });
         this.physics.world.enable(this.doorSchmied);
         this.doorSchmied[0].body.immovable = true;
@@ -165,7 +178,7 @@ export default class villageScene extends Phaser.Scene {
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
         this.player.setMovement(false);
-        //this.startScene();
+        this.startScene();
     }
 
     bewohnerDialog(player, bewohner) {
@@ -239,23 +252,14 @@ export default class villageScene extends Phaser.Scene {
                 callbackScope: this
             });
 
-            this.openFlaschenpost = this.input.keyboard.on('keydown-' + 'ENTER', function (event) {
-                this.brief = this.add.image(650, 650, 'brief').setScale(0.6).setDepth(50);
-                this.exitbtn = this.add.image(650, 650, 'exitButton');
-                this.exitbtn.setInteractive({ useHandCursor: true }).setDepth(55);
-                this.briefHeader = this.add.text(599, 90, 'Log Eintrag', { fontFamily: 'mainfont', fontSize: '13px', color: '#62232f', stroke: '#62232f', align: 'center' }).setOrigin(0.5, 0.5).setDepth(100);
-                this.uiScene.uiAttackBtn.setVisible(false);
-
-                this.exitbtn.on('pointerdown', () => {
-                    this.brief.destroy();
-                    this.openFlaschenpost.destroy();
-                    this.briefHeader.destroy();
-                    this.uiScene.uiAttackBtn.setVisible(true);
-                }, this)
+            var keyObj = this.input.keyboard.addKey('ENTER')
+            this.openFlaschenpost = keyObj.on('down', function (event) {
+                this.uiScene.zeigeBrief();
+                // this.input.keyboard.removeCapture('ENTER');
+                // this.input.keyboard.removeKey('ENTER');
+                this.input.keyboard.removeKey('ENTER');
             }, this);
-
         });
-
     }
 
     frontWalk() {

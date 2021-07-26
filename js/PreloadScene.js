@@ -10,6 +10,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("schmiedTiles", "assets/tilesets/schmied16x16.png");
     this.load.image("dorfTiles", "assets/tilesets/dorfset.png");
     this.load.image("shopHaus", "assets/tilesets/shop.png");
+    this.load.image("raumset", "assets/tilesets/raumset.png");
+    
 
     // Dungeon
     this.load.tilemapTiledJSON("homeroom", "assets/tilesets/room.json");
@@ -101,6 +103,9 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("dialogbox", "assets/img/dialogbox.png");  
     this.load.image("flaschenpost", "assets/img/flaschenpost16x16.png");
     this.load.image("brief", "assets/img/flaschenbrief.png");
+    this.load.image("questui", "assets/img/questsbalken.png");
+    this.load.image("questuiOpen", "assets/img/questbalkenoffen.png");
+    this.load.image("newQuest", "assets/img/neuequest.png");
   
     // Buttons
     this.load.image("exitButton", "assets/img/exitButton4.png");
