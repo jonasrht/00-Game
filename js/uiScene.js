@@ -11,6 +11,7 @@ export default class uiScene extends Phaser.Scene {
         this.x = 50;
         this.money = 100;
         this.heartContainer = [];
+        this.questText = '';
     }
 
     init(data) {
@@ -48,9 +49,24 @@ export default class uiScene extends Phaser.Scene {
         this.uiAttackBtn = this.add.image(640, 670, 'uiAttack').setScale(1.5);
 
         // Inventar öffnen
-        this.invIcon.on('pointerdown', function (pointer) {
+        this.invIcon.on('pointerdown', function () {
             this.scene.pause().launch('inventoryScene');
         }, this);
+
+        // Quest UI
+        this.questUi = this.add.image(1150, 50, 'questui');
+        this.questUi.setInteractive({ useHandCursor: true });
+        this.questUi.on('pointerdown', function () {
+            this.questUiOpen = this.add.image(1150, 120, 'questuiOpen');
+            this.questUiOpen.setInteractive({ useHandCursor: true });
+            this.displayQuest();
+            this.questUiOpen.on('pointerdown', function () {
+                this.undisplayQuest();
+                this.questUiOpen.setVisible(false);
+            }, this);
+        }, this);
+
+        //this.newQuestAllert();
 
         this.bgImg = this.add.image(425, 650, 'dialogbox').setVisible(false);
         //this.createTypeTextBox("This is a test!")
@@ -72,8 +88,32 @@ export default class uiScene extends Phaser.Scene {
         }
     }
 
+    displayQuest() {
+        this.questText = this.add.text(1080, 80, "- Teile dem Bürgermeister\n   deinen Fund mit", { fontSize: '64x', color: '#fffbed', stroke: '#62232f', align: 'left' });
+    }
+
+    undisplayQuest() {
+        this.questText.setVisible(false);
+    }
+
     playerMovement() {
         this.game.config.test = true;
+    }
+
+    // Anzeige das eien neue Quest angenommmen wurde
+    newQuestAllert() {
+        this.neueQuestImg = this.add.image(1150, 300, 'newQuest').setAlpha(0);
+        this.tweens.add({
+            targets: this.neueQuestImg,
+            alpha: { value: 1, duration: 2000, ease: 'Power1' },
+            y: 150,
+        });
+        this.tweens.add({
+            targets: this.neueQuestImg,
+            delay: 2500,
+            alpha: { value: 0, duration: 2000, ease: 'Power1' },
+            y: 300,
+        });
     }
 
     addHeart() {
@@ -95,6 +135,22 @@ export default class uiScene extends Phaser.Scene {
 
     handleGameover() {
         console.log("GameOver :(((");
+    }
+
+    zeigeBrief() {
+        this.villageScene = this.scene.get('villageScene');
+        this.brief = this.add.image(600, 260, 'brief').setDepth(50).setScale(1.5);
+        this.exitbtn = this.add.image(718, 84, 'exitButton');
+        this.exitbtn.setInteractive({ useHandCursor: true }).setDepth(55);
+        this.uiAttackBtn.setVisible(false);
+        this.exitbtn.on('pointerdown', () => {
+            this.newQuestAllert();
+            this.brief.destroy();
+            this.uiAttackBtn.setVisible(true);
+            
+            this.villageScene.flaschenpost.destroy();
+            this.exitbtn.destroy();
+        }, this)
     }
 
     createBox(text) {

@@ -9,12 +9,12 @@ export default class homeScene extends Phaser.Scene {
     init(data) {
         console.log(data);
         if (data.name == "doorHome") {
-            this.spawnX = 87;
-            this.spawnY = 100;
+            this.spawnX = 363;
+            this.spawnY = 623;
         }
         if (data.name == "doorShop") {
-            this.spawnX = 561;
-            this.spawnY = 648;
+            this.spawnX = 87;
+            this.spawnY = 113;
         }
         this.selectedCharacter = data.char;
     }
@@ -31,9 +31,11 @@ export default class homeScene extends Phaser.Scene {
         // Tilesets zuweisen
         const homeroom = this.make.tilemap({ key: "homeroom" });
         const tileset = homeroom.addTilesetImage("room", "homeground");
+        const raumset = homeroom.addTilesetImage("raum", "raumset");
         const interiorTileset = homeroom.addTilesetImage("tileset", "interior");
-        const groundLayer = homeroom.createLayer("ground", [tileset, interiorTileset], 0, 0);
-        const interior = homeroom.createLayer("interior", [tileset, interiorTileset], 0, 0);
+        const groundLayer = homeroom.createLayer("ground", [tileset, interiorTileset, raumset], 0, 0);
+        const interior = homeroom.createLayer("interior", [tileset, interiorTileset, raumset], 0, 0);
+        const interior1 = homeroom.createLayer("interior-1", [tileset, interiorTileset, raumset], 0, 0);
 
         // Spieler an die zuvor an die Scene übergebenden Koordinaten erstellen
         this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
@@ -89,12 +91,16 @@ export default class homeScene extends Phaser.Scene {
     switchScene(scene, name) {
         this.cameras.main.fadeOut(1000);
         this.doorSound.play({ volume: 0.05 });
-
         this.scene.start(scene, { name, char: this.selectedCharacter });
     }
 
 
     update() {
         this.player.update(this.cursors, this.selectedCharacter);
+
+        if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX))) {
+            console.log("x" + this.player.x, "y:" + this.player.y);
+        }
+
     }
 }

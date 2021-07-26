@@ -280,7 +280,7 @@
  "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.5.0",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -13540,12 +13540,12 @@
          "margin":0,
          "name":"personen",
          "spacing":0,
-         "tilecount":228,
+         "tilecount":216,
          "tileheight":16,
          "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.5,
+ "version":"1.6",
  "width":100
 }
