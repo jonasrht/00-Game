@@ -12,9 +12,10 @@ import Dungeon from "./Dungeon.js";
 import audioManager from "./audioManager.js";
 
 export const config = {
-    type: Phaser.AUTO, // Welcher Renderer soll verwendet werden?
+    type: Phaser.WEBGL, // Welcher Renderer soll verwendet werden?
     width: 1280,
     height: 720,
+    antialias: false,
     fps: {
         target: 30 // 30x per second
     },

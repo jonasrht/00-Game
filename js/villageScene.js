@@ -77,7 +77,15 @@ export default class villageScene extends Phaser.Scene {
 
         // Collider
         this.worldLayer.setCollisionByProperty({ collide: true });
-        this.physics.add.collider(this.player, this.worldLayer,);
+        this.worldLayer1.setCollisionByProperty({ collide: true });
+        this.worldLayer2.setCollisionByProperty({ collide: true });
+        this.worldLayer3.setCollisionByProperty({ collide: true });
+        this.belowLayer2.setCollisionByProperty({ collide: true });
+        this.physics.add.collider(this.player, this.worldLayer);
+        this.physics.add.collider(this.player, this.worldLayer1);
+        this.physics.add.collider(this.player, this.worldLayer2);
+        this.physics.add.collider(this.player, this.worldLayer3);
+        this.physics.add.collider(this.player, this.belowLayer2);
 
         //Kamera
         const camera = this.cameras.main;
