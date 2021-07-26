@@ -8,6 +8,8 @@ export default class villageScene extends Phaser.Scene {
 
     constructor() {
         super("villageScene");
+
+        this.startedOnce = false;
     }
     init(data) {
         this.selectedCharacter = data.char;
@@ -42,7 +44,9 @@ export default class villageScene extends Phaser.Scene {
         this.uiScene = this.scene.get('uiScene');
 
         this.dooropenSound = this.sound.add("dooropenSound");
-        this.scene.run('instructionsScene');
+        if (this.startedOnce == false) {
+            this.scene.run('instructionsScene');
+        }
         //this.scene.run('shopScene');
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.coinEmitter = new Phaser.Events.EventEmitter();
@@ -178,7 +182,10 @@ export default class villageScene extends Phaser.Scene {
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
         this.player.setMovement(false);
-        this.startScene();
+        if (this.startedOnce == false) {
+            this.startScene();
+        }
+        this.startedOnce = true;
     }
 
     bewohnerDialog(player, bewohner) {
