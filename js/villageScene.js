@@ -1,5 +1,6 @@
 import Npc from "./objects/npc.js";
 import Player from "./objects/Player.js";
+import Bewohner from "./objects/bewohner.js"
 import instructionsScene from "./instructionsScene.js";
 import uiScene from "./uiScene.js";
 
@@ -133,12 +134,50 @@ export default class villageScene extends Phaser.Scene {
             this.switchScene('Dungeon', this.doorShop[0].name)
         });
 
+        // Bewohner hinzufügen
+        this.bewohnerGroup = [];
+        this.bewohner = map.createFromObjects('bewohner');
+        this.textureNum = 1;
+        this.bewohner.forEach((bewohner) => {
+            this.bewohner = new Bewohner(this, bewohner.x, bewohner.y, 'bewohner' + this.textureNum, 1);
+            this.bewohnerGroup.push(this.bewohner)
+            if (this.textureNum > 3) {
+                this.textureNum--;
+            } else {
+                this.textureNum++;
+            }
+        });
+
+        this.physics.add.collider(this.player, this.bewohnerGroup, (player, bewohner) => {
+            this.bewohnerDialog(player, bewohner);
+        });
+
         this.wasd = this.input.keyboard.addKeys({
             esc: Phaser.Input.Keyboard.KeyCodes.ESC,
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
         this.player.setMovement(false);
-        this.startScene();
+        //this.startScene();
+    }
+
+    bewohnerDialog(player, bewohner) {
+        player.setMovement(false);
+        player.anims.stop();
+        console.log(bewohner.texture.key);
+        switch (bewohner.texture.key) {
+            case "bewohner3":
+                this.uiScene.createBox("... ich habe tierische Angst vor den Monstern!")
+                break;
+            case "bewohner2":
+                this.uiScene.createBox("Schönes Wetter heute!")
+                break;
+            case "bewohner1":
+                this.uiScene.createBox("Ich habe ein Gerücht gehört, dass es ein Heilmittel gibt.")
+                break;
+            default:
+                break;
+        }
+        
     }
 
     startScene() {
@@ -152,8 +191,8 @@ export default class villageScene extends Phaser.Scene {
             onComplete: function (tween, targets) {
                 targets[0].anims.stop();
                 targets[0].movement = true;
-                
-            }, 
+
+            },
             delay: 2000,
             duration: 4000,
             y: 647
@@ -194,11 +233,21 @@ export default class villageScene extends Phaser.Scene {
 
             this.openFlaschenpost = this.input.keyboard.on('keydown-' + 'ENTER', function (event) {
                 this.brief = this.add.image(650, 650, 'brief').setScale(0.6).setDepth(50);
+                this.exitbtn = this.add.image(650, 650, 'exitButton');
+                this.exitbtn.setInteractive({ useHandCursor: true }).setDepth(55);
                 this.briefHeader = this.add.text(599, 90, 'Log Eintrag', { fontFamily: 'mainfont', fontSize: '13px', color: '#62232f', stroke: '#62232f', align: 'center' }).setOrigin(0.5, 0.5).setDepth(100);
                 this.uiScene.uiAttackBtn.setVisible(false);
+
+                this.exitbtn.on('pointerdown', () => {
+                    this.brief.destroy();
+                    this.openFlaschenpost.destroy();
+                    this.briefHeader.destroy();
+                    this.uiScene.uiAttackBtn.setVisible(true);
+                }, this)
             }, this);
+
         });
-        
+
     }
 
     frontWalk() {

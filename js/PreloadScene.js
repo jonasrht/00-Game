@@ -61,6 +61,27 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/npc.json"
     );
 
+    // Dorfbewohner
+
+    this.load.atlas(
+      "bewohner1",
+      "assets/tilesets/randomdorfguy1.png",
+      "assets/tilesets/atlas.json"
+    );
+
+    
+    this.load.atlas(
+      "bewohner2",
+      "assets/tilesets/randomdorfguy2.png",
+      "assets/tilesets/atlas.json"
+    );
+
+    this.load.atlas(
+      "bewohner3",
+      "assets/tilesets/randomdorfguy3.png",
+      "assets/tilesets/atlas.json"
+    );
+
     // Slime
     this.load.atlas(
       "slime",
