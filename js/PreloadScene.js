@@ -56,6 +56,8 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/schwerthieb.json"
     )
 
+    this.load.image("buergermeister", "assets/tilesets/burgermeister.png");
+
     // NPC
     this.load.atlas(
       "npc",

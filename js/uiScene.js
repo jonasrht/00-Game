@@ -9,9 +9,11 @@ export default class uiScene extends Phaser.Scene {
     constructor() {
         super("uiScene");
         this.x = 50;
+        this.questY = 80;
         this.money = 100;
         this.heartContainer = [];
-        this.questText = '';
+        this.questText = [""];
+        this.questTextDis = '';
     }
 
     init(data) {
@@ -88,12 +90,28 @@ export default class uiScene extends Phaser.Scene {
         }
     }
 
+    addQuest(text) {
+        this.questText.push(text)
+    }
+
+    removeQuest(text) {
+        this.questText.forEach(element => {
+            if (element.toString() === text) {
+                element.destroy();
+            }
+        })
+    }
+
     displayQuest() {
-        this.questText = this.add.text(1080, 80, "- Teile dem Bürgermeister\n   deinen Fund mit", { fontSize: '64x', color: '#fffbed', stroke: '#62232f', align: 'left' });
+        this.text = "";
+        this.questText.forEach(element => {
+            this.text = this.text + element.toString();
+        });
+        this.questTextDis = this.add.text(1080, 80, this.text, { fontSize: '64x', color: '#fffbed', stroke: '#62232f', align: 'left' });
     }
 
     undisplayQuest() {
-        this.questText.setVisible(false);
+        this.questTextDis.setVisible(false);
     }
 
     playerMovement() {
@@ -144,10 +162,10 @@ export default class uiScene extends Phaser.Scene {
         this.exitbtn.setInteractive({ useHandCursor: true }).setDepth(55);
         this.uiAttackBtn.setVisible(false);
         this.exitbtn.on('pointerdown', () => {
+            this.addQuest("- Teile dem Bürgermeister\n   deinen Fund mit")
             this.newQuestAllert();
             this.brief.destroy();
             this.uiAttackBtn.setVisible(true);
-            
             this.villageScene.flaschenpost.destroy();
             this.exitbtn.destroy();
         }, this)
