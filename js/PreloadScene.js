@@ -4,6 +4,7 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
+    this.loading();
     //Tilemaps
     this.load.tilemapTiledJSON("map", "assets/tilesets/tileset.json");
     this.load.image("tiles", "assets/tilesets/Serene_Village_16x16.png");
@@ -138,7 +139,12 @@ export default class PreloadScene extends Phaser.Scene {
     //Plugins
   }
 
+  loading() {
+    this.text = this.add.text(640, 360, "Game loading...");
+  }
+
   create() {
+    this.text.destroy();
     this.scene.start("mainMenu");
   }
 }

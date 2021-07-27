@@ -15,6 +15,7 @@ export default class uiScene extends Phaser.Scene {
         this.questText = [""];
         this.questTextDis = '';
         this.firstQuest = false;
+        this.secondQuest = false;
     }
 
     init(data) {
