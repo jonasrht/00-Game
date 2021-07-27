@@ -200,9 +200,53 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":17,
+         "name":"signs",
+         "objects":[
+                {
+                 "height":17.125,
+                 "id":16,
+                 "name":"schildCave",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":13.375,
+                 "x":1185.25,
+                 "y":59.75
+                }, 
+                {
+                 "height":17.125,
+                 "id":17,
+                 "name":"schildCaveWeg",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":13.375,
+                 "x":1110.3125,
+                 "y":241.4375
+                }, 
+                {
+                 "height":17.125,
+                 "id":18,
+                 "name":"schildDorf",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":13.375,
+                 "x":662.994318181818,
+                 "y":414.346590909091
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":17,
- "nextobjectid":16,
+ "nextlayerid":18,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.1",
