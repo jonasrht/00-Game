@@ -124,8 +124,13 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("startGame", "assets/sounds/gamestart.mp3");
     this.load.audio("buttonSound", "assets/sounds/button.wav");
     this.load.audio("heartSound", "assets/sounds/heart.wav");
-    this.load.audio("dooropenSound", "assets/sounds/dooropen.wav");
-    this.load.audio("doorcloseSound", "assets/sounds/doorclose.wav");
+    this.load.audio("damageMaennlich", "assets/sounds/damage_maennlich.mp3");
+    this.load.audio("damageWeiblich", "assets/sounds/damage_weiblich.mp3");
+    this.load.audio("herzschlag", "assets/sounds/herzschlag.mp3");
+    this.load.audio("outdoor", "assets/sounds/outdoor.mp3");
+    this.load.audio("tür", "assets/sounds/Tür.mp3");
+    this.load.audio("schwertschlag", "assets/sounds/schwertschlag.mp3");
+    this.load.audio("schwerthieb", "assets/sounds/schwerthieb.mp3");
 
     //Arrow
     this.load.image("arrow", "assets/tilesets/arrow.png");

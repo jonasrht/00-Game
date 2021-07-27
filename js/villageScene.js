@@ -191,6 +191,12 @@ export default class villageScene extends Phaser.Scene {
             this.startScene();
         }
         this.startedOnce = true;
+        // Einmal in der Scene
+        this.audioManager = this.scene.get("audioManager");
+        // Für jeden Sound
+        this.outdoorMusic = this.sound.add("outdoor");
+        this.outdoorMusic.setLoop(true);
+        this.outdoorMusic.play(this.audioManager.musicConfig);
     }
 
     bewohnerDialog(player, bewohner) {
@@ -281,6 +287,7 @@ export default class villageScene extends Phaser.Scene {
     switchScene(scene, name) {
         this.cameras.main.fadeOut(1000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+            this.outdoorMusic.stop();
             this.scene.start(scene, { name, char: this.selectedCharacter })
         });
     }
