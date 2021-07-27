@@ -150,6 +150,11 @@ export default class Dungeon extends Phaser.Scene {
             // this.dooropenSound.play();
             // this.switchScene('Dungeon', this.doorShop[0].name)
         }, () => {return this.colliderActivated}, this);
+
+         // Einmal in der Scene
+         this.audioManager = this.scene.get("audioManager");
+        // Für jeden Sound
+        this.heartbeat = this.sound.add("herzschlag");
     }
 
     switchScene(scene, name) {
@@ -200,6 +205,15 @@ export default class Dungeon extends Phaser.Scene {
         if (this.distance < 200) {
             //this.angriff();
         }
+        if (this.uiScene.heartContainer.length < 2) {
+          this.heartbeat.play();
+          this.heartbeat.setLoop(true);
+    
+          console.log(this.uiScene.heartContainer.length);
+        } else {
+          this.heartbeat.stop();
+        }
+      }
     }
     //Beam schießen amk
     shootArrow(direction) {

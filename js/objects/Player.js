@@ -94,6 +94,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         })
 
         this.w = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+
+        this.schwertschlag = this.scene.sound.add("schwertschlag");
+        this.schwerthieb = this.scene.sound.add("schwerthieb");
+        this.steps = this.scene.sound.add("schwertschlag");
     }
 
     pushBack() {
@@ -249,6 +253,7 @@ class UltState extends State {
     enter(scene, hero) {
         hero.setVelocity(0);
         hero.anims.play("sword-ult");
+        hero.schwerthieb.play();
         this.swordHitbox = scene.add.rectangle(hero.x, hero.y, 50, 50);
         scene.physics.add.existing(this.swordHitbox);
         scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
@@ -292,6 +297,7 @@ class SwingState extends State {
                 break;
         }
         this.swordanim.setScale(0.5);
+        hero.schwertschlag.play();
         scene.physics.add.existing(this.swordHitbox);
         scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
             slime.health = slime.health - 1;

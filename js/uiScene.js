@@ -73,6 +73,9 @@ export default class uiScene extends Phaser.Scene {
 
         this.bgImg = this.add.image(425, 650, 'dialogbox').setVisible(false);
         //this.createTypeTextBox("This is a test!")
+
+        this.damageMaennlich = this.sound.add("damageMaennlich");
+        this.damageWeiblich = this.sound.add("damageWeiblich");
     }
 
     createTypeTextBox(text) {
@@ -148,6 +151,11 @@ export default class uiScene extends Phaser.Scene {
             this.x = this.x - 20;
             this.heartContainer[this.heartContainer.length - 1].destroy();
             this.heartContainer.pop();
+            if (dungeon.player.texture.key == "atlas") {
+              this.damageMaennlich.play();
+            } else {
+              this.damageWeiblich.play();
+            }
         } else {
             this.handleGameover();
         }
