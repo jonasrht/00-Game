@@ -1,13 +1,22 @@
 export default class inventoryScene extends Phaser.Scene {
     constructor() {
         super({ key: 'inventoryScene', active: false });
+        this.itemSlotX = 100;
+        this.itemSlotY = 100;
     }
 
     preload() {
         this.load.image("mapIcon", "assets/img/mapIcon.png");
     }
 
+    itemToInventory(item) {
+        console.log(item);
+        this.item = this.add.image(this.itemSlotX, this.itemSlotY, item.texture.key);
+        this.itemSlotX += 100;
+    }
+
     create() {
+        this.scene.bringToTop();
         this.buttonSound = this.sound.add("buttonSound");
         // Exit Button
         this.exitButton = this.add.image(718, 84, 'exitButton').setInteractive({ useHandCursor: true });
