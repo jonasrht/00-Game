@@ -1,0 +1,44 @@
+{"frames": {
+
+"schmiedofen.png":
+{
+	"frame": {"x":0,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"schmiedstein.png":
+{
+	"frame": {"x":32,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"schmiedtehek2.png":
+{
+	"frame": {"x":48,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"schmiedtheke.png":
+{
+	"frame": {"x":80,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "schmiedraum.png",
+	"format": "RGBA8888",
+	"size": {"w":112,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:76a63fbf0b758a857a8f502e783df5d6:9c674a9581e7e776a1d1e012ea509e1e:77e3b570a83b629dd2d3bdb732f60163$"
+}
+}
