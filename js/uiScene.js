@@ -14,6 +14,7 @@ export default class uiScene extends Phaser.Scene {
         this.heartContainer = [];
         this.questText = [""];
         this.questTextDis = '';
+        this.firstQuest = false;
     }
 
     init(data) {
@@ -100,9 +101,10 @@ export default class uiScene extends Phaser.Scene {
     removeQuest(text) {
         this.questText.forEach(element => {
             if (element.toString() === text) {
-                element.destroy();
+                this.questText.pop();
             }
         })
+        this.displayQuest();
     }
 
     displayQuest() {
@@ -251,21 +253,17 @@ var createTextBox = function (scene, x, y, config) {
             this.typeNextPage();
         } else {
             this.stop(true);
-            if (this.isLastPage) {
-                scene.playerMovement();
-                scene.bgImg.setVisible(false);
-                scene.uiAttackBtn.setVisible(true);
-            }
+                if (!this.isTyping) {
+                    scene.playerMovement();
+                    scene.bgImg.setVisible(false);
+                    scene.uiAttackBtn.setVisible(true);
+                }
             this.visible = false;
         }
     }, textBox);
     textBox
         .setInteractive()
         .on('pageend', function () {
-            if (this.isLastPage) {
-                return;
-            }
-
             var icon = this.getElement('action').setVisible(true);
             this.resetChildVisibleState(icon);
             icon.y -= 30;
@@ -277,6 +275,9 @@ var createTextBox = function (scene, x, y, config) {
                 repeat: 0, // -1: infinity
                 yoyo: false
             });
+            if (this.isLastPage) {
+                return;
+            }
         }, textBox)
     //.on('type', function () {
     //})
