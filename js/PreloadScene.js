@@ -11,7 +11,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("dorfTiles", "assets/tilesets/dorfset.png");
     this.load.image("shopHaus", "assets/tilesets/shop.png");
     this.load.image("raumset", "assets/tilesets/raumset.png");
-    
+    this.load.image("schmiedset", "assets/tilesets/schmiedraum.png");
 
     // Dungeon
     this.load.tilemapTiledJSON("homeroom", "assets/tilesets/room.json");
