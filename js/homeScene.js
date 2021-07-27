@@ -9,12 +9,16 @@ export default class homeScene extends Phaser.Scene {
     init(data) {
         console.log(data);
         if (data.name == "doorHome") {
-            this.spawnX = 363;
-            this.spawnY = 623;
+            this.spawnX = 92;
+            this.spawnY = 604;
         }
         if (data.name == "doorShop") {
             this.spawnX = 87;
             this.spawnY = 113;
+        }
+        if (data.name == "doorSchmied") {
+            this.spawnX = 648;
+            this.spawnY = 582;
         }
         this.selectedCharacter = data.char;
     }
@@ -33,9 +37,10 @@ export default class homeScene extends Phaser.Scene {
         const tileset = homeroom.addTilesetImage("room", "homeground");
         const raumset = homeroom.addTilesetImage("raum", "raumset");
         const interiorTileset = homeroom.addTilesetImage("tileset", "interior");
-        const groundLayer = homeroom.createLayer("ground", [tileset, interiorTileset, raumset], 0, 0);
-        const interior = homeroom.createLayer("interior", [tileset, interiorTileset, raumset], 0, 0);
-        const interior1 = homeroom.createLayer("interior-1", [tileset, interiorTileset, raumset], 0, 0);
+        const schmiedTileset = homeroom.addTilesetImage("schmied", "schmiedset");
+        const groundLayer = homeroom.createLayer("ground", [tileset, interiorTileset, raumset, schmiedTileset], 0, 0);
+        const interior = homeroom.createLayer("interior", [tileset, interiorTileset, raumset, schmiedTileset], 0, 0);
+        const interior1 = homeroom.createLayer("interior-1", [tileset, interiorTileset, raumset, schmiedTileset], 0, 0);
 
         // Spieler an die zuvor an die Scene übergebenden Koordinaten erstellen
         this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
@@ -75,6 +80,15 @@ export default class homeScene extends Phaser.Scene {
         this.physics.add.collider(this.player, this.doorShopBack, () => {
           this.tür.play();
             this.switchScene('villageScene', this.doorShopBack[0].name)
+        });
+
+        // Shop door züruck
+        this.doorSchmiedBack = homeroom.createFromObjects('doors', { name: 'doorSchmiedBack' });
+        this.physics.world.enable(this.doorSchmiedBack);
+
+        this.physics.add.collider(this.player, this.doorSchmiedBack, () => {
+            this.doorcloseSound.play();
+            this.switchScene('villageScene', this.doorSchmiedBack[0].name)
         });
 
         // Shop

@@ -23,6 +23,9 @@ export default class villageScene extends Phaser.Scene {
         } else if (data.name == "d1Ausgang") {
             this.spawnX = 1240;
             this.spawnY = 55;
+        } else if (data.name == "doorSchmiedBack") {
+            this.spawnX = 900;
+            this.spawnY = 447;
         }
         else {
             this.spawnX = 631;
@@ -162,7 +165,7 @@ export default class villageScene extends Phaser.Scene {
         this.doorSchmied[0].body.immovable = true;
         this.physics.add.collider(this.player, this.doorSchmied, () => {
             this.dooropenSound.play();
-            this.switchScene('Dungeon', this.doorShop[0].name)
+            this.switchScene('homeScene', "doorSchmied")
         });
 
         // Schilder im Dorf
