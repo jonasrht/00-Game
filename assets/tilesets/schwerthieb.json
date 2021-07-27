@@ -1,0 +1,163 @@
+{
+	"frames": {
+		"schwert1.png": {
+			"filename": "schwert1.png",
+			"frame": {
+				"x": 0,
+				"y": 107,
+				"w": 41,
+				"h": 39
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 41,
+				"h": 39
+			},
+			"sourceSize": {
+				"w": 41,
+				"h": 39
+			}
+		},
+		"schwert2.png": {
+			"filename": "schwert2.png",
+			"frame": {
+				"x": 0,
+				"y": 185,
+				"w": 47,
+				"h": 38
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 47,
+				"h": 38
+			},
+			"sourceSize": {
+				"w": 47,
+				"h": 38
+			}
+		},
+		"schwert3.png": {
+			"filename": "schwert3.png",
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 58
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 58
+			},
+			"sourceSize": {
+				"w": 28,
+				"h": 58
+			}
+		},
+		"schwert4.png": {
+			"filename": "schwert4.png",
+			"frame": {
+				"x": 0,
+				"y": 223,
+				"w": 47,
+				"h": 39
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 47,
+				"h": 39
+			},
+			"sourceSize": {
+				"w": 47,
+				"h": 39
+			}
+		},
+		"schwert5.png": {
+			"filename": "schwert5.png",
+			"frame": {
+				"x": 28,
+				"y": 0,
+				"w": 28,
+				"h": 61
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 61
+			},
+			"sourceSize": {
+				"w": 28,
+				"h": 61
+			}
+		},
+		"schwert6.png": {
+			"filename": "schwert6.png",
+			"frame": {
+				"x": 0,
+				"y": 146,
+				"w": 41,
+				"h": 39
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 41,
+				"h": 39
+			},
+			"sourceSize": {
+				"w": 41,
+				"h": 39
+			}
+		},
+		"schwert7.png": {
+			"filename": "schwert7.png",
+			"frame": {
+				"x": 0,
+				"y": 61,
+				"w": 28,
+				"h": 46
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 28,
+				"h": 46
+			},
+			"sourceSize": {
+				"w": 28,
+				"h": 46
+			}
+		}
+	},
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "schwerthieb.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 56,
+			"h": 262
+		},
+		"scale": "1",
+		"smartupdate": "$TexturePacker:SmartUpdate:16be97489105e5b0f2468fce211556f1:bcfea6a9941c94c7073a6ce514755d12:2d024235ddc5cfd91a2409d5179f571c$"
+	}
+}

@@ -1,0 +1,315 @@
+{
+	"frames": {
+		"arrowButton4.png": {
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-1.png": {
+			"frame": {
+				"x": 27,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-10.png": {
+			"frame": {
+				"x": 54,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-11.png": {
+			"frame": {
+				"x": 81,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-12.png": {
+			"frame": {
+				"x": 108,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-13.png": {
+			"frame": {
+				"x": 135,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-14.png": {
+			"frame": {
+				"x": 162,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-2.png": {
+			"frame": {
+				"x": 189,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-3.png": {
+			"frame": {
+				"x": 216,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-4.png": {
+			"frame": {
+				"x": 243,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-5.png": {
+			"frame": {
+				"x": 270,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-6.png": {
+			"frame": {
+				"x": 297,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-7.png": {
+			"frame": {
+				"x": 324,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-8.png": {
+			"frame": {
+				"x": 351,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		},
+		"arrowButton4-9.png": {
+			"frame": {
+				"x": 378,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 27,
+				"h": 27
+			},
+			"sourceSize": {
+				"w": 27,
+				"h": 27
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 405,
+			"h": 27
+		},
+		"scale": "1"
+	}
+}
