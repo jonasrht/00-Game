@@ -83,11 +83,13 @@ export default class villageScene extends Phaser.Scene {
         this.aboveLayer.setDepth(11);
 
         // Collider
+        this.belowLayer.setCollisionByProperty({ collide: true });
         this.worldLayer.setCollisionByProperty({ collide: true });
         this.worldLayer1.setCollisionByProperty({ collide: true });
         this.worldLayer2.setCollisionByProperty({ collide: true });
         this.worldLayer3.setCollisionByProperty({ collide: true });
         this.belowLayer2.setCollisionByProperty({ collide: true });
+        this.physics.add.collider(this.player, this.belowLayer);
         this.physics.add.collider(this.player, this.worldLayer);
         this.physics.add.collider(this.player, this.worldLayer1);
         this.physics.add.collider(this.player, this.worldLayer2);
@@ -140,17 +142,21 @@ export default class villageScene extends Phaser.Scene {
             this.switchScene('homeScene', this.doorShop[0].name)
         });
 
-        // Tür nur mit Schlüssel
+        // Tür zum Dungeon
         this.caveEnte = map.createFromObjects('doors', { name: 'caveEnte' });
         this.physics.world.enable(this.caveEnte);
         this.caveEnte[0].body.immovable = true;
         this.physics.add.collider(this.player, this.caveEnte, () => {
-            this.dooropenSound.play();
-            this.scene.start('Dungeon', {char: this.selectedCharacter })
+            if (this.uiScene.firstQuest != true) {
+                this.uiScene.createBox("Die Zeit ist noch nicht reif.")
+            } else {
+                this.dooropenSound.play();
+                this.scene.start('Dungeon', {char: this.selectedCharacter })
+            }
         });
 
         
-        // Tür nur mit Schlüssel
+        // Tür zum Schmied
         this.doorSchmied = map.createFromObjects('doors', { name: 'doorSchmied' });
         this.physics.world.enable(this.doorSchmied);
         this.doorSchmied[0].body.immovable = true;
@@ -167,6 +173,7 @@ export default class villageScene extends Phaser.Scene {
         this.bewohner.forEach((bewohner) => {
             if (bewohner.name == "buergermeister") {
                 this.bewohner = new Bewohner(this, bewohner.x, bewohner.y, 'buergermeister', 1);
+                this.bewohnerGroup.push(this.bewohner)
             } else {
                 this.bewohner = new Bewohner(this, bewohner.x, bewohner.y, 'bewohner' + this.textureNum, 1);
                 this.bewohnerGroup.push(this.bewohner)
@@ -187,9 +194,9 @@ export default class villageScene extends Phaser.Scene {
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
         this.player.setMovement(false);
-        if (this.startedOnce == false) {
-            this.startScene();
-        }
+        // if (this.startedOnce == false) {
+        //     this.startScene();
+        // }
         this.startedOnce = true;
     }
 
@@ -207,6 +214,11 @@ export default class villageScene extends Phaser.Scene {
             case "bewohner1":
                 this.uiScene.createBox("Ich habe ein Gerücht gehört, dass es ein Heilmittel gibt.")
                 break;
+            case "buergermeister":
+                this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
+                this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
+                this.uiScene.firstQuest = true;
+            break;
             default:
                 break;
         }

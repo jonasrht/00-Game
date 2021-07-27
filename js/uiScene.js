@@ -14,6 +14,7 @@ export default class uiScene extends Phaser.Scene {
         this.heartContainer = [];
         this.questText = [""];
         this.questTextDis = '';
+        this.firstQuest = false;
     }
 
     init(data) {
@@ -97,9 +98,10 @@ export default class uiScene extends Phaser.Scene {
     removeQuest(text) {
         this.questText.forEach(element => {
             if (element.toString() === text) {
-                element.destroy();
+                this.questText.pop();
             }
         })
+        this.displayQuest();
     }
 
     displayQuest() {
