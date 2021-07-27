@@ -214,8 +214,7 @@ export default class Dungeon extends Phaser.Scene {
           this.heartbeat.stop();
         }
       }
-    }
-    //Beam schießen amk
+
     shootArrow(direction) {
         var arrow = new Arrow(this, direction);
         this.projectiles.add(arrow);

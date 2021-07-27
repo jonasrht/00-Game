@@ -129,6 +129,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("herzschlag", "assets/sounds/herzschlag.mp3");
     this.load.audio("outdoor", "assets/sounds/outdoor.mp3");
     this.load.audio("tür", "assets/sounds/Tür.mp3");
+    this.load.audio("dooropenSound", "assets/sounds/Tür.mp3");
     this.load.audio("schwertschlag", "assets/sounds/schwertschlag.mp3");
     this.load.audio("schwerthieb", "assets/sounds/schwerthieb.mp3");
 
