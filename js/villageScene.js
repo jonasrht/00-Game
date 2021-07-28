@@ -150,6 +150,7 @@ export default class villageScene extends Phaser.Scene {
                 this.uiScene.removeQuest("- Finde einen Weg zur Höhle!");
                 this.uiScene.addQuest("Untersuche die Höhle");
                 this.uiScene.newQuestAllert();
+                this.uiScene.questDoneAllert();
                 this.uiScene.secondQuest = true;
                 this.scene.start('Dungeon', { char: this.selectedCharacter });
             } else {
@@ -208,9 +209,9 @@ export default class villageScene extends Phaser.Scene {
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
         this.player.setMovement(false);
-        // if (this.startedOnce == false) {
-        //     this.startScene();
-        // }
+        if (this.startedOnce == false) {
+            this.startScene();
+        }
         this.startedOnce = true;
         // Einmal in der Scene
         this.audioManager = this.scene.get("audioManager");
@@ -239,6 +240,7 @@ export default class villageScene extends Phaser.Scene {
                 if (this.uiScene.firstQuest != true) {
                     this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
                     this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
+                    this.uiScene.questDoneAllert();
                     this.uiScene.addQuest("- Finde einen Weg zur Höhle!");
                     this.uiScene.newQuestAllert();
                     this.uiScene.firstQuest = true;
