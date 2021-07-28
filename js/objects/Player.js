@@ -119,7 +119,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                 this.godmode = false;
             }
         });
-        
     }
 
     pushBack() {
