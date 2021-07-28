@@ -131,6 +131,10 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("invIcon", "assets/img/invenIcon.png");
     this.load.image("heartIcon", "assets/img/Sprite_heart.png");
     this.load.image("coinIcon", "assets/img/coin18.png");
+    this.load.image("trankHerz", "assets/img/heiltrank16x16.png");
+    this.load.image("trankHerzBig", "assets/img/bigheil16x16.png");
+    this.load.image("trankPower", "assets/img/trank16x16.png");
+    this.load.image("trankPowerBig", "assets/img/bigtrank16x16.png");
 
     this.load.image("shopDude", "assets/img/shopperson.png");
     this.load.image("schmiedDude", "assets/img/schmiedperson.png");
