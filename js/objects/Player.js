@@ -18,6 +18,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.direction = 'down';
         this.scene = scene;
         this.counter = 0;
+        this.godmode = false;
     }
 
     create(texture) {
@@ -100,18 +101,41 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.steps = this.scene.sound.add("schwertschlag");
     }
 
+    hitAnim(player) {
+        this.godmode = true;
+        this.tween = this.scene.tweens.addCounter({
+            from: 0.5,
+            to: 1,
+            duration: 200,
+            onUpdate: function (tween)
+            {
+                var opacity = tween.getValue();
+                player.setAlpha(opacity);
+            },
+            repeat: 3,
+            yoyo: true,
+            onComplete: () => {
+                this.setAlpha(1);
+                this.godmode = false;
+            }
+        });
+        
+    }
+
     pushBack() {
-        if (this.direction === 'right') {
-            this.body.x = this.body.x - 20;
-        }
-        if (this.direction === 'left') {
-            this.body.x = this.body.x + 20;
-        }
-        if (this.direction === 'up') {
-            this.body.y = this.body.y + 20;
-        }
-        if (this.direction === 'down') {
-            this.body.y = this.body.y - 20;
+        if (this.godmode == false) {
+            if (this.direction === 'right') {
+                this.body.x = this.body.x - 20;
+            }
+            if (this.direction === 'left') {
+                this.body.x = this.body.x + 20;
+            }
+            if (this.direction === 'up') {
+                this.body.y = this.body.y + 20;
+            }
+            if (this.direction === 'down') {
+                this.body.y = this.body.y - 20;
+            }
         }
     }
 

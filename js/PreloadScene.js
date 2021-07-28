@@ -92,7 +92,17 @@ export default class PreloadScene extends Phaser.Scene {
       "slime",
       "assets/tilesets/slime.png",
       "assets/tilesets/slime.json"
-    )
+    );
+    this.load.atlas(
+      "slimeBlau",
+      "assets/tilesets/slime-blau.png",
+      "assets/tilesets/slime.json"
+    );
+    this.load.atlas(
+      "slimeRot",
+      "assets/tilesets/slime-rot.png",
+      "assets/tilesets/slime.json"
+    );
 
     // Arrow Button
     this.load.atlas(
@@ -121,6 +131,9 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("invIcon", "assets/img/invenIcon.png");
     this.load.image("heartIcon", "assets/img/Sprite_heart.png");
     this.load.image("coinIcon", "assets/img/coin18.png");
+
+    this.load.image("shopDude", "assets/img/shopperson.png");
+    this.load.image("schmiedDude", "assets/img/schmiedperson.png");
 
     //Audio
     this.load.audio("menuMusic", "assets/sounds/menumusic.mp3");

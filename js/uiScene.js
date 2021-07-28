@@ -165,10 +165,11 @@ export default class uiScene extends Phaser.Scene {
 
     removeHeart() {
         var dungeon = this.scene.get('Dungeon');
-        if (this.heartContainer.length > 0) {
+        if ((this.heartContainer.length > 0) && (dungeon.player.godmode == false)) {
             this.x = this.x - 20;
             this.heartContainer[this.heartContainer.length - 1].destroy();
             this.heartContainer.pop();
+            dungeon.player.hitAnim(dungeon.player);
             if (dungeon.player.texture.key == "atlas") {
               this.damageMaennlich.play();
             } else {

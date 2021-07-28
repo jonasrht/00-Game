@@ -94,7 +94,7 @@ export default class Dungeon extends Phaser.Scene {
 
         this.slime = map.createFromObjects('orc');
         this.slime.forEach((slime) => {
-            this.slime = new Slime(this, slime.x, slime.y, 'slime', 1);
+            this.slime = new Slime(this, slime.x, slime.y, 'slimeBlau', 1);
             this.slimeGroup.push(this.slime)
         })
 
@@ -107,7 +107,7 @@ export default class Dungeon extends Phaser.Scene {
         this.physics.add.collider(this.player, this.worldLayer);
         this.physics.add.collider(this.player, this.saeulen);
         this.physics.add.collider(this.player, this.chestLayer);
-        this.physics.add.collider(this.player, this.doorZuLayer);
+        this.doorCollide = this.physics.add.collider(this.player, this.doorZuLayer);
         this.physics.add.collider(this.slimeGroup, this.worldLayer, (slime, world) => {
             slime.handleCollide();
         });
@@ -160,6 +160,7 @@ export default class Dungeon extends Phaser.Scene {
 
     openDoorOne() {
         this.doorZuLayer.setAlpha(0);
+        this.doorCollide.destroy();
     }
 
 
