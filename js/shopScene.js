@@ -31,13 +31,68 @@ export default class shopScene extends Phaser.Scene {
 
         // Herzen
         this.hearts = this.add.image(490, 167, 'heartIcon').setScale(1.5);
-        this.itemsHeader = this.add.text(463, 160, '               1    10$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.itemsHeader = this.add.text(463, 160, '               1    30$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
         this.hearts.setInteractive({ useHandCursor: true });
         this.hearts.on('pointerdown', function (pointer) {
-            if (uiScene.money > 10) {
+            if (uiScene.money >= 10) {
                 uiScene.addHeart();
-                //uiScene.money = uiScene.money - 10;
                 uiScene.updateMoney(-10);
+            } else {
+                // TODO: Error für zu wenig Geld
+            }
+
+        }, this);
+
+        // Trank 1
+        this.trankPower = this.add.image(490, 217, 'trankPower').setScale(1.5);
+        this.itemsHeader = this.add.text(463, 210, '               1    15$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.trankPower.setInteractive({ useHandCursor: true });
+        this.trankPower.on('pointerdown', function (pointer) {
+            if (uiScene.money >= 1) {
+                invScene.itemFromShop('trankPower');
+                uiScene.updateMoney(-1);
+            } else {
+                // TODO: Error für zu wenig Geld
+            }
+
+        }, this);
+
+        // Trank 2
+        this.trankHerz = this.add.image(490, 267, 'trankHerz').setScale(1.5);
+        this.itemsHeader = this.add.text(463, 260, '               1    30$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.trankHerz.setInteractive({ useHandCursor: true });
+        this.trankHerz.on('pointerdown', function (pointer) {
+            if (uiScene.money >= 30) {
+                invScene.itemFromShop('trankHerz');
+                uiScene.updateMoney(-30);
+            } else {
+                // TODO: Error für zu wenig Geld
+            }
+
+        }, this);
+
+        // Trank 3
+        this.trankPowerBig = this.add.image(490, 317, 'trankPowerBig').setScale(1.5);
+        this.itemsHeader = this.add.text(463, 310, '               1    50$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.trankPowerBig.setInteractive({ useHandCursor: true });
+        this.trankPowerBig.on('pointerdown', function (pointer) {
+            if (uiScene.money >= 50) {
+                invScene.itemFromShop('trankPowerBig');
+                uiScene.updateMoney(-50);
+            } else {
+                // TODO: Error für zu wenig Geld
+            }
+
+        }, this);
+
+        // Trank 4
+        this.hearts = this.add.image(490, 367, 'trankHerzBig').setScale(1.5);
+        this.itemsHeader = this.add.text(463, 360, '               1    70$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.hearts.setInteractive({ useHandCursor: true });
+        this.hearts.on('pointerdown', function (pointer) {
+            if (uiScene.money >= 70) {
+                invScene.itemFromShop('trankHerzBig');
+                uiScene.updateMoney(-70);
             } else {
                 // TODO: Error für zu wenig Geld
             }

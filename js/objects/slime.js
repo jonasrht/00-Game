@@ -80,7 +80,6 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
 
     itemDrop(slime, scene) {
         this.number = Phaser.Math.Between(0, 100);
-        console.log(this.number);
         if (this.number > 0 && this.number < 11) {
             this.item = new Item(scene, slime.x, slime.y, "heartIcon");
         }
