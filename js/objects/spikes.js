@@ -39,7 +39,9 @@ export default class spikes extends Phaser.GameObjects.Sprite {
         if (pic === "spike4") {
             this.spike.active = true;
             this.spike.body.setImmovable(true);
-            this.collider = scene.physics.add.collider(this.spike, scene.player, () => { console.log("ouch"); });
+            this.collider = scene.physics.add.collider(this.spike, scene.player, () => { 
+                scene.uiScene.removeHeart();
+            });
         } else {
             if (this.collider != null) {
                 scene.physics.world.removeCollider(this.collider);
