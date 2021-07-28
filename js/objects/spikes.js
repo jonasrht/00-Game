@@ -10,7 +10,7 @@ export default class spikes extends Phaser.GameObjects.Sprite {
         this.setTexture("spike1");
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
+        
         this.create(scene);
     }
 

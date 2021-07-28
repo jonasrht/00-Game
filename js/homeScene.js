@@ -87,7 +87,6 @@ export default class homeScene extends Phaser.Scene {
         this.physics.world.enable(this.doorSchmiedBack);
 
         this.physics.add.collider(this.player, this.doorSchmiedBack, () => {
-            this.doorcloseSound.play();
             this.switchScene('villageScene', this.doorSchmiedBack[0].name)
         });
 

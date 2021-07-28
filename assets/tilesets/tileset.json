@@ -127,15 +127,15 @@
                  "y":448.613636363636
                 }, 
                 {
-                 "height":0,
+                 "height":11.2727272727273,
                  "id":10,
                  "name":"doorSchmied",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":897.208333333333,
-                 "y":421.958333333333
+                 "visible":false,
+                 "width":13.2727272727273,
+                 "x":891.208333333333,
+                 "y":421.776515151515
                 }, 
                 {
                  "height":0,
@@ -190,7 +190,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":1056.5,
                  "y":441

@@ -50,17 +50,10 @@ export default class villageScene extends Phaser.Scene {
         if (this.startedOnce == false) {
             this.scene.run('instructionsScene');
         }
-        //this.scene.run('shopScene');
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.coinEmitter = new Phaser.Events.EventEmitter();
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        spaceBar.on('up', () => {
-            //this.coinEmitter.emit('coinCount');
-        });
-
-        // User interace Scene, die parallel zur Scene ausgeführt wird
-        //this.scene.run('uiScene', { eventEmitter: this.coinEmitter });
         const map = this.make.tilemap({ key: "map" });
         // Tileset
         const tileset = map.addTilesetImage("Serene_Village_16x16", "tiles");
@@ -152,9 +145,16 @@ export default class villageScene extends Phaser.Scene {
         this.physics.add.collider(this.player, this.caveEnte, () => {
             if (this.uiScene.firstQuest != true) {
                 this.uiScene.createBox("Die Zeit ist noch nicht reif.")
-            } else {
+            } else if ((this.uiScene.firstQuest == true) && (this.uiScene.secondQuest == false)){
                 this.dooropenSound.play();
-                this.scene.start('Dungeon', { char: this.selectedCharacter })
+                this.uiScene.removeQuest("- Finde einen Weg zur Höhle!");
+                this.uiScene.addQuest("Untersuche die Höhle");
+                this.uiScene.newQuestAllert();
+                this.uiScene.questDoneAllert();
+                this.uiScene.secondQuest = true;
+                this.scene.start('Dungeon', { char: this.selectedCharacter });
+            } else {
+                this.scene.start('Dungeon', { char: this.selectedCharacter });
             }
         });
 
@@ -209,9 +209,9 @@ export default class villageScene extends Phaser.Scene {
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
         this.player.setMovement(false);
-        // if (this.startedOnce == false) {
-        //     this.startScene();
-        // }
+        if (this.startedOnce == false) {
+            this.startScene();
+        }
         this.startedOnce = true;
         // Einmal in der Scene
         this.audioManager = this.scene.get("audioManager");
@@ -221,6 +221,7 @@ export default class villageScene extends Phaser.Scene {
         this.outdoorMusic.play(this.audioManager.musicConfig);
     }
 
+    // Text, welcher ausgegeben wird wenn man mir einem Bewohner kollidiert
     bewohnerDialog(player, bewohner) {
         player.setMovement(false);
         player.anims.stop();
@@ -239,6 +240,7 @@ export default class villageScene extends Phaser.Scene {
                 if (this.uiScene.firstQuest != true) {
                     this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
                     this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
+                    this.uiScene.questDoneAllert();
                     this.uiScene.addQuest("- Finde einen Weg zur Höhle!");
                     this.uiScene.newQuestAllert();
                     this.uiScene.firstQuest = true;
@@ -253,6 +255,7 @@ export default class villageScene extends Phaser.Scene {
 
     }
 
+    // Text, welcher ausgegeben wird wenn man mir einem Schild kollidiert
     schildDialog(player, schild) {
         player.setMovement(false);
         player.anims.stop();
@@ -265,13 +268,14 @@ export default class villageScene extends Phaser.Scene {
                 this.uiScene.createBox("Dieser Weg wird kein leichter sein")
                 break;
             case "schildDorf":
-                this.uiScene.createBox("↑ Weg zur Höle");
+                this.uiScene.createBox("↑ Weg zur Höhle");
                 break;
             default:
                 break;
         }
     }
 
+    // Sequenz welche bei erstmalingen Start des Spiels ausgeführt wird
     startScene() {
         this.flaschenpost = this.add.image(626, 665, "flaschenpost");
         this.zumStrand = this.tweens.add({
@@ -337,6 +341,7 @@ export default class villageScene extends Phaser.Scene {
         this.player.anims.play('misa-front-walk', true);
     }
 
+    // Methode zum wechseln der Scene
     switchScene(scene, name) {
         this.cameras.main.fadeOut(1000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {

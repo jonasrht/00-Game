@@ -15,6 +15,7 @@ export default class uiScene extends Phaser.Scene {
         this.questText = [""];
         this.questTextDis = '';
         this.firstQuest = false;
+        this.secondQuest = false;
     }
 
     init(data) {
@@ -139,6 +140,22 @@ export default class uiScene extends Phaser.Scene {
         });
     }
 
+    questDoneAllert() {
+        this.questDoneImg = this.add.image(640, 360, 'questDone').setAlpha(0);
+        this.tweens.add({
+            targets: this.questDoneImg,
+            delay: 1000,
+            alpha: { value: 1, duration: 2000, ease: 'Power1' },
+            y: 300,
+        });
+        this.tweens.add({
+            targets: this.questDoneImg,
+            delay: 3500,
+            alpha: { value: 0, duration: 2000, ease: 'Power1' },
+            y: 450,
+        });
+    }
+
     addHeart() {
         this.heartIcon = this.add.image(this.x, 50, 'heartIcon');
         this.x = this.x + 20;
@@ -147,6 +164,7 @@ export default class uiScene extends Phaser.Scene {
     }
 
     removeHeart() {
+        var dungeon = this.scene.get('Dungeon');
         if (this.heartContainer.length > 0) {
             this.x = this.x - 20;
             this.heartContainer[this.heartContainer.length - 1].destroy();
