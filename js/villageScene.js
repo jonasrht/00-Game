@@ -210,7 +210,7 @@ export default class villageScene extends Phaser.Scene {
         })
         this.player.setMovement(false);
         if (this.startedOnce == false) {
-            this.startScene();
+            // this.startScene();
         }
         this.startedOnce = true;
         // Einmal in der Scene

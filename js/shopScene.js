@@ -21,7 +21,6 @@ export default class shopScene extends Phaser.Scene {
         this.exitButton = this.add.image(718, 84, 'exitButton').setInteractive({ useHandCursor: true });
         this.exitButton.on('pointerdown', function (pointer) {
             this.buttonSound.play();
-            uiScene.removeHeart();
             this.scene.stop().resume('homeScene');
         }, this);
 

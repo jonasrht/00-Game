@@ -7,7 +7,6 @@ export default class homeScene extends Phaser.Scene {
 
 
     init(data) {
-        console.log(data);
         if (data.name == "doorHome") {
             this.spawnX = 92;
             this.spawnY = 604;
@@ -45,6 +44,12 @@ export default class homeScene extends Phaser.Scene {
         // Spieler an die zuvor an die Scene übergebenden Koordinaten erstellen
         this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
 
+        groundLayer.setCollisionByProperty({ collide: true });
+        interior.setCollisionByProperty({ collide: true });
+        interior1.setCollisionByProperty({ collide: true });
+        this.physics.add.collider(this.player, groundLayer);
+        this.physics.add.collider(this.player, interior);
+        this.physics.add.collider(this.player, interior1);
         //Kamera soll dem Spieler folgen und Zoom der Kamera auf drei
         this.cameras.main.startFollow(this.player);
         this.cameras.main.setZoom(3);
@@ -62,7 +67,20 @@ export default class homeScene extends Phaser.Scene {
             this.doors.add(door);
         });
 
-        // Türen
+        // Personen
+        this.shopPersKor = homeroom.findObject(
+            "personen",
+            (obj) => obj.name === "shopperson"
+        );
+        this.shopPersKor.visible = false;
+        this.shopPers = this.add.image(this.shopPersKor.x, this.shopPersKor.y, 'shopDude').setScale(0.5);
+
+        this.schmiedPersKor = homeroom.findObject(
+            "personen",
+            (obj) => obj.name === "schmiedperson"
+        );
+        this.schmiedPers = this.add.image(this.schmiedPersKor.x, this.schmiedPersKor.y, 'schmiedDude').setScale(0.5);
+
 
         // Home door zurück
         this.doorHomeBack = homeroom.createFromObjects('doors', { name: 'doorHomeBack' });
@@ -94,7 +112,6 @@ export default class homeScene extends Phaser.Scene {
         this.shop = homeroom.createFromObjects('shop', { name: 'shopVil' });
         this.physics.world.enable(this.shop);
         this.shop[0].body.immovable = true;
-        console.log(this.shop);
         this.physics.add.collider(this.player, this.shop, () => {
             this.scene.pause().launch('shopScene');
         });
