@@ -1,0 +1,92 @@
+{"frames": {
+
+"slimenachlinks2_grün.png":
+{
+	"frame": {"x":0,"y":0,"w":8,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":5},
+	"sourceSize": {"w":8,"h":5}
+},
+"slimenachlinksStand_grün.png":
+{
+	"frame": {"x":0,"y":5,"w":8,"h":6},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":6},
+	"sourceSize": {"w":8,"h":6}
+},
+"slimenachoben2_grün.png":
+{
+	"frame": {"x":0,"y":11,"w":8,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":5},
+	"sourceSize": {"w":8,"h":5}
+},
+"slimenachoben3_grün.png":
+{
+	"frame": {"x":0,"y":16,"w":8,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":5},
+	"sourceSize": {"w":8,"h":5}
+},
+"slimenachobenStand_grün.png":
+{
+	"frame": {"x":0,"y":21,"w":8,"h":6},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":6},
+	"sourceSize": {"w":8,"h":6}
+},
+"slimenachrechts2_grün.png":
+{
+	"frame": {"x":0,"y":27,"w":8,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":5},
+	"sourceSize": {"w":8,"h":5}
+},
+"slimenachrechtsStand_grün.png":
+{
+	"frame": {"x":0,"y":32,"w":8,"h":6},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":6},
+	"sourceSize": {"w":8,"h":6}
+},
+"slimenachunten2_grün.png":
+{
+	"frame": {"x":0,"y":38,"w":8,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":5},
+	"sourceSize": {"w":8,"h":5}
+},
+"slimenachunten3_grün.png":
+{
+	"frame": {"x":0,"y":43,"w":8,"h":4},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":4},
+	"sourceSize": {"w":8,"h":4}
+},
+"slimenachuntenStand_grün.png":
+{
+	"frame": {"x":0,"y":47,"w":8,"h":6},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":6},
+	"sourceSize": {"w":8,"h":6}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "slime-gruen.png",
+	"format": "RGBA8888",
+	"size": {"w":8,"h":53},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:bc44e93239870d54f045e0f7da547d82:bf90c7758cca47b3457036df9b5ebe04:16622e5e98dfdba2db9588d394549d44$"
+}
+}

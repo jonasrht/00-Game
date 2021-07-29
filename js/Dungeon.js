@@ -98,9 +98,24 @@ export default class Dungeon extends Phaser.Scene {
             this.slimeGroup.push(this.slime)
         })
 
-        this.physics.add.collider(this.player, this.slimeGroup, () => {
-            this.uiScene.removeHeart();
-            this.player.pushBack();
+        this.physics.add.collider(this.player, this.slimeGroup, (player, slime) => {
+            console.log(slime);
+            if (slime.texture == 'slimeRot') {
+                this.uiScene.removeHearts(4);
+                this.player.pushBack();
+            }
+            else if (slime.texture == 'slime') {
+                this.uiScene.removeHeart();
+                this.player.pushBack();
+            }
+            else if (slime.texture.key == 'slimeBlau') {
+                this.uiScene.removeHearts(3);
+                this.player.pushBack();
+            }
+            else if (slime.texture == 'slimeGruen') {
+                this.uiScene.removeHearts(2);
+                this.player.pushBack();
+            }
         });
 
         //collider hinzufügen

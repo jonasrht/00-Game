@@ -23,7 +23,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         scene.physics.world.on(Phaser.Physics.Arcade.Events.TILE_COLLIDE, this.handleCollide, this)
         this.moveEvent = scene.time.addEvent({
             delay: (Phaser.Math.Between(1500, 3000)),
-            callback: () => {this.handleCollide()},
+            callback: () => { this.handleCollide() },
             loop: true
         });
 
@@ -42,7 +42,18 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
     create() {
         this.createAnims();
         this.setPipeline('Light2D');
-        this.anims.play("slimeDown");
+        if (this.texture == 'slimeBlau') {
+            this.anims.play("slimeDownBlue");
+        }
+        else if (this.texture == 'slime') {
+            this.anims.play("slimeDown");
+        }
+        else if (this.texture == 'slimeRot') {
+            this.anims.play("slimeDownRed");
+        }
+        else if (this.texture == 'slimeGruen') {
+            this.anims.play("slimeDownGreen");
+        }
 
         this.target = this.scene.player;
     }
@@ -58,6 +69,27 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         this.anims.create({
             key: "slimeDown",
             frames: this.anims.generateFrameNames("slime", { frames: ["slimenachunten2.png", "slimenachunten3.png"] }),
+            frameRate: 6,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: "slimeDownBlue",
+            frames: this.anims.generateFrameNames("slime-blau", { frames: ["slimenachunten2_blau.png", "slimenachunten3_blau.png"] }),
+            frameRate: 6,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: "slimeDownRed",
+            frames: this.anims.generateFrameNames("slime-rot", { frames: ["slimenachunten2_rot.png", "slimenachunten3_rot.png"] }),
+            frameRate: 6,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: "slimeDownGreen",
+            frames: this.anims.generateFrameNames("slime-gruen", { frames: ["slimenachunten2_grün.png", "slimenachunten3_grün.png"] }),
             frameRate: 6,
             repeat: -1
         })
@@ -90,6 +122,22 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         if (this.number > 20 && this.number < 40) {
             console.log("Coin");
             this.item = new Item(scene, slime.x, slime.y, "coinIcon");
+        }
+        if (this.number > 42 && this.number < 50) {
+            console.log("Heiltrank klein");
+            this.item = new Item(scene, slime.x, slime.y, "trankHerz");
+        }
+        if (this.number > 52 && this.number < 56) {
+            console.log("Heiltrank groß");
+            this.item = new Item(scene, slime.x, slime.y, "trankHerzBig");
+        }
+        if (this.number > 60 && this.number < 65) {
+            console.log("Stärketrank klein");
+            this.item = new Item(scene, slime.x, slime.y, "trankPower");
+        }
+        if (this.number > 70 && this.number < 74) {
+            console.log("Stärketrank groß");
+            this.item = new Item(scene, slime.x, slime.y, "trankPowerBig");
         }
     }
 
