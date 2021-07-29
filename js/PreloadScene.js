@@ -145,6 +145,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("schmiedDude", "assets/img/schmiedperson.png");
 
     //Audio
+    this.load.audio("dorfMusic", "assets/sounds/dorf.mp3");
+    this.load.audio("dungeonMusic", "assets/sounds/dungeon.mp3");
     this.load.audio("menuMusic", "assets/sounds/menumusic.mp3");
     this.load.audio("startGame", "assets/sounds/gamestart.mp3");
     this.load.audio("buttonSound", "assets/sounds/button.wav");

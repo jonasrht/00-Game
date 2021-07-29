@@ -24,6 +24,10 @@ export default class Dungeon extends Phaser.Scene {
     }
 
     create() {
+        // Hintergrundmusik
+        this.bgMusic = this.sound.add("dungeonMusic");
+        this.bgMusic.play({loop: true, volume: 0.1});
+
         //this.physics.world.createDebugGraphic();
         this.uiScene = this.scene.get('uiScene');
         this.invScene = this.scene.get('inventoryScene');
@@ -142,6 +146,7 @@ export default class Dungeon extends Phaser.Scene {
         this.physics.world.enable(this.d1Ausgang);
         this.d1Ausgang[0].body.immovable = true;
         this.physics.add.collider(this.player, this.d1Ausgang, () => {
+            this.bgMusic.stop();
             this.scene.start('villageScene', { name: 'd1Ausgang', char: this.selectedCharacter })
         });
 
