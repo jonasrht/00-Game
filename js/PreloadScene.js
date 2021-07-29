@@ -52,10 +52,22 @@ export default class PreloadScene extends Phaser.Scene {
     );
 
     this.load.atlas(
+      "swordultFemale",
+      "assets/tilesets/sword-ult-female.png",
+      "assets/tilesets/sword-ult.json"
+    );
+
+    this.load.atlas(
       "sword",
       "assets/tilesets/schwerthieb.png",
       "assets/tilesets/schwerthieb.json"
     );
+
+    this.load.atlas(
+      "swordFemale",
+      "assets/tilesets/schwerthieb-female.png",
+      "assets/tilesets/schwerthieb.json"
+    )
 
     this.load.image("buergermeister", "assets/tilesets/burgermeister.png");
 
@@ -153,6 +165,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("schwerthieb", "assets/sounds/schwerthieb.mp3");
     this.load.audio("slime1", "assets/sounds/Slime1.mp3");
     this.load.audio("slime2", "assets/sounds/Slime2.mp3");
+    this.load.audio("shopsound", "assets/sounds/shop.mp3");
 
     //Arrow
     this.load.image("arrow", "assets/tilesets/arrow.png");

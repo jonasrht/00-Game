@@ -35,7 +35,7 @@ export default class uiScene extends Phaser.Scene {
 
 
     create() {
-        
+
         this.scene.bringToTop();
         this.heartSound = this.sound.add("heartSound");
         for (let i = 0; i < 3; i++) {
@@ -72,7 +72,7 @@ export default class uiScene extends Phaser.Scene {
 
         //this.newQuestAllert();
 
-        this.bgImg = this.add.image(425, 650, 'dialogbox').setVisible(false);
+        //this.bgImg = this.add.image(425, 650, 'dialogbox').setVisible(false);
         //this.createTypeTextBox("This is a test!")
 
         this.damageMaennlich = this.sound.add("damageMaennlich");
@@ -171,14 +171,35 @@ export default class uiScene extends Phaser.Scene {
             this.heartContainer.pop();
             dungeon.player.hitAnim(dungeon.player);
             if (dungeon.player.texture.key == "atlas") {
-              this.damageMaennlich.play();
+                this.damageMaennlich.play();
             } else {
-              this.damageWeiblich.play();
+                this.damageWeiblich.play();
             }
         } else {
             this.handleGameover();
         }
     }
+
+    removeHeart(anzahl) {
+        var dungeon = this.scene.get('Dungeon');
+
+        if (this.heartContainer.length - anzahl > 0 && (dungeon.player.godmode == false)) {
+            for (let i = anzahl; i > 0; i--) {
+                this.x = this.x - 20;
+                this.heartContainer[this.heartContainer.length - 1].destroy();
+                this.heartContainer.pop();
+                dungeon.player.hitAnim(dungeon.player);
+                if (dungeon.player.texture.key == "atlas") {
+                    this.damageMaennlich.play();
+                } else {
+                    this.damageWeiblich.play();
+                }
+            }
+        } else {
+            this.handleGameover();
+        }
+    }
+
 
     handleGameover() {
         console.log("GameOver :(((");
@@ -204,7 +225,7 @@ export default class uiScene extends Phaser.Scene {
         var villageScene = this.scene.get('villageScene');
         villageScene.player.movement = false;
         this.uiAttackBtn.setVisible(false);
-        this.bgImg.setVisible(true);
+        //this.bgImg.setVisible(true);
         this.box = createTextBox(this, 100, 600, {
             wrapWidth: 500,
             fixedWidth: 500,
@@ -241,8 +262,7 @@ var createTextBox = function (scene, x, y, config) {
         x: x,
         y: y,
 
-        background: scene.rexUI.add.roundRectangle(0, 0, 2, 2, 20, COLOR_PRIMARY)
-            .setStrokeStyle(0, COLOR_LIGHT),
+        background: scene.add.image(425, 650, 'dialogbox'),
 
         icon: scene.rexUI.add.roundRectangle(0, 0, 2, 2, 20, COLOR_DARK),
 
@@ -264,37 +284,39 @@ var createTextBox = function (scene, x, y, config) {
         .layout();
 
     keyObj.on('down', function () {
-        var icon = this.getElement('action').setVisible(false);
-        this.resetChildVisibleState(icon);
+        //var icon = this.getElement('action').setVisible(false);
+        //this.resetChildVisibleState(icon);
         if (this.isTyping) {
             this.stop(true);
         } else if (!this.isLastPage) {
             this.typeNextPage();
         } else {
             this.stop(true);
-                if (!this.isTyping) {
-                    scene.playerMovement();
-                    scene.bgImg.setVisible(false);
-                    scene.uiAttackBtn.setVisible(true);
-                }
             this.visible = false;
         }
     }, textBox);
     textBox
         .setInteractive()
         .on('pageend', function () {
-            var icon = this.getElement('action').setVisible(true);
-            this.resetChildVisibleState(icon);
-            icon.y -= 30;
-            var tween = scene.tweens.add({
-                targets: icon,
-                y: '+=30', // '+=100'
-                ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
-                duration: 500,
-                repeat: 0, // -1: infinity
-                yoyo: false
-            });
+            //var icon = this.getElement('action').setVisible(true);
+            // this.resetChildVisibleState(icon);
+            // icon.y -= 30;
+            // var tween = scene.tweens.add({
+            //     targets: icon,
+            //     y: '+=30', // '+=100'
+            //     ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
+            //     duration: 500,
+            //     repeat: 0, // -1: infinity
+            //     yoyo: false
+            // });
+            // tween.on('complete', function(tween, targets){
+            //     targets[0].setVisible(false);
+            // }, this);
             if (this.isLastPage) {
+                if (!this.isTyping) {
+                    scene.playerMovement();
+                    scene.uiAttackBtn.setVisible(true);
+                }
                 return;
             }
         }, textBox)

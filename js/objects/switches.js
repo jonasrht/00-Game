@@ -34,9 +34,19 @@ export default class switches extends Phaser.GameObjects.Sprite {
     }
 
     handleSchalteAct(schalter) {
-        if (Phaser.Input.Keyboard.JustDown(this.scene.space) && (schalter.name == "schalter1")) {
-            this.setTexture("switchOn");
-            this.scene.openDoorOne();
+        
+        if (Phaser.Input.Keyboard.JustDown(this.scene.space)) {
+            switch (schalter.name) {
+                case "schalter1":
+                    schalter.setTexture("switchOn");
+                    this.scene.openDoorOne();
+                    break;
+                case "schalter2":
+                    schalter.setTexture("switchOn");
+                    this.scene.openDoorTwo();
+                default:
+                    break;
+            }
         }
     }
 

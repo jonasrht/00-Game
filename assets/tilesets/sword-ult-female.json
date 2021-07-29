@@ -1,0 +1,60 @@
+{"frames": {
+
+"schwertanimation1_female.png":
+{
+	"frame": {"x":0,"y":0,"w":28,"h":46},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":46},
+	"sourceSize": {"w":28,"h":46}
+},
+"schwertanimation2_female.png":
+{
+	"frame": {"x":0,"y":117,"w":61,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":61,"h":70},
+	"sourceSize": {"w":61,"h":70}
+},
+"schwertanimation3_female.png":
+{
+	"frame": {"x":54,"y":55,"w":52,"h":62},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":52,"h":62},
+	"sourceSize": {"w":52,"h":62}
+},
+"schwertanimation4_female.png":
+{
+	"frame": {"x":61,"y":117,"w":55,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":70},
+	"sourceSize": {"w":55,"h":70}
+},
+"schwertanimation5_female.png":
+{
+	"frame": {"x":28,"y":0,"w":59,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":55},
+	"sourceSize": {"w":59,"h":55}
+},
+"schwertanimation6_female.png":
+{
+	"frame": {"x":0,"y":55,"w":54,"h":61},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":54,"h":61},
+	"sourceSize": {"w":54,"h":61}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sword-ult-female.png",
+	"format": "RGBA8888",
+	"size": {"w":116,"h":187},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:88a17c92a2e2ea22aa37d710c6204e31:9fab307a4c4d384e49f922f71404e0b7:3bf1f2bb2ccaec50e770706d7bfcb46b$"
+}
+}
