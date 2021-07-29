@@ -137,11 +137,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             {
                 var opacity = tween.getValue();
                 player.setAlpha(opacity);
+                player.setTint(0xff002a);
             },
             repeat: 3,
             yoyo: true,
             onComplete: () => {
                 this.setAlpha(1);
+                this.clearTint();
                 this.godmode = false;
             }
         });

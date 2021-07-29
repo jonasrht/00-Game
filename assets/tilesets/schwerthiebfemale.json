@@ -1,0 +1,68 @@
+{"frames": {
+
+"schwert1_f.png":
+{
+	"frame": {"x":0,"y":107,"w":41,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":39},
+	"sourceSize": {"w":41,"h":39}
+},
+"schwert2_f.png":
+{
+	"frame": {"x":0,"y":185,"w":47,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":40},
+	"sourceSize": {"w":47,"h":40}
+},
+"schwert3_f.png":
+{
+	"frame": {"x":0,"y":0,"w":28,"h":58},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":58},
+	"sourceSize": {"w":28,"h":58}
+},
+"schwert4_f.png":
+{
+	"frame": {"x":0,"y":225,"w":47,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":39},
+	"sourceSize": {"w":47,"h":39}
+},
+"schwert5_f.png":
+{
+	"frame": {"x":28,"y":0,"w":28,"h":61},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":61},
+	"sourceSize": {"w":28,"h":61}
+},
+"schwert6_f.png":
+{
+	"frame": {"x":0,"y":146,"w":41,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":39},
+	"sourceSize": {"w":41,"h":39}
+},
+"schwert7_f.png":
+{
+	"frame": {"x":0,"y":61,"w":28,"h":46},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":28,"h":46},
+	"sourceSize": {"w":28,"h":46}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "schwerthiebfemale.png",
+	"format": "RGBA8888",
+	"size": {"w":56,"h":264},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:d35772ba418146d5ec25c5bc81b0d2cb:0044afe2b47a398fecb14c32f9a2641a:1f5c8d9370d158a79de87dda5515e741$"
+}
+}

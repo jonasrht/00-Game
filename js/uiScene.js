@@ -44,7 +44,7 @@ export default class uiScene extends Phaser.Scene {
         this.coinIcon = this.add.image(10, 10, 'coinIcon');
         this.moneyText = this.add.text(10, 10, ": " + this.money, { fontFamily: 'mainfont', fontSize: '18px', color: '#fffbed', stroke: '#62232f', align: 'center' });
 
-        // Iventar Icon
+        // Inventar Icon
         this.invIcon = this.add.image(50, 670, 'invIcon');
         this.invIcon.setScale(2.5);
         this.invIcon.setInteractive({ useHandCursor: true });
@@ -200,6 +200,28 @@ export default class uiScene extends Phaser.Scene {
         }
     }
 
+<<<<<<< HEAD
+=======
+    removeHearts(anzahl) {
+        var dungeon = this.scene.get('Dungeon');
+
+        if (this.heartContainer.length - anzahl > 0 && (dungeon.player.godmode == false)) {
+            for (let i = anzahl; i > 0; i--) {
+                this.x = this.x - 20;
+                this.heartContainer[this.heartContainer.length - 1].destroy();
+                this.heartContainer.pop();
+                dungeon.player.hitAnim(dungeon.player);
+                if (dungeon.player.texture.key == "atlas") {
+                    this.damageMaennlich.play();
+                } else {
+                    this.damageWeiblich.play();
+                }
+            }
+        } else {
+            this.handleGameover();
+        }
+    }
+>>>>>>> origin/bugfixes
 
     handleGameover() {
         console.log("GameOver :(((");

@@ -1,0 +1,92 @@
+{"frames": {
+
+"slimenachlinks2_blau.png":
+{
+	"frame": {"x":0,"y":0,"w":32,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":23},
+	"sourceSize": {"w":32,"h":23}
+},
+"slimenachlinksStand_blau.png":
+{
+	"frame": {"x":0,"y":23,"w":30,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":22},
+	"sourceSize": {"w":30,"h":22}
+},
+"slimenachoben2_blau.png":
+{
+	"frame": {"x":0,"y":45,"w":32,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":23},
+	"sourceSize": {"w":32,"h":23}
+},
+"slimenachoben3_blau.png":
+{
+	"frame": {"x":0,"y":68,"w":32,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":20},
+	"sourceSize": {"w":32,"h":20}
+},
+"slimenachobenStand_blau.png":
+{
+	"frame": {"x":0,"y":88,"w":30,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":22},
+	"sourceSize": {"w":30,"h":22}
+},
+"slimenachrechts2_blau.png":
+{
+	"frame": {"x":0,"y":110,"w":32,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":23},
+	"sourceSize": {"w":32,"h":23}
+},
+"slimenachrechtsStand_blau.png":
+{
+	"frame": {"x":0,"y":133,"w":30,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":22},
+	"sourceSize": {"w":30,"h":22}
+},
+"slimenachunten2_blau.png":
+{
+	"frame": {"x":0,"y":155,"w":32,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":23},
+	"sourceSize": {"w":32,"h":23}
+},
+"slimenachunten3_blau.png":
+{
+	"frame": {"x":0,"y":178,"w":32,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":20},
+	"sourceSize": {"w":32,"h":20}
+},
+"slimenachuntenStand_blau.png":
+{
+	"frame": {"x":0,"y":198,"w":32,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":22},
+	"sourceSize": {"w":32,"h":22}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "slime-blau.png",
+	"format": "RGBA8888",
+	"size": {"w":32,"h":220},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:62824ba6f60c477226f9f37c5f859e00:05bf02e78d1b56d982d496414cbda0c8:5692d8714a110517ae11a16d81ed1e7b$"
+}
+}
