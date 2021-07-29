@@ -55,7 +55,7 @@ export default class PreloadScene extends Phaser.Scene {
       "sword",
       "assets/tilesets/schwerthieb.png",
       "assets/tilesets/schwerthieb.json"
-    )
+    );
 
     this.load.image("buergermeister", "assets/tilesets/burgermeister.png");
 
@@ -74,7 +74,6 @@ export default class PreloadScene extends Phaser.Scene {
       "assets/tilesets/atlas.json"
     );
 
-    
     this.load.atlas(
       "bewohner2",
       "assets/tilesets/randomdorfguy2.png",
@@ -113,7 +112,7 @@ export default class PreloadScene extends Phaser.Scene {
 
     // UI
     this.load.image("uiAttack", "assets/img/gui-ingame.png");
-    this.load.image("dialogbox", "assets/img/dialogbox.png");  
+    this.load.image("dialogbox", "assets/img/dialogbox.png");
     this.load.image("flaschenpost", "assets/img/flaschenpost16x16.png");
     this.load.image("brief", "assets/img/flaschenbrief.png");
     this.load.image("questui", "assets/img/questsbalken.png");
@@ -152,6 +151,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("dooropenSound", "assets/sounds/Tür.mp3");
     this.load.audio("schwertschlag", "assets/sounds/schwertschlag.mp3");
     this.load.audio("schwerthieb", "assets/sounds/schwerthieb.mp3");
+    this.load.audio("slime1", "assets/sounds/Slime1.mp3");
+    this.load.audio("slime2", "assets/sounds/Slime2.mp3");
 
     //Arrow
     this.load.image("arrow", "assets/tilesets/arrow.png");
