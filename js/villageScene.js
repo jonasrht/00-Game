@@ -44,6 +44,9 @@ export default class villageScene extends Phaser.Scene {
     }
 
     create() {
+        // Hintergrundmusik
+        this.bgDorfMusic = this.sound.add("dorfMusic");
+        this.bgDorfMusic.play({loop: true, volume: 0.1});
         this.uiScene = this.scene.get('uiScene');
 
         this.dooropenSound = this.sound.add("dooropenSound");
@@ -143,6 +146,7 @@ export default class villageScene extends Phaser.Scene {
         this.physics.world.enable(this.caveEnte);
         this.caveEnte[0].body.immovable = true;
         this.physics.add.collider(this.player, this.caveEnte, () => {
+            this.bgDorfMusic.stop();
             if (this.uiScene.firstQuest != true) {
                 this.uiScene.createBox("Die Zeit ist noch nicht reif.")
             } else if ((this.uiScene.firstQuest == true) && (this.uiScene.secondQuest == false)){
