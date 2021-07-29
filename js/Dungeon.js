@@ -41,10 +41,13 @@ export default class Dungeon extends Phaser.Scene {
         this.mobsLayer = map.createLayer("mobs", tileset, 0, 0);
         this.doorAufLayer = map.createLayer("doorAuf", tileset, 0, 0);
         this.doorZuLayer = map.createLayer("doorZu", tileset, 0, 0);
+        this.doorZuLayer2 = map.createLayer("doorZu2", tileset, 0, 0);
 
         this.doorZuLayer.setAlpha(1);
+        this.doorZuLayer2.setAlpha(1);
         this.doorAufLayer.setPipeline('Light2D').setDepth(11);
         this.doorZuLayer.setPipeline('Light2D');
+        this.doorZuLayer2.setPipeline('Light2D');
         this.worldLayer.setPipeline('Light2D');
         this.belowLayer.setPipeline('Light2D');
         this.saeulen.setPipeline('Light2D');
@@ -64,6 +67,7 @@ export default class Dungeon extends Phaser.Scene {
         this.saeulen.setCollisionByProperty({ collides: true });
         this.chestLayer.setCollisionByProperty({ collides: true });
         this.doorZuLayer.setCollisionByProperty({ collides: true }).setDepth(11);
+        this.doorZuLayer2.setCollisionByProperty({ collides: true }).setDepth(11);
 
         //spawnpoint in tiled festlegen
         this.spawnPoint = map.findObject(
@@ -98,7 +102,7 @@ export default class Dungeon extends Phaser.Scene {
             this.slimeGroup.push(this.slime)
         })
 
-        this.physics.add.collider(this.player, this.slimeGroup, () => {
+        this.physics.add.collider(this.player, this.slimeGroup, (player, slime) => {
             this.uiScene.removeHeart();
             this.player.pushBack();
         });
@@ -108,6 +112,7 @@ export default class Dungeon extends Phaser.Scene {
         this.physics.add.collider(this.player, this.saeulen);
         this.physics.add.collider(this.player, this.chestLayer);
         this.doorCollide = this.physics.add.collider(this.player, this.doorZuLayer);
+        this.door2Collide = this.physics.add.collider(this.player, this.doorZuLayer2);
         this.physics.add.collider(this.slimeGroup, this.worldLayer, (slime, world) => {
             slime.handleCollide();
         });
@@ -160,7 +165,15 @@ export default class Dungeon extends Phaser.Scene {
 
     openDoorOne() {
         this.doorZuLayer.setAlpha(0);
-        this.doorCollide.destroy();
+        console.log(this.doorCollide);
+        if (this.doorCollide.world != null) {
+            this.doorCollide.destroy();
+        }
+    }
+
+    openDoorTwo() {
+        this.doorZuLayer2.setAlpha(0);
+        this.door2Collide.destroy();
     }
 
 

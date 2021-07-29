@@ -14,7 +14,11 @@ export default class inventoryScene extends Phaser.Scene {
 
     itemToInvNew(array) {
         array.forEach(element => {
-            this.item = this.add.image(element.x, element.y, element.frame.texture.key).setDepth(12).setScale(1.5);
+            if (element.alpha == 1) {
+                this.item = this.add.image(element.x, element.y, element.frame.texture.key).setDepth(12).setScale(1.5);
+                this.item.setVisible(true);
+            }
+
         });
     }
 
@@ -45,7 +49,7 @@ export default class inventoryScene extends Phaser.Scene {
         }
 
         if (this.createCount == 0) {
-            
+
         }
 
         var dungeonScene = this.scene.get('Dungeon');
@@ -84,24 +88,25 @@ export default class inventoryScene extends Phaser.Scene {
                 element.setName('Aktiv')
                 element.setInteractive();
                 element.on('pointerdown', function () {
-                itemsInInv = itemsInInv.filter(item => item !== element);
-                console.log(element);
-                switch (element.texture.key) {
-                    case 'trankHerz':
-                        uiScene.addHeart();
-                        element.setVisible(false);
-                        element.destroy();
-                        console.log(itemsInInv);
-                        break;
-                    case 'trankHerzBig':
-                        uiScene.addHeart();
-                        uiScene.addHeart();
-                        uiScene.addHeart();
-                        break;
-                    default:
-                        break;
-                }
-            }, this);
+                    itemsInInv = itemsInInv.filter(item => item !== element);
+                    console.log(element);
+                    switch (element.texture.key) {
+                        case 'trankHerz':
+                            uiScene.addHeart();
+                            element.setAlpha(0);
+                            element.setVisible(false);
+                            element.destroy();
+                            console.log(itemsInInv);
+                            break;
+                        case 'trankHerzBig':
+                            uiScene.addHeart();
+                            uiScene.addHeart();
+                            uiScene.addHeart();
+                            break;
+                        default:
+                            break;
+                    }
+                }, this);
             }
         });
     }

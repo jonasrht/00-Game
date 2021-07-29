@@ -152,6 +152,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("dooropenSound", "assets/sounds/Tür.mp3");
     this.load.audio("schwertschlag", "assets/sounds/schwertschlag.mp3");
     this.load.audio("schwerthieb", "assets/sounds/schwerthieb.mp3");
+    this.load.audio("shopsound", "assets/sounds/shop.mp3");
 
     //Arrow
     this.load.image("arrow", "assets/tilesets/arrow.png");

@@ -123,18 +123,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     pushBack() {
         if (this.godmode == false) {
-            if (this.direction === 'right') {
-                this.body.x = this.body.x - 20;
-            }
-            if (this.direction === 'left') {
-                this.body.x = this.body.x + 20;
-            }
-            if (this.direction === 'up') {
-                this.body.y = this.body.y + 20;
-            }
-            if (this.direction === 'down') {
-                this.body.y = this.body.y - 20;
-            }
+            // if (this.direction === 'right') {
+            //     this.body.x = this.body.x - 20;
+            // }
+            // if (this.direction === 'left') {
+            //     this.body.x = this.body.x + 20;
+            // }
+            // if (this.direction === 'up') {
+            //     this.body.y = this.body.y + 20;
+            // }
+            // if (this.direction === 'down') {
+            //     this.body.y = this.body.y - 20;
+            // }
         }
     }
 

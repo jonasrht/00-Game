@@ -11,6 +11,7 @@ export default class shopScene extends Phaser.Scene {
         console.log("Willkommen im Shop");
 
         this.buttonSound = this.sound.add("buttonSound");
+        this.shopSound = this.sound.add('shopsound');
 
         // Get von anderen Scenen
         var uiScene = this.scene.get('uiScene');
@@ -37,6 +38,7 @@ export default class shopScene extends Phaser.Scene {
             if (uiScene.money >= 10) {
                 uiScene.addHeart();
                 uiScene.updateMoney(-10);
+                this.shopSound.play();
             } else {
                 // TODO: Error für zu wenig Geld
             }
@@ -51,6 +53,7 @@ export default class shopScene extends Phaser.Scene {
             if (uiScene.money >= 1) {
                 invScene.itemFromShop('trankPower');
                 uiScene.updateMoney(-1);
+                this.shopSound.play();
             } else {
                 // TODO: Error für zu wenig Geld
             }
@@ -65,6 +68,7 @@ export default class shopScene extends Phaser.Scene {
             if (uiScene.money >= 30) {
                 invScene.itemFromShop('trankHerz');
                 uiScene.updateMoney(-30);
+                this.shopSound.play();
             } else {
                 // TODO: Error für zu wenig Geld
             }
@@ -79,6 +83,7 @@ export default class shopScene extends Phaser.Scene {
             if (uiScene.money >= 50) {
                 invScene.itemFromShop('trankPowerBig');
                 uiScene.updateMoney(-50);
+                this.shopSound.play();
             } else {
                 // TODO: Error für zu wenig Geld
             }
@@ -93,6 +98,7 @@ export default class shopScene extends Phaser.Scene {
             if (uiScene.money >= 70) {
                 invScene.itemFromShop('trankHerzBig');
                 uiScene.updateMoney(-70);
+                this.shopSound.play();
             } else {
                 // TODO: Error für zu wenig Geld
             }

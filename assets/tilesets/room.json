@@ -1925,7 +1925,7 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -2645,7 +2645,7 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -13234,7 +13234,7 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
@@ -13243,7 +13243,7 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
@@ -13252,7 +13252,7 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
@@ -13261,7 +13261,7 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }]
                 }, 
                 {
