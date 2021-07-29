@@ -200,8 +200,6 @@ export default class uiScene extends Phaser.Scene {
         }
     }
 
-<<<<<<< HEAD
-=======
     removeHearts(anzahl) {
         var dungeon = this.scene.get('Dungeon');
 
@@ -221,7 +219,6 @@ export default class uiScene extends Phaser.Scene {
             this.handleGameover();
         }
     }
->>>>>>> origin/bugfixes
 
     handleGameover() {
         console.log("GameOver :(((");
