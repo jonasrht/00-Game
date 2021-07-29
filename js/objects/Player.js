@@ -63,8 +63,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         })
 
         this.anims.create({
-            key: "sword-ult",
-            frames: this.anims.generateFrameNames("swordult", { prefix: "schwertanimation", start: 1, end: 7, zeroPad: 0, suffix: ".png" }),
+            key: "sword-ultFemale",
+            frames: this.anims.generateFrameNames("swordultFemale", { prefix: "schwertanimation", start: 1, end: 7, zeroPad: 0, suffix: ".png" }),
             frameRate: 12,
             repeat: 0
         })
@@ -90,6 +90,32 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.anims.create({
             key: "sword-right",
             frames: this.anims.generateFrameNames("sword", { frames: ["schwert4.png", "schwert6.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
+
+        // Female schwerthieb
+        this.scene.anims.create({
+            key: "sword-leftFemale",
+            frames: this.anims.generateFrameNames("swordFemale", { frames: ["schwert1.png", "schwert2.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
+        this.scene.anims.create({
+            key: "sword-upFemale",
+            frames: this.anims.generateFrameNames("swordFemale", { frames: ["schwert3.png", "schwert7.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
+        this.scene.anims.create({
+            key: "sword-downFemale",
+            frames: this.anims.generateFrameNames("swordFemale", { frames: ["schwert5.png", "schwert5.png"] }),
+            frameRate: 6,
+            repeat: 0
+        })
+        this.scene.anims.create({
+            key: "sword-rightFemale",
+            frames: this.anims.generateFrameNames("swordFemale", { frames: ["schwert4.png", "schwert6.png"] }),
             frameRate: 6,
             repeat: 0
         })
@@ -275,8 +301,13 @@ class MoveState extends State {
 class UltState extends State {
     enter(scene, hero) {
         hero.setVelocity(0);
-        hero.anims.play("sword-ult");
-        hero.schwerthieb.play();
+        console.log(hero);
+        if (hero.texture.key == 'atlasPink') {
+            hero.anims.play("sword-ultFemale");
+        } else {
+            hero.anims.play("sword-ult");
+        }
+        //hero.schwerthieb.play();
         this.swordHitbox = scene.add.rectangle(hero.x, hero.y, 50, 50);
         scene.physics.add.existing(this.swordHitbox);
         scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
@@ -301,19 +332,35 @@ class SwingState extends State {
         switch (hero.direction) {
             case 'up':
                 //hero.anims.play("sword-up");
-                this.swordanim = scene.add.sprite(hero.x, hero.y + 3).play("sword-up");
+                if (hero.texture.key == 'atlasPink') {
+                    this.swordanim = scene.add.sprite(hero.x, hero.y + 3).play("sword-upFemale");
+                } else {
+                    this.swordanim = scene.add.sprite(hero.x, hero.y + 3).play("sword-up");
+                }
                 this.swordHitbox = scene.add.rectangle(hero.x, hero.y - 12, 20, 10);
                 break;
             case 'down':
-                this.swordanim = scene.add.sprite(hero.x, hero.y + 9).play("sword-down");
+                if (hero.texture.key == 'atlasPink') {
+                    this.swordanim = scene.add.sprite(hero.x, hero.y + 9).play("sword-downFemale");
+                } else {
+                    this.swordanim = scene.add.sprite(hero.x, hero.y + 9).play("sword-down");
+                }
                 this.swordHitbox = scene.add.rectangle(hero.x, hero.y + 18, 20, 10);
                 break;
             case 'left':
-                this.swordanim = scene.add.sprite(hero.x - 2, hero.y + 6).play("sword-left");
+                if (hero.texture.key == 'atlasPink') {
+                    this.swordanim = scene.add.sprite(hero.x - 2, hero.y + 6).play("sword-leftFemale");
+                } else {
+                    this.swordanim = scene.add.sprite(hero.x - 2, hero.y + 6).play("sword-left");
+                }
                 this.swordHitbox = scene.add.rectangle(hero.x - 12, hero.y + 8, 10, 20);
                 break;
             case 'right':
-                this.swordanim = scene.add.sprite(hero.x + 2, hero.y + 6).play("sword-right");
+                if (hero.texture.key == 'atlasPink') {
+                    this.swordanim = scene.add.sprite(hero.x + 2, hero.y + 6).play("sword-rightFemale");
+                } else {
+                    this.swordanim = scene.add.sprite(hero.x + 2, hero.y + 6).play("sword-right");
+                }
                 this.swordHitbox = scene.add.rectangle(hero.x + 12, hero.y + 8, 10, 20);
                 break;
             default:

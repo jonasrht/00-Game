@@ -52,8 +52,20 @@ export default class PreloadScene extends Phaser.Scene {
     );
 
     this.load.atlas(
+      "swordultFemale",
+      "assets/tilesets/sword-ult-female.png",
+      "assets/tilesets/sword-ult.json"
+    );
+
+    this.load.atlas(
       "sword",
       "assets/tilesets/schwerthieb.png",
+      "assets/tilesets/schwerthieb.json"
+    )
+
+    this.load.atlas(
+      "swordFemale",
+      "assets/tilesets/schwerthieb-female.png",
       "assets/tilesets/schwerthieb.json"
     )
 
