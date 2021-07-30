@@ -143,6 +143,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("questuiOpen", "assets/img/questbalkenoffen.png");
     this.load.image("newQuest", "assets/img/neuequest.png");
     this.load.image("questDone", "assets/img/questdone.png");
+    this.load.image("guiIngameInactive", "assets/img/gui-ingame_inactive.png");
     // Buttons
     this.load.image("exitButton", "assets/img/exitButton4.png");
     this.load.image("MenuTop", "assets/img/MenuTop.png");

@@ -51,6 +51,7 @@ export default class uiScene extends Phaser.Scene {
 
         // Attack Buttons
         this.uiAttackBtn = this.add.image(640, 670, 'uiAttack').setScale(1.5);
+        this.uiAttackBtnDis = this.add.image(640, 670, 'guiIngameInactive').setScale(1.5).setAlpha(0);
 
         // Inventar öffnen
         this.invIcon.on('pointerdown', function () {
@@ -92,6 +93,16 @@ export default class uiScene extends Phaser.Scene {
                 repeat: length - 1,
                 delay: 100
             })
+        }
+    }
+
+    ultCooldown(onoff) {
+        if (onoff == 1) {
+            this.uiAttackBtn.setAlpha(0)
+            this.uiAttackBtnDis.setAlpha(1)
+        } else {
+            this.uiAttackBtn.setAlpha(1)
+            this.uiAttackBtnDis.setAlpha(0)
         }
     }
 
