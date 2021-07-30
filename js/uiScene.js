@@ -290,7 +290,7 @@ export default class uiScene extends Phaser.Scene {
     zeigeBrief() {
         this.villageScene = this.scene.get('villageScene');
 
-        this.brief = this.add.image(600, 260, 'brief').setDepth(50).setScale(1.5);
+        this.brief = this.add.image(650, 360, 'brief').setDepth(50).setScale(1.5);
         this.exitbtn = this.add.image(718, 84, 'exitButton');
         this.exitbtn.setInteractive({ useHandCursor: true }).setDepth(55);
         this.uiAttackBtn.setVisible(false);
