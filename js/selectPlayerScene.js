@@ -13,6 +13,7 @@ export default class selectPlayerScene extends Phaser.Scene {
 
         //Pink player
         this.btnPlayerOne = this.add.image(this.xPos - 100, this.yPos, "atlasPink");
+        this.btnPlayerOne.setFrame(3)
         this.btnPlayerOne.setDepth(1);
         this.btnPlayerOne.setInteractive();
         this.btnPlayerOne.setSize()
@@ -23,6 +24,7 @@ export default class selectPlayerScene extends Phaser.Scene {
             this.circle = new Phaser.Geom.Circle(400, 300, 200);
 
         });
+        var textFranzi = this.add.text(this.xPos -150, this.yPos +70, "Franzi", { fontFamily: 'mainfont', fontSize: '18px', fontStyle: 'bold', color: '#664879' });
         this.btnPlayerOne.on("pointerdown", () => {
             this.selectedPlayer = "atlasPink";
             this.scene.start("uiScene");
@@ -30,6 +32,7 @@ export default class selectPlayerScene extends Phaser.Scene {
         });
 
         //Yellow player
+        var textFranzi = this.add.text(this.xPos +75, this.yPos +70, "Max", { fontFamily: 'mainfont', fontSize: '18px', fontStyle: 'bold', color: '#664879' });
         this.btnPlayerTwo = this.add.image(this.xPos + 100, this.yPos, "atlas");
         this.btnPlayerTwo.setDepth(1);
         this.btnPlayerTwo.setInteractive();
