@@ -51,7 +51,7 @@ export default class villageScene extends Phaser.Scene {
         }
 
         this.uiScene = this.scene.get('uiScene');
-
+        this.invScene = this.scene.get('inventoryScene');
         this.dooropenSound = this.sound.add("dooropenSound");
         if (this.startedOnce == false) {
             this.scene.run('instructionsScene');
@@ -185,12 +185,9 @@ export default class villageScene extends Phaser.Scene {
             this.schildDialog(player, schild);
         });
 
-        console.log(this.schilde);
-
         // Bewohner hinzufügen
         this.bewohnerGroup = [];
         this.bewohner = map.createFromObjects('bewohner');
-        console.log(this.bewohner);
         this.textureNum = 1;
         this.bewohner.forEach((bewohner) => {
             if (bewohner.name == "buergermeister") {
