@@ -16,7 +16,7 @@ export default class schmiedScene extends Phaser.Scene {
         // Get von anderen Scenen
         var uiScene = this.scene.get('uiScene');
         var invScene = this.scene.get('inventoryScene');
-
+        var homeScene = this.scene.get('homeScene');
 
         // Exit Button
         this.exitButton = this.add.image(718, 84, 'exitButton').setInteractive({ useHandCursor: true });
@@ -35,9 +35,10 @@ export default class schmiedScene extends Phaser.Scene {
         this.itemsHeader = this.add.text(463, 160, '      +1 Stärke     30$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
         this.hearts.setInteractive({ useHandCursor: true });
         this.hearts.on('pointerdown', function (pointer) {
-            if (uiScene.money >= 10) {
+            if (uiScene.money >= 30) {
                 uiScene.addHeart();
-                uiScene.updateMoney(-10);
+                uiScene.updateMoney(-30);
+                homeScene.player.strength += 1;
                 this.shopSound.play();
             } else {
                 // TODO: Error für zu wenig Geld

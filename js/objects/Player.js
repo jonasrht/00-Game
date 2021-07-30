@@ -17,6 +17,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.direction = 'down';
         this.scene = scene;
         this.counter = 0;
+        this.strength = 1;
         this.godmode = false;
         this.ultCooldown = false;
         this.create(texture);
@@ -384,7 +385,7 @@ class SwingState extends State {
         hero.schwertschlag.play();
         scene.physics.add.existing(this.swordHitbox);
         scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
-            slime.health = slime.health - 1;
+            slime.health = slime.health - hero.strength;
             slime.pushBack();
             if (slime.health == 0) {
                 slime.destroy();
