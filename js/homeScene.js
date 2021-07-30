@@ -96,7 +96,7 @@ export default class homeScene extends Phaser.Scene {
         this.physics.world.enable(this.doorShopBack);
 
         this.physics.add.collider(this.player, this.doorShopBack, () => {
-          this.tür.play();
+            this.tür.play();
             this.switchScene('villageScene', this.doorShopBack[0].name)
         });
 
@@ -114,6 +114,14 @@ export default class homeScene extends Phaser.Scene {
         this.shop[0].body.immovable = true;
         this.physics.add.collider(this.player, this.shop, () => {
             this.scene.pause().launch('shopScene');
+        });
+
+        // Schmied
+        this.shop = homeroom.createFromObjects('shop', { name: 'schmiedVil' });
+        this.physics.world.enable(this.shop);
+        this.shop[0].body.immovable = true;
+        this.physics.add.collider(this.player, this.shop, () => {
+            this.scene.pause().launch('schmiedScene');
         });
     }
 
