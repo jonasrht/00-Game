@@ -102,7 +102,7 @@ export default class Dungeon extends Phaser.Scene {
 
         this.slime = map.createFromObjects('orc');
         this.slime.forEach((slime) => {
-            this.slime = new Slime(this, slime.x, slime.y, 'slimeBlau', 1);
+            this.slime = new Slime(this, slime.x, slime.y, 'slime', 1);
             this.slimeGroup.push(this.slime)
         })
 

@@ -163,6 +163,39 @@
         }, 
         {
          "draworder":"topdown",
+         "id":18,
+         "name":"items",
+         "objects":[
+                {
+                 "height":0,
+                 "id":19,
+                 "name":"heartIcon",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":0,
+                 "x":168,
+                 "y":552
+                }, 
+                {
+                 "height":0,
+                 "id":20,
+                 "name":"trankHerz",
+                 "rotation":0,
+                 "type":"",
+                 "visible":false,
+                 "width":0,
+                 "x":1223,
+                 "y":376
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":16,
          "name":"bewohner",
          "objects":[
@@ -264,11 +297,11 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":18,
- "nextobjectid":20,
+ "nextlayerid":19,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.5.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -11804,6 +11837,7 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.4,
+
+ "version":1.5,
  "width":100
 }

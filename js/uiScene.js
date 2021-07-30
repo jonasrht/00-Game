@@ -168,28 +168,37 @@ export default class uiScene extends Phaser.Scene {
         var dungeon2 = this.scene.get('DungeonV2');
         var isActiveD = this.scene.isActive('Dungeon');
         var isActiveD2 = this.scene.isActive('DungeonV2');
-        if ((this.heartContainer.length > 0) && (dungeon.player.godmode == false)) {
-            this.x = this.x - 20;
-            this.heartContainer[this.heartContainer.length - 1].destroy();
-            this.heartContainer.pop();
-        } else {
-            this.handleGameover();
-        }
         if (isActiveD) {
-            dungeon.player.hitAnim(dungeon.player);
-            if (dungeon.player.texture.key == "atlas") {
-                this.damageMaennlich.play();
-            } else {
-                this.damageWeiblich.play();
+            if ((this.heartContainer.length > 0) && (dungeon.player.godmode == false)) {
+                this.x = this.x - 20;
+                this.heartContainer[this.heartContainer.length - 1].destroy();
+                this.heartContainer.pop();
+                dungeon.player.hitAnim(dungeon.player);
+                if (dungeon.player.texture.key == "atlas") {
+                    this.damageMaennlich.play();
+                } else {
+                    this.damageWeiblich.play();
+                }
+            } else if (this.heartContainer.length <= 0) {
+                this.handleGameover();
             }
-        } else if (isActiveD2) {
-            dungeon2.player.hitAnim(dungeon2.player);
-            if (dungeon2.player.texture.key == "atlas") {
-                this.damageMaennlich.play();
-            } else {
-                this.damageWeiblich.play();
+        } else {
+            if ((this.heartContainer.length > 0) && (dungeon2.player.godmode == false)) {
+                this.x = this.x - 20;
+                this.heartContainer[this.heartContainer.length - 1].destroy();
+                this.heartContainer.pop();
+                dungeon2.player.hitAnim(dungeon2.player);
+                if (dungeon2.player.texture.key == "atlas") {
+                    this.damageMaennlich.play();
+                } else {
+                    this.damageWeiblich.play();
+                }
+            } else if (this.heartContainer.length <= 0){
+                this.handleGameover();
             }
         }
+        
+        
     }
 
     removeHearts(anzahl) {
@@ -221,7 +230,6 @@ export default class uiScene extends Phaser.Scene {
                 this.damageWeiblich.play();
             }
         }
-
     }
 
     handleGameover() {
@@ -231,9 +239,10 @@ export default class uiScene extends Phaser.Scene {
         var isActiveD2 = this.scene.isActive('DungeonV2');
         if(isActiveD){
             dungeon.handleGameover();
+        } else {
+            dungeon2.handleGameover();
         }
-        console.log("GameOver :(((");
-
+        //console.log("GameOver :(((");
     }
 
     zeigeBrief() {

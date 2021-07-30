@@ -158,6 +158,10 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("trankHerzBig", "assets/img/bigheil16x16.png");
     this.load.image("trankPower", "assets/img/trank16x16.png");
     this.load.image("trankPowerBig", "assets/img/bigtrank16x16.png");
+    this.load.image("schwertSchmied", "assets/img/schwert16x16.png");
+    this.load.image("schwert2Schmied", "assets/img/schwert216x16.png");
+
+    
 
     this.load.image("shopDude", "assets/img/shopperson.png");
     this.load.image("schmiedDude", "assets/img/schmiedperson.png");
