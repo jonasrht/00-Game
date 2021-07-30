@@ -98,16 +98,16 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
   create() {
     this.createAnims();
     this.setPipeline('Light2D');
-    if (this.texture == 'slimeBlau') {
+    if (this.texture.key == 'slimeBlau') {
         this.anims.play("slimeDownBlue");
     }
-    else if (this.texture == 'slime') {
+    else if (this.texture.key == 'slime') {
         this.anims.play("slimeDown");
     }
-    else if (this.texture == 'slimeRot') {
+    else if (this.texture.key == 'slimeRot') {
         this.anims.play("slimeDownRed");
     }
-    else if (this.texture == 'slimeGruen') {
+    else if (this.texture.key == 'slimeGruen') {
         this.anims.play("slimeDownGreen");
     }
 
@@ -131,21 +131,21 @@ createAnims() {
 
     this.anims.create({
         key: "slimeDownBlue",
-        frames: this.anims.generateFrameNames("slime-blau", { frames: ["slimenachunten2_blau.png", "slimenachunten3_blau.png"] }),
+        frames: this.anims.generateFrameNames("slimeBlau", { frames: ["slimenachunten2_blau.png", "slimenachunten3_blau.png"] }),
         frameRate: 6,
         repeat: -1
     })
 
     this.anims.create({
         key: "slimeDownRed",
-        frames: this.anims.generateFrameNames("slime-rot", { frames: ["slimenachunten2_rot.png", "slimenachunten3_rot.png"] }),
+        frames: this.anims.generateFrameNames("slimeRot", { frames: ["slimenachunten2_rot.png", "slimenachunten3_rot.png"] }),
         frameRate: 6,
         repeat: -1
     })
 
     this.anims.create({
         key: "slimeDownGreen",
-        frames: this.anims.generateFrameNames("slime-gruen", { frames: ["slimenachunten2_grün.png", "slimenachunten3_grün.png"] }),
+        frames: this.anims.generateFrameNames("slimeGruen", { frames: ["slimenachunten2_grün.png", "slimenachunten3_grün.png"] }),
         frameRate: 6,
         repeat: -1
     })
@@ -209,6 +209,26 @@ createAnims() {
     }
     this.distance = Phaser.Math.Distance.BetweenPoints(this.target, this);
     if (this.distance < 50 && slime.health > 0) {
+      this.rotation = Phaser.Math.Angle.Between(
+        this.x,
+        this.y,
+        this.target.x,
+        this.target.y
+      );
+      scene.physics.velocityFromRotation(this.rotation, 50, this.body.velocity);
+    }
+
+    if (this.texture.key == 'slimeGruen') {
+      if (this.distance < 125 && slime.health > 0) {
+        this.rotation = Phaser.Math.Angle.Between(
+          this.x,
+          this.y,
+          this.target.x,
+          this.target.y
+        );
+        scene.physics.velocityFromRotation(this.rotation, 50, this.body.velocity);
+      }
+    } else if (this.distance < 50 && slime.health > 0) {
       this.rotation = Phaser.Math.Angle.Between(
         this.x,
         this.y,
