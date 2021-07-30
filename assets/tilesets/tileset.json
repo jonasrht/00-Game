@@ -1,5 +1,12 @@
 { "backgroundcolor":"#7bcb69",
  "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":50,
  "infinite":false,
  "layers":[
@@ -166,7 +173,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":false,
+                 "visible":true,
                  "width":0,
                  "x":477.5,
                  "y":339
@@ -178,7 +185,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":false,
+                 "visible":true,
                  "width":0,
                  "x":275.5,
                  "y":407
@@ -190,10 +197,22 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":false,
+                 "visible":true,
                  "width":0,
                  "x":1056.5,
                  "y":441
+                }, 
+                {
+                 "height":0,
+                 "id":19,
+                 "name":"",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":710,
+                 "y":669.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -246,10 +265,10 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":19,
+ "nextobjectid":20,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.4.3",
  "tileheight":16,
  "tilesets":[
         {
@@ -11785,6 +11804,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":1.4,
  "width":100
 }
