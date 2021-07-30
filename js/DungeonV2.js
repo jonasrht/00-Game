@@ -87,10 +87,17 @@ export default class Dungeon extends Phaser.Scene {
         });
 
         // Spieler erstellen
+        // this.player = new Player(
+        //     this,
+        //     this.spawnPoint.x,
+        //     this.spawnPoint.y,
+        //     "atlas"
+        // );
+
         this.player = new Player(
             this,
-            this.spawnPoint.x,
-            this.spawnPoint.y,
+            575,
+            680,
             "atlas"
         );
         //this.player = new Player(this, 398, 321, this.selectedCharacter);
@@ -107,6 +114,23 @@ export default class Dungeon extends Phaser.Scene {
             );
             this.schalter.setPipeline("Light2D");
         });
+
+        // Heilmittel
+        this.heilmittelSpawn = map.findObject(
+            "doors",
+            (obj) => obj.name === "heilmittel"
+        );
+
+        this.heilmittel = this.add.sprite(this.heilmittelSpawn.x, this.heilmittelSpawn.y, 'briefHeilung');
+        this.uiScene = this.scene.get('uiScene');
+        this.physics.add.existing(this.heilmittel);
+        //this.heilmittel.setImmovable(true);
+        this.doorCollide = this.physics.add.collider(this.player, this.heilmittel, () => {
+            this.uiScene.heilmittelBriefFunc();
+        });
+
+
+
 
         // Slime Gruppe
         this.slimeGroup = [];
@@ -207,6 +231,12 @@ export default class Dungeon extends Phaser.Scene {
     openDoorTwo() {
         this.doorZuLayer2.setAlpha(0);
         this.door2Collide.destroy();
+    }
+
+    gameFertig() {
+        this.scene.remove("uiScene");
+        this.scene.start("mainMenu");
+
     }
 
     update(time, delta) {

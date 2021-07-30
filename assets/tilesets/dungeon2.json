@@ -167,14 +167,14 @@
                 {
                  "height":0,
                  "id":173,
-                 "name":"doorDungeonThree",
+                 "name":"heilmittel",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":631.5,
-                 "y":748
+                 "x":575,
+                 "y":704
                 }],
          "opacity":1,
          "type":"objectgroup",

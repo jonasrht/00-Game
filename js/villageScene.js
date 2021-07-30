@@ -300,19 +300,6 @@ export default class villageScene extends Phaser.Scene {
                     loop: true
                 });
                 break;
-            // case "buergermeister":
-            //     if (this.uiScene.firstQuest != true) {
-            //         this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
-            //         this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
-            //         this.uiScene.questDoneAllert();
-            //         this.uiScene.addQuest("- Finde einen Weg zur Höhle!");
-            //         this.uiScene.newQuestAllert();
-            //         this.uiScene.firstQuest = true;
-            //     } else {
-            //         this.uiScene.createBox("Ich hoffe du findest das Heilmittel, alle im Dorf hoffen auf dich.")
-            //     }
-
-            //     break;
             default:
                 break;
         }
