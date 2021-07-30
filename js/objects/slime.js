@@ -213,7 +213,7 @@ createAnims() {
     }
 
     if (this.texture.key == 'slimeGruen') {
-      if (this.distance < 125 && slime.health > 0) {
+      if (this.distance < 155 && slime.health > 0) {
         this.rotation = Phaser.Math.Angle.Between(
           this.x,
           this.y,

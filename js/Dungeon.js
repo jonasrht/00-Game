@@ -87,8 +87,8 @@ export default class Dungeon extends Phaser.Scene {
         })
 
         // Spieler erstellen
-        //this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
-        this.player = new Player(this, 320, 664, this.selectedCharacter);
+        this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
+        //this.player = new Player(this, 320, 664, this.selectedCharacter);
         //Schalter
 
         this.schalterGrp = map.createFromObjects('Schalter');
@@ -120,7 +120,7 @@ export default class Dungeon extends Phaser.Scene {
                 this.player.pushBack();
             }
             else if (slime.texture == 'slimeGruen') {
-                this.uiScene.removeHearts(2);
+                this.uiScene.removeHeart();
                 this.player.pushBack();
             }
         });
