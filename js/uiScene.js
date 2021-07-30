@@ -242,7 +242,6 @@ export default class uiScene extends Phaser.Scene {
         } else {
             dungeon2.handleGameover();
         }
-        //console.log("GameOver :(((");
     }
 
     zeigeBrief() {

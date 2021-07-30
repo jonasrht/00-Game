@@ -198,7 +198,6 @@ export default class Dungeon extends Phaser.Scene {
 
     openDoorOne() {
         this.doorZuLayer.setAlpha(0);
-        console.log(this.doorCollide);
         if (this.doorCollide.world != null) {
             this.doorCollide.destroy();
         }
@@ -223,7 +222,6 @@ export default class Dungeon extends Phaser.Scene {
         light.y = this.player.y;
 
         if (Phaser.Input.Keyboard.JustDown(this.six)) {
-            console.log("x" + this.player.x, "y:" + this.player.y);
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.q)) {

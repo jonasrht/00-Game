@@ -244,7 +244,6 @@ export default class villageScene extends Phaser.Scene {
     bewohnerDialog(player, bewohner) {
         player.setMovement(false);
         player.anims.stop();
-        console.log(bewohner.texture.key);
         switch (bewohner.texture.key) {
             case "bewohner3":
                 this.uiScene.createBox("... ich habe tierische Angst vor den Monstern!")
@@ -278,7 +277,6 @@ export default class villageScene extends Phaser.Scene {
     schildDialog(player, schild) {
         player.setMovement(false);
         player.anims.stop();
-        console.log(schild.name);
         switch (schild.name) {
             case "schildCave":
                 this.uiScene.createBox("... Betreten verboten, lebensgefahr!")
@@ -385,7 +383,6 @@ export default class villageScene extends Phaser.Scene {
             this.scene.start('mainMenu');
         }
         if (Phaser.Input.Keyboard.JustDown(this.wasd.six)) {
-            console.log("x" + this.player.x, "y:" + this.player.y);
         }
 
         this.player.update(this.cursors, this.selectedCharacter);

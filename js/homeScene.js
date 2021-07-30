@@ -172,7 +172,6 @@ export default class homeScene extends Phaser.Scene {
         this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX)
       )
     ) {
-      console.log("x" + this.player.x, "y:" + this.player.y);
     }
   }
 }

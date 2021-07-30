@@ -211,10 +211,7 @@ export default class Menu extends Phaser.Scene {
             loop: true,
             delay: 0
         }
-
-        console.log(this.audioManager.musicConfig);
-
-        
+      
         this.startGameSound = this.sound.add("startGame");
 
         // Einmal in der Scene
