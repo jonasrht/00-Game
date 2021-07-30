@@ -203,9 +203,12 @@ export default class villageScene extends Phaser.Scene {
         // Bewohner hinzufügen
         this.bewohnerGroup = [];
         this.bewohner = map.createFromObjects('bewohner');
+        
         this.textureNum = 1;
         this.bewohner.forEach((bewohner) => {
+            
             if (bewohner.name == "buergermeister") {
+                console.log("juhu");
                 this.bewohner = new Bewohner(this, bewohner.x, bewohner.y, 'buergermeister', 1);
                 this.bewohnerGroup.push(this.bewohner)
             } else {
@@ -244,7 +247,19 @@ export default class villageScene extends Phaser.Scene {
     bewohnerDialog(player, bewohner) {
         player.setMovement(false);
         player.anims.stop();
-        console.log(bewohner.texture.key);
+        if (bewohner.texture == "buergermeister") {
+            if (this.uiScene.firstQuest != true) {
+                this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
+                this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
+                this.uiScene.questDoneAllert();
+                this.uiScene.addQuest("- Finde einen Weg zur Höhle!");
+                this.uiScene.newQuestAllert();
+                this.uiScene.firstQuest = true;
+            } else {
+                this.uiScene.createBox("Ich hoffe du findest das Heilmittel, alle im Dorf hoffen auf dich.")
+            }
+        }
+
         switch (bewohner.texture.key) {
             case "bewohner3":
                 this.uiScene.createBox("... ich habe tierische Angst vor den Monstern!")
@@ -285,19 +300,19 @@ export default class villageScene extends Phaser.Scene {
                     loop: true
                 });
                 break;
-            case "buergermeister":
-                if (this.uiScene.firstQuest != true) {
-                    this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
-                    this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
-                    this.uiScene.questDoneAllert();
-                    this.uiScene.addQuest("- Finde einen Weg zur Höhle!");
-                    this.uiScene.newQuestAllert();
-                    this.uiScene.firstQuest = true;
-                } else {
-                    this.uiScene.createBox("Ich hoffe du findest das Heilmittel, alle im Dorf hoffen auf dich.")
-                }
+            // case "buergermeister":
+            //     if (this.uiScene.firstQuest != true) {
+            //         this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
+            //         this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
+            //         this.uiScene.questDoneAllert();
+            //         this.uiScene.addQuest("- Finde einen Weg zur Höhle!");
+            //         this.uiScene.newQuestAllert();
+            //         this.uiScene.firstQuest = true;
+            //     } else {
+            //         this.uiScene.createBox("Ich hoffe du findest das Heilmittel, alle im Dorf hoffen auf dich.")
+            //     }
 
-                break;
+            //     break;
             default:
                 break;
         }
