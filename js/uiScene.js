@@ -179,7 +179,7 @@ export default class uiScene extends Phaser.Scene {
                 } else {
                     this.damageWeiblich.play();
                 }
-            } else {
+            } else if (this.heartContainer.length <= 0) {
                 this.handleGameover();
             }
         } else {
@@ -193,7 +193,7 @@ export default class uiScene extends Phaser.Scene {
                 } else {
                     this.damageWeiblich.play();
                 }
-            } else {
+            } else if (this.heartContainer.length <= 0){
                 this.handleGameover();
             }
         }
@@ -230,7 +230,6 @@ export default class uiScene extends Phaser.Scene {
                 this.damageWeiblich.play();
             }
         }
-
     }
 
     handleGameover() {
@@ -240,9 +239,10 @@ export default class uiScene extends Phaser.Scene {
         var isActiveD2 = this.scene.isActive('DungeonV2');
         if(isActiveD){
             dungeon.handleGameover();
+        } else {
+            dungeon2.handleGameover();
         }
-        console.log("GameOver :(((");
-
+        //console.log("GameOver :(((");
     }
 
     zeigeBrief() {
