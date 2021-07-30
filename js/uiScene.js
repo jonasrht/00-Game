@@ -76,6 +76,8 @@ export default class uiScene extends Phaser.Scene {
         //this.bgImg = this.add.image(425, 650, 'dialogbox').setVisible(false);
         //this.createTypeTextBox("This is a test!")
 
+
+
         this.damageMaennlich = this.sound.add("damageMaennlich");
         this.damageWeiblich = this.sound.add("damageWeiblich");
     }
@@ -94,6 +96,36 @@ export default class uiScene extends Phaser.Scene {
                 delay: 100
             })
         }
+    }
+
+    // Brief für das Heilmittel
+    heilmittelBriefFunc() {
+        var dungeon = this.scene.get('DungeonV2');
+        this.label = this.add.text(540, 360, 'THE END', { fontFamily: 'mainfont', fontSize: '60px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.label.setAlpha(0)
+        this.heilmittelBrief = this.add.image(650, 360, 'rezeptBrief').setScale(1.5);
+        this.exitHeilmittel = this.add.image(850, 160, 'exitButton');
+        this.exitHeilmittel.setInteractive({ useHandCursor: true });
+        this.exitHeilmittel.on('pointerdown', function () {
+            this.heilmittelBrief.destroy();
+            this.heilmittelBrief.setAlpha(0);
+            this.tweens.add({
+                targets: this.label,
+                alpha: { value: 1, duration: 5000, ease: 'Power1' },
+                onComplete: () => {
+                    dungeon.gameFertig();
+                    // this.cameras.main.fadeOut(1000, 0, 0, 0);
+                    // this.cameras.main.once(
+                    //     Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE,
+                    //     (cam, effect) => {
+                    //         dungeon.gameFertig();
+                    //     }
+                    // );
+                }
+            });
+            
+
+        }, this);
     }
 
     ultCooldown(onoff) {

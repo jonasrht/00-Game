@@ -259,6 +259,7 @@ export default class villageScene extends Phaser.Scene {
                 this.uiScene.createBox("Ich hoffe du findest das Heilmittel, alle im Dorf hoffen auf dich.")
             }
         }
+
         switch (bewohner.texture.key) {
             case "bewohner3":
                 this.uiScene.createBox("... ich habe tierische Angst vor den Monstern!")
@@ -299,19 +300,6 @@ export default class villageScene extends Phaser.Scene {
                     loop: true
                 });
                 break;
-            // case "buergermeister":
-            //     if (this.uiScene.firstQuest != true) {
-            //         this.uiScene.createBox("...WAS es gibt Aussicht auf ein Heilmittel. Das ist das Beste, was ich seit Jahren gehört habe, du musst das Heilmittel finden.")
-            //         this.uiScene.removeQuest("- Teile dem Bürgermeister\n   deinen Fund mit");
-            //         this.uiScene.questDoneAllert();
-            //         this.uiScene.addQuest("- Finde einen Weg zur Höhle!");
-            //         this.uiScene.newQuestAllert();
-            //         this.uiScene.firstQuest = true;
-            //     } else {
-            //         this.uiScene.createBox("Ich hoffe du findest das Heilmittel, alle im Dorf hoffen auf dich.")
-            //     }
-
-            //     break;
             default:
                 break;
         }
@@ -322,6 +310,7 @@ export default class villageScene extends Phaser.Scene {
     schildDialog(player, schild) {
         player.setMovement(false);
         player.anims.stop();
+        console.log(schild.name);
         switch (schild.name) {
             case "schildCave":
                 this.uiScene.createBox("... Betreten verboten, lebensgefahr!")
@@ -428,6 +417,7 @@ export default class villageScene extends Phaser.Scene {
             this.scene.start('mainMenu');
         }
         if (Phaser.Input.Keyboard.JustDown(this.wasd.six)) {
+            console.log("x" + this.player.x, "y:" + this.player.y);
         }
 
         this.player.update(this.cursors, this.selectedCharacter);
