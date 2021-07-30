@@ -112,26 +112,26 @@
          "name":"doors",
          "objects":[
                 {
-                 "height":20.5,
+                 "height":11.5,
                  "id":4,
                  "name":"doorHome",
                  "rotation":0,
                  "type":"",
                  "visible":false,
                  "width":14.5,
-                 "x":489.333333333333,
-                 "y":547
+                 "x":490.333333333333,
+                 "y":549
                 }, 
                 {
-                 "height":20.5,
+                 "height":9.875,
                  "id":8,
                  "name":"doorShop",
                  "rotation":0,
                  "type":"",
                  "visible":false,
                  "width":14.5,
-                 "x":538.204545454545,
-                 "y":448.613636363636
+                 "x":538.329545454545,
+                 "y":455.613636363636
                 }, 
                 {
                  "height":11.2727272727273,
