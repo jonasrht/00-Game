@@ -147,6 +147,14 @@ export default class homeScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.shop, () => {
       this.scene.pause().launch("shopScene");
     });
+
+    // Shop
+    this.shop = homeroom.createFromObjects("shop", { name: "schmiedVil" });
+    this.physics.world.enable(this.shop);
+    this.shop[0].body.immovable = true;
+    this.physics.add.collider(this.player, this.shop, () => {
+        this.scene.pause().launch("schmiedScene");
+    });
   }
 
   // Funktion um in eine andere Scene zu wechseln

@@ -3,8 +3,7 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"."
+         "format":"json"
         }
     },
  "height":100,
@@ -93,10 +92,10 @@
                  "name":"schalter11",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":25.8182,
                  "x":388.424233333333,
-                 "y":220.234866666667
+                 "y":242.234866666667
                 }, 
                 {
                  "height":18.3636,
@@ -104,7 +103,7 @@
                  "name":"schalter22",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":25.8182,
                  "x":851.257566666667,
                  "y":496.651533333333
@@ -115,7 +114,7 @@
                  "name":"schalter33",
                  "rotation":90,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":25.8182,
                  "x":533.051626431183,
                  "y":486.718158762138
@@ -1589,7 +1588,7 @@
  "nextobjectid":333,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.7.1",
  "tileheight":16,
  "tilesets":[
         {
@@ -10824,6 +10823,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.4,
+ "version":"1.6",
  "width":100
 }
