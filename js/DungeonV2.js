@@ -86,18 +86,11 @@ export default class Dungeon extends Phaser.Scene {
             this.stachel.setPipeline("Light2D");
         });
 
-        // Spieler erstellen
-        // this.player = new Player(
-        //     this,
-        //     this.spawnPoint.x,
-        //     this.spawnPoint.y,
-        //     "atlas"
-        // );
-
+        //Spieler erstellen
         this.player = new Player(
             this,
-            575,
-            680,
+            this.spawnPoint.x,
+            this.spawnPoint.y,
             "atlas"
         );
         //this.player = new Player(this, 398, 321, this.selectedCharacter);
