@@ -120,7 +120,7 @@ export default class Dungeon extends Phaser.Scene {
                 this.player.pushBack();
             }
             else if (slime.texture == 'slimeGruen') {
-                this.uiScene.removeHearts(2);
+                this.uiScene.removeHeart();
                 this.player.pushBack();
             }
         });
