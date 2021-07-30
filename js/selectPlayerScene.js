@@ -39,7 +39,7 @@ export default class selectPlayerScene extends Phaser.Scene {
         this.btnPlayerTwo.on("pointerdown", () => {
             this.selectedPlayer = "atlas";
             this.scene.start("uiScene");
-            this.scene.start("Dungeon", { char: "atlas" });
+            this.scene.start("villageScene", { char: "atlas" });
             //this.scene.start("villageScene", { char: "atlas" });
         });
 

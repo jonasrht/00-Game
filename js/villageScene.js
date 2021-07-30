@@ -190,15 +190,16 @@ export default class villageScene extends Phaser.Scene {
         });
 
         // Items hinzufügen
-        this.item = map.createFromObjects('items');
-        this.item.forEach((item) => {
-            if (item.name == "trankHerz") {
-                this.item = new Item(this, item.x, item.y, 'trankHerz', 1);
-            } else {
-                this.item = new Item(this, item.x, item.y, 'heartIcon', 1);
-            }
-        });
-
+        if (this.startedOnce == false) {
+            this.item = map.createFromObjects('items');
+            this.item.forEach((item) => {
+                if (item.name == "trankHerz") {
+                    this.item = new Item(this, item.x, item.y, 'trankHerz', 1);
+                } else {
+                    this.item = new Item(this, item.x, item.y, 'heartIcon', 1);
+                }
+            });
+        }
 
         // Bewohner hinzufügen
         this.bewohnerGroup = [];
@@ -232,7 +233,7 @@ export default class villageScene extends Phaser.Scene {
         })
         this.player.setMovement(false);
         if (this.startedOnce == false) {
-            // this.startScene();
+            this.startScene();
         }
         this.startedOnce = true;
         // Einmal in der Scene
