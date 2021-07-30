@@ -225,7 +225,15 @@ export default class uiScene extends Phaser.Scene {
     }
 
     handleGameover() {
+        var dungeon = this.scene.get('Dungeon');
+        var dungeon2 = this.scene.get('DungeonV2');
+        var isActiveD = this.scene.isActive('Dungeon');
+        var isActiveD2 = this.scene.isActive('DungeonV2');
+        if(isActiveD){
+            dungeon.handleGameover();
+        }
         console.log("GameOver :(((");
+
     }
 
     zeigeBrief() {
