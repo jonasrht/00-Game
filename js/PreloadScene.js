@@ -146,8 +146,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("guiIngameInactive", "assets/img/gui-ingame_inactive.png");
     // Buttons
     this.load.image("exitButton", "assets/img/exitButton4.png");
-    this.load.image("MenuTop", "assets/img/MenuTop.png");
-    this.load.image("MenuMapTop", "assets/img/MenuMapTop.png");
+    this.load.image("MenuTop", "assets/img/menuTop.png");
+    this.load.image("MenuMapTop", "assets/img/menuMapTop.png");
     this.load.image("switchOff", "assets/img/switch_off.png");
     this.load.image("switchOn", "assets/img/switch_on.png");
 
