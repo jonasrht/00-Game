@@ -1,4 +1,11 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "target":"."
+        }
+    },
  "height":100,
  "infinite":false,
  "layers":[
@@ -14,7 +21,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":87.5,
                  "y":114.25
@@ -26,7 +33,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":690.333333333333,
                  "y":152
@@ -38,7 +45,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":430,
                  "y":378.833333333333
@@ -50,7 +57,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":84.5,
                  "y":525.833333333333
@@ -62,7 +69,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":648.25,
                  "y":598.583333333333
@@ -111,7 +118,7 @@
                  "point":true,
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":622.5,
                  "y":503
@@ -246,7 +253,7 @@
                         }],
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":87.977272727273,
                  "y":644.931818181818
@@ -268,7 +275,7 @@
                  "name":"doorHouseBack",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":688.333333333333,
                  "y":161
@@ -279,7 +286,7 @@
                  "name":"doorHouseBack2",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":399.666666666667,
                  "y":400.060606060606
@@ -290,7 +297,7 @@
                  "name":"doorSchmiedBack",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":647.5,
                  "y":617.75
@@ -323,7 +330,7 @@
                  "name":"schmiedVil",
                  "rotation":0,
                  "type":"",
-                 "visible":true,
+                 "visible":false,
                  "width":0,
                  "x":639,
                  "y":533.75
@@ -338,7 +345,7 @@
  "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.4.3",
  "tileheight":16,
  "tilesets":[
         {
@@ -16958,6 +16965,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":1.4,
  "width":100
 }

@@ -8,7 +8,6 @@ export default class schmiedScene extends Phaser.Scene {
     }
 
     create() {
-        console.log("Willkommen!");
 
         this.buttonSound = this.sound.add("buttonSound");
         this.shopSound = this.sound.add('shopsound');

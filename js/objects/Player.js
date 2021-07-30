@@ -183,7 +183,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     sword() {
-        console.log(this.counter);
         if (this.direction === 'right') {
             this.swordHitbox = this.scene.add.rectangle(this.x + 12, this.y, 10, 20);
         }
@@ -301,7 +300,6 @@ class UltState extends State {
         if (hero.ultCooldown == false) {
             scene.uiScene.ultCooldown(1);
             hero.setVelocity(0);
-            console.log(hero);
             if (hero.texture.key == 'atlasPink') {
                 hero.anims.play("sword-ultFemale");
             } else {

@@ -41,8 +41,6 @@ export default class inventoryScene extends Phaser.Scene {
 
     create() {
         this.createCount++
-
-        console.log(itemsInInv);
         if (itemsInInv.length != 0) {
             this.itemToInvNew(itemsInInv);
             this.itemListener(itemsInInv);
@@ -73,7 +71,6 @@ export default class inventoryScene extends Phaser.Scene {
     }
 
     itemListener(itemsInInv) {
-        console.log(itemsInInv);
         var uiScene = this.scene.get('uiScene');
         itemsInInv.forEach(element => {
             if (element != undefined && element.name != 'Aktiv') {
@@ -81,14 +78,12 @@ export default class inventoryScene extends Phaser.Scene {
                 element.setInteractive();
                 element.on('pointerdown', function () {
                     itemsInInv = itemsInInv.filter(item => item !== element);
-                    console.log(element);
                     switch (element.texture.key) {
                         case 'trankHerz':
                             uiScene.addHeart();
                             element.setAlpha(0);
                             element.setVisible(false);
                             element.destroy();
-                            console.log(itemsInInv);
                             break;
                         case 'trankHerzBig':
                             uiScene.addHeart();

@@ -6,7 +6,6 @@ export default class shopScene extends Phaser.Scene {
   preload() {}
 
   create() {
-    console.log("Willkommen im Shop");
 
     this.buttonSound = this.sound.add("buttonSound");
     this.shopSound = this.sound.add("shopsound");

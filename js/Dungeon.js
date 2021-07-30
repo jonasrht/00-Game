@@ -107,7 +107,6 @@ export default class Dungeon extends Phaser.Scene {
         })
 
         this.physics.add.collider(this.player, this.slimeGroup, (player, slime) => {
-            console.log(slime);
             if (slime.texture == 'slimeRot') {
                 this.uiScene.removeHearts(4);
                 this.player.pushBack();
@@ -147,7 +146,6 @@ export default class Dungeon extends Phaser.Scene {
 
         // Tür zum Dorf
         this.d1Ausgang = map.createFromObjects('Objects', { name: 'd1Ausgang' });
-        console.log(this.d1Ausgang);
         this.physics.world.enable(this.d1Ausgang);
         this.d1Ausgang[0].body.immovable = true;
         this.physics.add.collider(this.player, this.d1Ausgang, () => {
@@ -192,7 +190,6 @@ export default class Dungeon extends Phaser.Scene {
 
     openDoorOne() {
         this.doorZuLayer.setAlpha(0);
-        console.log(this.doorCollide);
         if (this.doorCollide.world != null) {
             this.doorCollide.destroy();
         }
@@ -218,7 +215,6 @@ export default class Dungeon extends Phaser.Scene {
 
 
         if (Phaser.Input.Keyboard.JustDown(this.six)) {
-            console.log("x" + this.player.x, "y:" + this.player.y);
         }
 
 
