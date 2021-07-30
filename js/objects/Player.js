@@ -230,7 +230,6 @@ class IdleState extends State {
         this.w = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.e = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
-        // Transition to swing if pressing space
         if (this.e.isDown) {
             this.stateMachine.transition('ult');
             return;
@@ -240,7 +239,6 @@ class IdleState extends State {
             this.stateMachine.transition('swing');
         }
 
-        // Transition to move if pressing a movement key
         if ((left.isDown || right.isDown || up.isDown || down.isDown) && hero.movement) {
             this.stateMachine.transition('move');
             return;
@@ -254,7 +252,6 @@ class MoveState extends State {
         this.w = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.e = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
 
-        // Transition to swing if pressing space
         if (this.e.isDown) {
             this.stateMachine.transition('ult');
             return;
@@ -265,7 +262,6 @@ class MoveState extends State {
             return;
         }
 
-        // Transition to idle if not pressing movement keys
         if (!(left.isDown || right.isDown || up.isDown || down.isDown)) {
             this.stateMachine.transition('idle');
             return;
@@ -286,7 +282,6 @@ class MoveState extends State {
             hero.setVelocityX(100);
             hero.direction = 'right';
         }
-        //hero.body.velocity.normalize().scale(100);
 
         if (left.isDown) {
             hero.anims.play("misa-left-walk", true);
