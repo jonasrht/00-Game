@@ -9,6 +9,7 @@ import instructionsScene from "./instructionsScene.js";
 import shopScene from "./shopScene.js";
 import inventoryScene from "./inventoryScene.js";
 import Dungeon from "./Dungeon.js";
+import DungeonV2 from "./DungeonV2.js";
 import audioManager from "./audioManager.js";
 
 export const config = {
@@ -27,7 +28,7 @@ export const config = {
             { key: 'gzDialog', plugin: GzDialog, mapping: 'gzDialog' }
         ]
     },
-    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene, instructionsScene, shopScene, inventoryScene, Dungeon, audioManager],
+    scene: [PreloadScene, Menu, selectPlayerScene, villageScene, homeScene, uiScene, instructionsScene, shopScene, inventoryScene, Dungeon, audioManager, DungeonV2],
     physics: {
         default: "arcade",
         arcade: {

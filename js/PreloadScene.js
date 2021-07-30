@@ -22,6 +22,13 @@ export default class PreloadScene extends Phaser.Scene {
     );
     this.load.image("interior", "assets/tilesets/Interiors_free_16x16.png");
 
+    this.load.tilemapTiledJSON("dungeonMapv2", "assets/tilesets/dungeon2.json");
+    this.load.image(
+      "dungeonTiles",
+      "assets/tilesets/0x72_DungeonTilesetII_v1.3.png"
+    );
+    this.load.image("interior", "assets/tilesets/Interiors_free_16x16.png");
+
     this.load.tilemapTiledJSON("dungeonMap", "assets/tilesets/dungeon.json");
     this.load.image(
       "dungeonTiles",
