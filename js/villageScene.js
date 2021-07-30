@@ -3,6 +3,7 @@ import Player from "./objects/Player.js";
 import Bewohner from "./objects/bewohner.js"
 import instructionsScene from "./instructionsScene.js";
 import uiScene from "./uiScene.js";
+import Item from "./objects/item.js";
 
 export default class villageScene extends Phaser.Scene {
 
@@ -44,6 +45,9 @@ export default class villageScene extends Phaser.Scene {
     }
 
     create() {
+        
+        this.invScene = this.scene.get('inventoryScene');
+
         // Hintergrundmusik
         this.bgDorfMusic = this.sound.add("dorfMusic");
         this.bgDorfMusic.play({loop: true, volume: 0.1});
@@ -182,12 +186,20 @@ export default class villageScene extends Phaser.Scene {
             this.schildDialog(player, schild);
         });
 
-        console.log(this.schilde);
+        // Items hinzufügen
+        this.item = map.createFromObjects('items');
+        this.item.forEach((item) => {
+            if (item.name == "trankHerz") {
+                this.item = new Item(this, item.x, item.y, 'trankHerz', 1);
+            } else {
+                this.item = new Item(this, item.x, item.y, 'heartIcon', 1);
+            }
+        });
+
 
         // Bewohner hinzufügen
         this.bewohnerGroup = [];
         this.bewohner = map.createFromObjects('bewohner');
-        console.log(this.bewohner);
         this.textureNum = 1;
         this.bewohner.forEach((bewohner) => {
             if (bewohner.name == "buergermeister") {
