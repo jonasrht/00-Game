@@ -50,9 +50,12 @@ export default class villageScene extends Phaser.Scene {
 
         // Hintergrundmusik
         this.bgDorfMusic = this.sound.add("dorfMusic");
-        this.bgDorfMusic.play({loop: true, volume: 0.1});
-        this.uiScene = this.scene.get('uiScene');
+        if (this.startedOnce == false) {
+            this.bgDorfMusic.play({loop: true, volume: 0.1});
+        }
 
+        this.uiScene = this.scene.get('uiScene');
+        this.invScene = this.scene.get('inventoryScene');
         this.dooropenSound = this.sound.add("dooropenSound");
         if (this.startedOnce == false) {
             this.scene.run('instructionsScene');

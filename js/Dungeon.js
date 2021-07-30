@@ -186,6 +186,10 @@ export default class Dungeon extends Phaser.Scene {
         });
     }
 
+    handleGameover(){
+        this.switchScene('homeScene', "Gameover");
+    }
+
     openDoorOne() {
         this.doorZuLayer.setAlpha(0);
         console.log(this.doorCollide);
