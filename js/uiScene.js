@@ -165,59 +165,63 @@ export default class uiScene extends Phaser.Scene {
 
     removeHeart() {
         var dungeon = this.scene.get('Dungeon');
+        var dungeon2 = this.scene.get('DungeonV2');
+        var isActiveD = this.scene.isActive('Dungeon');
+        var isActiveD2 = this.scene.isActive('DungeonV2');
         if ((this.heartContainer.length > 0) && (dungeon.player.godmode == false)) {
             this.x = this.x - 20;
             this.heartContainer[this.heartContainer.length - 1].destroy();
             this.heartContainer.pop();
+        } else {
+            this.handleGameover();
+        }
+        if (isActiveD) {
             dungeon.player.hitAnim(dungeon.player);
             if (dungeon.player.texture.key == "atlas") {
                 this.damageMaennlich.play();
             } else {
                 this.damageWeiblich.play();
             }
-        } else {
-            this.handleGameover();
-        }
-    }
-
-    removeHeart(anzahl) {
-        var dungeon = this.scene.get('Dungeon');
-
-        if (this.heartContainer.length - anzahl > 0 && (dungeon.player.godmode == false)) {
-            for (let i = anzahl; i > 0; i--) {
-                this.x = this.x - 20;
-                this.heartContainer[this.heartContainer.length - 1].destroy();
-                this.heartContainer.pop();
-                dungeon.player.hitAnim(dungeon.player);
-                if (dungeon.player.texture.key == "atlas") {
-                    this.damageMaennlich.play();
-                } else {
-                    this.damageWeiblich.play();
-                }
+        } else if (isActiveD2) {
+            dungeon2.player.hitAnim(dungeon2.player);
+            if (dungeon2.player.texture.key == "atlas") {
+                this.damageMaennlich.play();
+            } else {
+                this.damageWeiblich.play();
             }
-        } else {
-            this.handleGameover();
         }
     }
 
     removeHearts(anzahl) {
         var dungeon = this.scene.get('Dungeon');
-
+        var dungeon2 = this.scene.get('DungeonV2');
+        var isActiveD = this.scene.isActive('Dungeon');
+        var isActiveD2 = this.scene.isActive('DungeonV2');
         if (this.heartContainer.length - anzahl > 0 && (dungeon.player.godmode == false)) {
             for (let i = anzahl; i > 0; i--) {
                 this.x = this.x - 20;
                 this.heartContainer[this.heartContainer.length - 1].destroy();
                 this.heartContainer.pop();
-                dungeon.player.hitAnim(dungeon.player);
-                if (dungeon.player.texture.key == "atlas") {
-                    this.damageMaennlich.play();
-                } else {
-                    this.damageWeiblich.play();
-                }
             }
         } else {
             this.handleGameover();
         }
+        if (isActiveD) {
+            dungeon.player.hitAnim(dungeon.player);
+            if (dungeon.player.texture.key == "atlas") {
+                this.damageMaennlich.play();
+            } else {
+                this.damageWeiblich.play();
+            }
+        } else if (isActiveD2) {
+            dungeon2.player.hitAnim(dungeon2.player);
+            if (dungeon2.player.texture.key == "atlas") {
+                this.damageMaennlich.play();
+            } else {
+                this.damageWeiblich.play();
+            }
+        }
+
     }
 
     handleGameover() {
@@ -226,6 +230,7 @@ export default class uiScene extends Phaser.Scene {
 
     zeigeBrief() {
         this.villageScene = this.scene.get('villageScene');
+
         this.brief = this.add.image(600, 260, 'brief').setDepth(50).setScale(1.5);
         this.exitbtn = this.add.image(718, 84, 'exitButton');
         this.exitbtn.setInteractive({ useHandCursor: true }).setDepth(55);
@@ -242,7 +247,15 @@ export default class uiScene extends Phaser.Scene {
 
     createBox(text) {
         var villageScene = this.scene.get('villageScene');
-        villageScene.player.movement = false;
+        var dungeonScene = this.scene.get('Dungeon');
+        var isActiveVil = this.scene.isActive('villageScene');
+        var isActiveDun = this.scene.isActive('Dungeon');
+        if (isActiveVil == true) {
+            villageScene.player.movement = false;
+        } else if (isActiveDun == true) {
+            dungeonScene.player.movement = false;
+        }
+
         this.uiAttackBtn.setVisible(false);
         //this.bgImg.setVisible(true);
         this.box = createTextBox(this, 100, 600, {

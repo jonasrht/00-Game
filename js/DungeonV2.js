@@ -9,31 +9,26 @@ var map;
 
 export default class Dungeon extends Phaser.Scene {
     constructor() {
-        super("Dungeon");
+        super("DungeonV2");
         this.arrow = null;
         this.counterArrow = 3;
     }
 
     init(data) {
-        this.selectedCharacter = data.char;
+        this.selectedCharacter = "atlas";
     }
 
     preload() {
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.load.image('block', 'https://labs.phaser.io/assets/sprites/block.png');
     }
 
     create() {
-        // Hintergrundmusik
-        this.bgMusic = this.sound.add("dungeonMusic");
-        this.bgMusic.play({loop: true, volume: 0.1});
-
         //this.physics.world.createDebugGraphic();
         this.uiScene = this.scene.get('uiScene');
         this.invScene = this.scene.get('inventoryScene');
 
         //tilemap einfügen
-        map = this.make.tilemap({ key: "dungeonMap" });
+        map = this.make.tilemap({ key: "dungeonMapv2" });
         const tileset = map.addTilesetImage("Dungeon", "dungeonTiles");
 
         //Eben createn
@@ -41,17 +36,17 @@ export default class Dungeon extends Phaser.Scene {
         this.worldLayer = map.createLayer("wand", tileset, 0, 0);
         this.chestLayer = map.createLayer("chest", tileset, 0, 0);
         this.saeulen = map.createLayer("saeulen", tileset, 0, 0);
-        this.buttonLayer = map.createLayer("button", tileset, 0, 0);
-        this.mobsLayer = map.createLayer("mobs", tileset, 0, 0);
+        //this.buttonLayer = map.createLayer("button", tileset, 0, 0);
+        //this.mobsLayer = map.createLayer("mobs", tileset, 0, 0);
         this.doorAufLayer = map.createLayer("doorAuf", tileset, 0, 0);
         this.doorZuLayer = map.createLayer("doorZu", tileset, 0, 0);
-        this.doorZuLayer2 = map.createLayer("doorZu2", tileset, 0, 0);
+        //this.doorZuLayer2 = map.createLayer("doorZu2", tileset, 0, 0);
 
         this.doorZuLayer.setAlpha(1);
-        this.doorZuLayer2.setAlpha(1);
+        //this.doorZuLayer2.setAlpha(1);
         this.doorAufLayer.setPipeline('Light2D').setDepth(11);
         this.doorZuLayer.setPipeline('Light2D');
-        this.doorZuLayer2.setPipeline('Light2D');
+        //this.doorZuLayer2.setPipeline('Light2D');
         this.worldLayer.setPipeline('Light2D');
         this.belowLayer.setPipeline('Light2D');
         this.saeulen.setPipeline('Light2D');
@@ -71,7 +66,7 @@ export default class Dungeon extends Phaser.Scene {
         this.saeulen.setCollisionByProperty({ collides: true });
         this.chestLayer.setCollisionByProperty({ collides: true });
         this.doorZuLayer.setCollisionByProperty({ collides: true }).setDepth(11);
-        this.doorZuLayer2.setCollisionByProperty({ collides: true }).setDepth(11);
+        //this.doorZuLayer2.setCollisionByProperty({ collides: true }).setDepth(11);
 
         //spawnpoint in tiled festlegen
         this.spawnPoint = map.findObject(
@@ -87,8 +82,8 @@ export default class Dungeon extends Phaser.Scene {
         })
 
         // Spieler erstellen
-        //this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, this.selectedCharacter);
-        this.player = new Player(this, 320, 664, this.selectedCharacter);
+        this.player = new Player(this, this.spawnPoint.x, this.spawnPoint.y, "atlas");
+        //this.player = new Player(this, 398, 321, this.selectedCharacter);
         //Schalter
 
         this.schalterGrp = map.createFromObjects('Schalter');
@@ -103,7 +98,7 @@ export default class Dungeon extends Phaser.Scene {
         this.slime = map.createFromObjects('orc');
         this.slime.forEach((slime) => {
             this.slime = new Slime(this, slime.x, slime.y, 'slimeBlau', 1);
-            this.slimeGroup.push(this.slime)
+            //this.slimeGroup.push(this.slime)
         })
 
         this.physics.add.collider(this.player, this.slimeGroup, (player, slime) => {
@@ -146,32 +141,29 @@ export default class Dungeon extends Phaser.Scene {
         this.projectiles = this.add.group();
 
         // Tür zum Dorf
-        this.d1Ausgang = map.createFromObjects('Objects', { name: 'd1Ausgang' });
-        console.log(this.d1Ausgang);
-        this.physics.world.enable(this.d1Ausgang);
-        this.d1Ausgang[0].body.immovable = true;
-        this.physics.add.collider(this.player, this.d1Ausgang, () => {
-            this.bgMusic.stop();
-            this.scene.start('villageScene', { name: 'd1Ausgang', char: this.selectedCharacter })
-        });
+        // this.d1Ausgang = map.createFromObjects('Objects', { name: 'd1Ausgang' });
+        // console.log(this.d1Ausgang);
+        // this.physics.world.enable(this.d1Ausgang);
+        // this.d1Ausgang[0].body.immovable = true;
+        // this.physics.add.collider(this.player, this.d1Ausgang, () => {
+        //     this.scene.start('villageScene', { name: 'd1Ausgang', char: this.selectedCharacter })
+        // });
 
         // Tür zu Level 2
-        this.doorDungeon2 = map.createFromObjects('doors', { name: 'doorDungeonTwo' });
-        this.physics.world.enable(this.doorDungeon2);
-        this.doorDungeon2[0].body.immovable = true;
-        this.colliderActivated = true;
-        this.physics.add.collider(this.player, this.doorDungeon2, () => {
-
-            this.scene.start('DungeonV2', this.selectedCharacter );
-            // if (this.slimeGroup.length > 0) {
-            //     this.uiScene.createBox("Du hast noch nicht alle Gegner besiegt!");
-            // } else {
-            //     this.uiScene.createBox("Du hast es ins Level 2 geschafft :)");
-            // }
-            // this.dooropenSound.play();
-            // this.switchScene('Dungeon', this.doorShop[0].name)
-            this.player.movement = true;
-        }, () => { return this.colliderActivated }, this);
+        // this.doorDungeon2 = map.createFromObjects('doors', { name: 'doorDungeonTwo' });
+        // this.physics.world.enable(this.doorDungeon2);
+        // this.doorDungeon2[0].body.immovable = true;
+        // this.colliderActivated = true;
+        // this.physics.add.collider(this.player, this.doorDungeon2, () => {
+        //     if (this.slimeGroup.length > 0) {
+        //         this.uiScene.createBox("Du hast noch nicht alle Gegner besiegt!");
+        //     } else {
+        //         this.uiScene.createBox("Du hast es ins Level 2 geschafft :)");
+        //     }
+        //     // this.dooropenSound.play();
+        //     // this.switchScene('Dungeon', this.doorShop[0].name)
+        //     this.player.movement = true;
+        // }, () => { return this.colliderActivated }, this);
 
         // Einmal in der Scene
         this.audioManager = this.scene.get("audioManager");
@@ -203,7 +195,8 @@ export default class Dungeon extends Phaser.Scene {
     update(time, delta) {
         const speed = 175;
         const prevVelocity = this.player.body.velocity.clone();
-        this.player.update(this.cursors, "atlas");
+        // this.player.update(this.cursors, "atlas");
+        this.player.update(this.cursors, this.selectedCharacter);
         this.slimeGroup.forEach((slime) => {
             slime.update(slime, this);
         });
@@ -252,4 +245,5 @@ export default class Dungeon extends Phaser.Scene {
         var arrow = new Arrow(this, direction);
         this.projectiles.add(arrow);
     }
+
 }

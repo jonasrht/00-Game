@@ -38,11 +38,11 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
     this.moveEvent.destroy();
     super.destroy();
     const slimeSound = Phaser.Math.Between(0, 1);
-    if (slimeSound == 0) {
-      this.slime1.play();
-    } else {
-      this.slime2.play();
-    }
+    // if (slimeSound == 0) {
+    //   this.slime1.play();
+    // } else {
+    //   this.slime2.play();
+    // }
   }
 
   handleCollide() {
