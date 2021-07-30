@@ -298,6 +298,7 @@ class MoveState extends State {
 class UltState extends State {
     enter(scene, hero) {
         if (hero.ultCooldown == false) {
+            scene.uiScene.ultCooldown(1);
             hero.setVelocity(0);
             if (hero.texture.key == 'atlasPink') {
                 hero.anims.play("sword-ultFemale");
@@ -322,7 +323,10 @@ class UltState extends State {
             });
             scene.time.addEvent({
                 delay: 3000,
-                callback: function () { hero.ultCooldown = false; },
+                callback: function () { 
+                    scene.uiScene.ultCooldown(0);
+                    hero.ultCooldown = false; 
+                },
                 callbackScope: this,
                 loop: false
             });
