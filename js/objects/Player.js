@@ -13,12 +13,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.setScale(0.5); // Skalierung des Sprites
         this.setOffset(0, 24)
         this.setCollideWorldBounds(true);
-        this.create(texture);
         this.movement = true;
         this.direction = 'down';
         this.scene = scene;
         this.counter = 0;
         this.godmode = false;
+        this.ultCooldown = false;
+        this.create(texture);
     }
 
     create(texture) {
@@ -133,8 +134,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             from: 0.5,
             to: 1,
             duration: 200,
-            onUpdate: function (tween)
-            {
+            onUpdate: function (tween) {
                 var opacity = tween.getValue();
                 player.setAlpha(opacity);
                 player.setTint(0xff002a);
@@ -212,7 +212,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     update(cursors, selectedCharacter) {
         this.body.setVelocity(0);
         if (this.movement == true) {
-            this.playerStateMachine.step();   
+            this.playerStateMachine.step();
         }
     }
 }
@@ -302,27 +302,39 @@ class MoveState extends State {
 
 class UltState extends State {
     enter(scene, hero) {
-        hero.setVelocity(0);
-        console.log(hero);
-        if (hero.texture.key == 'atlasPink') {
-            hero.anims.play("sword-ultFemale");
-        } else {
-            hero.anims.play("sword-ult");
-        }
-        //hero.schwerthieb.play();
-        this.swordHitbox = scene.add.rectangle(hero.x, hero.y, 50, 50);
-        scene.physics.add.existing(this.swordHitbox);
-        scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
-            slime.health = slime.health - 1;
-            if (slime.health == 0) {
-                slime.destroy();
+        if (hero.ultCooldown == false) {
+            hero.setVelocity(0);
+            console.log(hero);
+            if (hero.texture.key == 'atlasPink') {
+                hero.anims.play("sword-ultFemale");
+            } else {
+                hero.anims.play("sword-ult");
             }
-        });
+            //hero.schwerthieb.play();
+            this.swordHitbox = scene.add.rectangle(hero.x, hero.y, 50, 50);
+            scene.physics.add.existing(this.swordHitbox);
+            scene.physics.add.overlap(this.swordHitbox, scene.slimeGroup, (arrow, slime) => {
+                slime.health = slime.health - 1;
+                if (slime.health == 0) {
+                    slime.destroy();
+                }
+            });
 
-        hero.once('animationcomplete', () => {
-            this.swordHitbox.destroy();
-            this.stateMachine.transition('idle');
-        });
+            hero.once('animationcomplete', () => {
+                this.swordHitbox.destroy();
+                this.stateMachine.transition('idle');
+                hero.ultCooldown = true;
+                
+            });
+            scene.time.addEvent({
+                delay: 3000,
+                callback: function () { hero.ultCooldown = false; },
+                callbackScope: this,
+                loop: false
+            });
+            return;
+        }
+        this.stateMachine.transition('idle');
     }
 }
 
