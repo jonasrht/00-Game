@@ -248,12 +248,42 @@ export default class villageScene extends Phaser.Scene {
         switch (bewohner.texture.key) {
             case "bewohner3":
                 this.uiScene.createBox("... ich habe tierische Angst vor den Monstern!")
+                bewohner.zumStrand.pause();
+                bewohner.anims.stop();
+                this.time.addEvent({
+                    delay: 8000,
+                    callback: function () { 
+                        bewohner.zumStrand.resume()
+                     },
+                    callbackScope: this,
+                    loop: true
+                });
                 break;
             case "bewohner2":
                 this.uiScene.createBox("Schönes Wetter heute!")
+                bewohner.zumStrand.pause();
+                bewohner.anims.stop();
+                this.time.addEvent({
+                    delay: 8000,
+                    callback: function () { 
+                        bewohner.zumStrand.resume()
+                     },
+                    callbackScope: this,
+                    loop: true
+                });
                 break;
             case "bewohner1":
                 this.uiScene.createBox("Ich habe ein Gerücht gehört, dass es ein Heilmittel gibt.")
+                bewohner.zumStrand.pause();
+                bewohner.anims.stop();
+                this.time.addEvent({
+                    delay: 8000,
+                    callback: function () { 
+                        bewohner.zumStrand.resume()
+                     },
+                    callbackScope: this,
+                    loop: true
+                });
                 break;
             case "buergermeister":
                 if (this.uiScene.firstQuest != true) {

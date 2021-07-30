@@ -66,7 +66,7 @@ export default class bewohner extends Phaser.Physics.Arcade.Sprite {
       this.anims.play("misa-front-walk");
       this.anims.stop();
     }
-
+    this.zumStrand;
     if (this.texture.key == "bewohner1") {
       this.zumStrand = this.scene.tweens.add({
         targets: this,
