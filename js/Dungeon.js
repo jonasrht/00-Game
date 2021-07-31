@@ -186,6 +186,9 @@ export default class Dungeon extends Phaser.Scene {
 
     handleGameover(){
         this.switchScene('homeScene', "Gameover");
+        this.uiScene.addHeart();
+        this.uiScene.addHeart();
+        this.uiScene.addHeart();
     }
 
     openDoorOne() {
