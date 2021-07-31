@@ -139,6 +139,10 @@ export default class uiScene extends Phaser.Scene {
     }
 
     addQuest(text) {
+        console.log(this.questUiOpen);
+        if (this.questUiOpen != undefined) {
+            this.questUiOpen.setVisible(false);
+        }
         this.questText.push(text)
     }
 
