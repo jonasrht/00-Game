@@ -242,14 +242,14 @@ export default class Dungeon extends Phaser.Scene {
     );
   }
 
-  handleGameover(){
+  handleGameover() {
     this.slimeCollide.destroy();
     this.bgMusic.stop();
-    this.switchScene('homeScene', "Gameover");
+    this.switchScene("homeScene", "Gameover");
     this.uiScene.addHeart();
     this.uiScene.addHeart();
     this.uiScene.addHeart();
-}
+  }
 
   openDoorOne() {
     this.doorZuLayer.setAlpha(0);
