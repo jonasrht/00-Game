@@ -310,8 +310,10 @@ export default class uiScene extends Phaser.Scene {
         var isActiveVil = this.scene.isActive('villageScene');
         var isActiveDun = this.scene.isActive('Dungeon');
         if (isActiveVil == true) {
+            this.player = villageScene.player;
             villageScene.player.movement = false;
         } else if (isActiveDun == true) {
+            this.player = dungeonScene.player;
             dungeonScene.player.movement = false;
         }
 
@@ -323,7 +325,7 @@ export default class uiScene extends Phaser.Scene {
             fixedHeight: 65,
         })
         this.box.start(text, 50);
-        this.game.config.test = false;
+
     }
 
     createSpells() {
@@ -405,7 +407,7 @@ var createTextBox = function (scene, x, y, config) {
             // }, this);
             if (this.isLastPage) {
                 if (!this.isTyping) {
-                    scene.playerMovement();
+                    scene.player.movement = true;
                     scene.uiAttackBtn.setVisible(true);
                 }
                 return;
