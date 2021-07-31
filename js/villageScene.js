@@ -163,7 +163,7 @@ export default class villageScene extends Phaser.Scene {
             this.physics.world.enable(schild);
             schild.body.immovable = true;
         });
-        this.physics.add.collider(this.player, this.schilde, (player, schild) => {
+        this.physics.add.overlap(this.player, this.schilde, (player, schild) => {
             if (Phaser.Input.Keyboard.JustDown(this.space)) {
                 this.schildDialog(player, schild);
             }
@@ -204,7 +204,7 @@ export default class villageScene extends Phaser.Scene {
         });
 
         
-        this.physics.add.collider(this.player, this.bewohnerGroup, (player, bewohner) => {
+        this.physics.add.overlap(this.player, this.bewohnerGroup, (player, bewohner) => {
             if (Phaser.Input.Keyboard.JustDown(this.space)) {
                 this.bewohnerDialog(player, bewohner);
             }
