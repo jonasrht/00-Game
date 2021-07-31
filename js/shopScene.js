@@ -58,7 +58,7 @@ export default class shopScene extends Phaser.Scene {
     this.hearts.on(
       "pointerdown",
       function (pointer) {
-        if (uiScene.money >= 10) {
+        if (uiScene.money >= 30) {
           uiScene.addHeart();
           uiScene.updateMoney(-30);
           this.shopSound.play();
@@ -82,7 +82,7 @@ export default class shopScene extends Phaser.Scene {
     this.trankPower.on(
       "pointerdown",
       function (pointer) {
-        if (uiScene.money >= 1) {
+        if (uiScene.money >= 15) {
           invScene.itemFromShop("trankPower");
           uiScene.updateMoney(-15);
           this.shopSound.play();
