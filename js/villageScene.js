@@ -131,7 +131,6 @@ export default class villageScene extends Phaser.Scene {
         this.physics.world.enable(this.caveEnte);
         this.caveEnte[0].body.immovable = true;
         this.physics.add.collider(this.player, this.caveEnte, () => {
-            this.bgDorfMusic.stop();
             if (this.uiScene.firstQuest != true) {
                 this.uiScene.createBox("Die Zeit ist noch nicht reif.")
             } else if ((this.uiScene.firstQuest == true) && (this.uiScene.secondQuest == false)){
@@ -141,8 +140,10 @@ export default class villageScene extends Phaser.Scene {
                 this.uiScene.newQuestAllert();
                 this.uiScene.questDoneAllert();
                 this.uiScene.secondQuest = true;
+                this.bgDorfMusic.stop();
                 this.scene.start('Dungeon', { char: this.selectedCharacter });
             } else {
+                this.bgDorfMusic.stop();
                 this.scene.start('Dungeon', { char: this.selectedCharacter });
             }
         });
