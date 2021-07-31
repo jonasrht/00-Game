@@ -10,21 +10,17 @@ export default class Item extends Phaser.GameObjects.Sprite {
     }
 
     create(scene) {
-        console.log(this.itemID);
-        if (this.itemID === 'coinIcon') {
-            this.scene.uiScene.updateMoney(10);
-        } else {
-            this.scene.physics.add.collider(this, this.scene.player, () => {
+        this.scene.physics.add.collider(this, this.scene.player, () => {
+            
+            if (this.itemID === "heartIcon") {
+                this.heartItem();
+            } else if (this.itemID === "coinIcon") {
+                this.coinItem();
+            } else {
                 scene.invScene.itemToInventory(this);
-                if (this.itemID === "heartIcon") {
-                    this.heartItem();
-                }
-                if (this.itemID === "coinIcon") {
-                    this.coinItem();
-                }
-                this.destroy();
-            });
-        }
+            }
+            this.destroy();
+        });
 
     }
 
