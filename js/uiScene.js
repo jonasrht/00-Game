@@ -50,8 +50,8 @@ export default class uiScene extends Phaser.Scene {
         this.invIcon.setInteractive({ useHandCursor: true });
 
         // Attack Buttons
-        this.uiAttackBtn = this.add.image(640, 670, 'uiAttack').setScale(1.5);
-        this.uiAttackBtnDis = this.add.image(640, 670, 'guiIngameInactive').setScale(1.5).setAlpha(0);
+        this.uiAttackBtn = this.add.image(640, 640, 'uiAttack');
+        this.uiAttackBtnDis = this.add.image(640, 640, 'guiIngameInactive').setAlpha(0);
 
         // Inventar öffnen
         this.invIcon.on('pointerdown', function () {
