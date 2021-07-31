@@ -156,9 +156,6 @@ createAnims() {
     if (this.number > 0 && this.number < 11) {
         this.item = new Item(scene, slime.x, slime.y, "heartIcon");
     }
-    if (this.number > 11 && this.number < 18) {
-        this.item = new Item(scene, slime.x, slime.y, "arrow");
-    }
     if (this.number > 20 && this.number < 40) {
         this.item = new Item(scene, slime.x, slime.y, "coinIcon");
     }
