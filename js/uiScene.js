@@ -1,9 +1,12 @@
 import villageScene from "./villageScene.js";
+import {game} from "./game.js"
 
 const COLOR_PRIMARY = 0x4e342e;
 const COLOR_LIGHT = 0x7b5e57;
 const COLOR_DARK = 0x260e04;
-
+/**
+ * Das UI Des Spiels mit In
+ */
 var content = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
 export default class uiScene extends Phaser.Scene {
     constructor() {
@@ -34,12 +37,15 @@ export default class uiScene extends Phaser.Scene {
     }
 
     create() {
-
+        var soundManager =  new Phaser.Sound.WebAudioSoundManager(game);
+        // Die Scene wird immer nach vorne gebracht 
         this.scene.bringToTop();
         this.heartSound = this.sound.add("heartSound");
         for (let i = 0; i < 3; i++) {
             this.addHeart();
         }
+
+        // Anzeige oben rechts
         this.coinIcon = this.add.image(10, 10, 'coinIcon');
         this.moneyText = this.add.text(10, 10, ": " + this.money, { fontFamily: 'mainfont', fontSize: '18px', color: '#fffbed', stroke: '#62232f', align: 'center' });
 
@@ -76,31 +82,11 @@ export default class uiScene extends Phaser.Scene {
         //this.createTypeTextBox("This is a test!")
 
 
-
+        // Damage sounds
         this.damageMaennlich = this.sound.add("damageMaennlich");
         this.damageWeiblich = this.sound.add("damageWeiblich");
     }
 
-    // getPlayer() {
-    //     var villageScene = this.scene.get('villageScene')
-    //     var homeScene = this.scene.get('Dungeon');
-    //     var dungeon = this.scene.get('Dungeon');
-    //     var dungeon2 = this.scene.get('DungeonV2');
-    //     console.log(villageScene);
-    //     if (villageScene.aboveLayer.active == true) {
-    //         return villageScene.player;
-    //     }      
-    //     if (dungeon.aboveLayer.active == true) {
-    //         return dungeon.player;
-    //     }
-    //     if (dungeon2.aboveLayer.active == true) {
-    //         return dungeon2.player;
-    //     }
-    //     if (homeScene.aboveLayer.active == true) {
-    //         return homeScene.player;
-    //     }
-
-    // }
 
     createTypeTextBox(text) {
         this.label = this.add.text(100, 100, '', { fontFamily: 'mainfont', fontSize: '18px', color: '#fffbed', stroke: '#62232f', align: 'center' })
@@ -134,13 +120,6 @@ export default class uiScene extends Phaser.Scene {
                 alpha: { value: 1, duration: 5000, ease: 'Power1' },
                 onComplete: () => {
                     dungeon.gameFertig();
-                    // this.cameras.main.fadeOut(1000, 0, 0, 0);
-                    // this.cameras.main.once(
-                    //     Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE,
-                    //     (cam, effect) => {
-                    //         dungeon.gameFertig();
-                    //     }
-                    // );
                 }
             });
             
@@ -404,8 +383,6 @@ var createTextBox = function (scene, x, y, config) {
         .layout();
 
     keyObj.on('down', function () {
-        //var icon = this.getElement('action').setVisible(false);
-        //this.resetChildVisibleState(icon);
         if (this.isTyping) {
             this.stop(true);
         } else if (!this.isLastPage) {
@@ -418,20 +395,6 @@ var createTextBox = function (scene, x, y, config) {
     textBox
         .setInteractive()
         .on('pageend', function () {
-            //var icon = this.getElement('action').setVisible(true);
-            // this.resetChildVisibleState(icon);
-            // icon.y -= 30;
-            // var tween = scene.tweens.add({
-            //     targets: icon,
-            //     y: '+=30', // '+=100'
-            //     ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
-            //     duration: 500,
-            //     repeat: 0, // -1: infinity
-            //     yoyo: false
-            // });
-            // tween.on('complete', function(tween, targets){
-            //     targets[0].setVisible(false);
-            // }, this);
             if (this.isLastPage) {
                 if (!this.isTyping) {
                     scene.player.movement = true;
@@ -440,8 +403,6 @@ var createTextBox = function (scene, x, y, config) {
                 return;
             }
         }, textBox)
-    //.on('type', function () {
-    //})
     return textBox;
 }
 

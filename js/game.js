@@ -41,4 +41,4 @@ export const config = {
 };
 
 const game = new Phaser.Game(config);
-game.config.test = true;
+export { game }
