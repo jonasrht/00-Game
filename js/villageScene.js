@@ -84,7 +84,7 @@ export default class villageScene extends Phaser.Scene {
         //Ebenen tiefe einstellen, so dass das "aboveLayer" über dem Spieler ist
         this.player.setDepth(10);
         this.aboveLayer.setDepth(11);
-
+        
         // Collider
         this.belowLayer.setCollisionByProperty({ collide: true });
         this.worldLayer.setCollisionByProperty({ collide: true });
@@ -189,7 +189,6 @@ export default class villageScene extends Phaser.Scene {
         this.bewohner.forEach((bewohner) => {
             
             if (bewohner.name == "buergermeister") {
-                console.log("juhu");
                 this.bewohner = new Bewohner(this, bewohner.x, bewohner.y, 'buergermeister', 1);
                 this.bewohnerGroup.push(this.bewohner)
             } else {
@@ -293,7 +292,6 @@ export default class villageScene extends Phaser.Scene {
     schildDialog(player, schild) {
         player.setMovement(false);
         player.anims.stop();
-        console.log(schild.name);
         switch (schild.name) {
             case "schildCave":
                 this.uiScene.createBox("... Betreten verboten, lebensgefahr!")

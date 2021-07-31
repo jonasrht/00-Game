@@ -90,6 +90,14 @@ export default class inventoryScene extends Phaser.Scene {
                             uiScene.addHeart();
                             uiScene.addHeart();
                             break;
+                        case 'trankHerzBig':
+                            uiScene.addHeart();
+                            uiScene.addHeart();
+                            uiScene.addHeart();
+                            break;
+                        case 'trankPower':
+
+                            break;
                         default:
                             break;
                     }

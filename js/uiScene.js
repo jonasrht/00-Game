@@ -33,7 +33,6 @@ export default class uiScene extends Phaser.Scene {
         });
     }
 
-
     create() {
 
         this.scene.bringToTop();
@@ -81,6 +80,27 @@ export default class uiScene extends Phaser.Scene {
         this.damageMaennlich = this.sound.add("damageMaennlich");
         this.damageWeiblich = this.sound.add("damageWeiblich");
     }
+
+    // getPlayer() {
+    //     var villageScene = this.scene.get('villageScene')
+    //     var homeScene = this.scene.get('Dungeon');
+    //     var dungeon = this.scene.get('Dungeon');
+    //     var dungeon2 = this.scene.get('DungeonV2');
+    //     console.log(villageScene);
+    //     if (villageScene.aboveLayer.active == true) {
+    //         return villageScene.player;
+    //     }      
+    //     if (dungeon.aboveLayer.active == true) {
+    //         return dungeon.player;
+    //     }
+    //     if (dungeon2.aboveLayer.active == true) {
+    //         return dungeon2.player;
+    //     }
+    //     if (homeScene.aboveLayer.active == true) {
+    //         return homeScene.player;
+    //     }
+
+    // }
 
     createTypeTextBox(text) {
         this.label = this.add.text(100, 100, '', { fontFamily: 'mainfont', fontSize: '18px', color: '#fffbed', stroke: '#62232f', align: 'center' })
