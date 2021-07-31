@@ -73,12 +73,6 @@ export default class Dungeon extends Phaser.Scene {
       .setColor(0xffffff)
       .setIntensity(2);
 
-    //collision mit der wand in tiled einstellen
-    this.worldLayer.setCollisionByProperty({ collides: true });
-    this.saeulen.setCollisionByProperty({ collides: true });
-    this.chestLayer.setCollisionByProperty({ collides: true });
-    this.doorZuLayer.setCollisionByProperty({ collides: true }).setDepth(11);
-    this.doorZuLayer2.setCollisionByProperty({ collides: true }).setDepth(11);
 
     //spawnpoint in tiled festlegen
     this.spawnPoint = map.findObject(
@@ -230,6 +224,14 @@ export default class Dungeon extends Phaser.Scene {
     this.audioManager = this.scene.get("audioManager");
     // Für jeden Sound
     this.heartbeat = this.sound.add("herzschlag");
+
+    
+    //collision mit der wand in tiled einstellen
+    this.worldLayer.setCollisionByProperty({ collides: true });
+    this.saeulen.setCollisionByProperty({ collides: true });
+    this.chestLayer.setCollisionByProperty({ collides: true });
+    this.doorZuLayer.setCollisionByProperty({ collides: true }).setDepth(11);
+    this.doorZuLayer2.setCollisionByProperty({ collides: true }).setDepth(11);
   }
 
   switchScene(scene, name) {
