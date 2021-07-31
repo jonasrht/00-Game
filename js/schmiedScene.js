@@ -24,19 +24,18 @@ export default class schmiedScene extends Phaser.Scene {
             this.scene.stop().resume('homeScene');
         }, this);
 
-        // Shop Text
+        // Schmied Text
         this.menuTop = this.add.image(600, 260, 'MenuTop');
         this.shopHeader = this.add.text(599, 90, 'SCHMIED', { fontFamily: 'mainfont', fontSize: '13px', color: '#62232f', stroke: '#62232f', align: 'center' }).setOrigin(0.5, 0.5);
         this.itemsHeader = this.add.text(463, 125, 'Schwerter           Preis', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
 
         // Schwert upgrade 1
         this.hearts = this.add.image(490, 167, 'schwertSchmied').setScale(1.5);
-        this.itemsHeader = this.add.text(463, 160, '      +1 Stärke     30$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.itemsHeader = this.add.text(463, 160, '      +1 Stärke     50$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
         this.hearts.setInteractive({ useHandCursor: true });
         this.hearts.on('pointerdown', function (pointer) {
-            if (uiScene.money >= 30) {
-                uiScene.addHeart();
-                uiScene.updateMoney(-30);
+            if (uiScene.money >= 50) {
+                uiScene.updateMoney(-50);
                 homeScene.player.strength += 1;
                 this.shopSound.play();
             } else {
@@ -47,12 +46,13 @@ export default class schmiedScene extends Phaser.Scene {
 
         // Schwert upgrade 1
         this.trankPower = this.add.image(490, 217, 'schwert2Schmied').setScale(1.5);
-        this.itemsHeader = this.add.text(463, 210, '      +2 Stärke     30$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
+        this.itemsHeader = this.add.text(463, 210, '      +2 Stärke     80$', { fontFamily: 'mainfont', fontSize: '13px', color: '#fffbed', stroke: '#62232f', align: 'center' });
         this.trankPower.setInteractive({ useHandCursor: true });
         this.trankPower.on('pointerdown', function (pointer) {
-            if (uiScene.money >= 1) {
+            if (uiScene.money >= 80) {
                 invScene.itemFromShop('trankPower');
-                uiScene.updateMoney(-1);
+                uiScene.updateMoney(-80);
+                homeScene.player.strength += 2;
                 this.shopSound.play();
             } else {
                 // TODO: Error für zu wenig Geld

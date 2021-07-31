@@ -95,8 +95,8 @@ export default class Dungeon extends Phaser.Scene {
       this.selectedCharacter
     );
     //this.player = new Player(this, 320, 664, this.selectedCharacter);
+    
     //Schalter
-
     this.schalterGrp = map.createFromObjects("Schalter");
     this.schalterGrp.forEach((schalter) => {
       this.schalter = new switches(
