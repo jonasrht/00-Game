@@ -227,6 +227,7 @@ export default class Dungeon extends Phaser.Scene {
 
   handleGameover(){
     this.slimeCollide.destroy();
+    this.bgMusic.stop();
     this.switchScene('homeScene', "Gameover");
     this.uiScene.addHeart();
     this.uiScene.addHeart();
