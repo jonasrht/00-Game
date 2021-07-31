@@ -153,6 +153,7 @@ export default class Dungeon extends Phaser.Scene {
       this.player,
       this.doorZuLayer2
     );
+    //Collider für die Slimes
     this.physics.add.collider(
       this.slimeGroup,
       this.worldLayer,
@@ -160,7 +161,23 @@ export default class Dungeon extends Phaser.Scene {
         slime.handleCollide();
       }
     );
-
+    this.physics.add.collider(this.slimeGroup, this.saeulen, (slime, world) => {
+      slime.handleCollide();
+    });
+    this.physics.add.collider(
+      this.slimeGroup,
+      this.doorZuLayer,
+      (slime, world) => {
+        slime.handleCollide();
+      }
+    );
+    this.physics.add.collider(
+      this.slimeGroup,
+      this.doorZuLayer2,
+      (slime, world) => {
+        slime.handleCollide();
+      }
+    );
     //funktion damit die kamera einen verfolgt
     const camera = this.cameras.main;
     camera.startFollow(this.player);
@@ -225,14 +242,14 @@ export default class Dungeon extends Phaser.Scene {
     );
   }
 
-  handleGameover(){
+  handleGameover() {
     this.slimeCollide.destroy();
     this.bgMusic.stop();
-    this.switchScene('homeScene', "Gameover");
+    this.switchScene("homeScene", "Gameover");
     this.uiScene.addHeart();
     this.uiScene.addHeart();
     this.uiScene.addHeart();
-}
+  }
 
   openDoorOne() {
     this.doorZuLayer.setAlpha(0);

@@ -186,9 +186,27 @@ export default class Dungeon extends Phaser.Scene {
       this.player,
       this.doorZuLayer2
     );
+    //Collider für die Slimes
     this.physics.add.collider(
       this.slimeGroup,
       this.worldLayer,
+      (slime, world) => {
+        slime.handleCollide();
+      }
+    );
+    this.physics.add.collider(this.slimeGroup, this.saeulen, (slime, world) => {
+      slime.handleCollide();
+    });
+    this.physics.add.collider(
+      this.slimeGroup,
+      this.doorZuLayer,
+      (slime, world) => {
+        slime.handleCollide();
+      }
+    );
+    this.physics.add.collider(
+      this.slimeGroup,
+      this.doorZuLayer2,
       (slime, world) => {
         slime.handleCollide();
       }
@@ -225,7 +243,7 @@ export default class Dungeon extends Phaser.Scene {
     this.uiScene.addHeart();
     this.uiScene.addHeart();
     this.uiScene.addHeart();
-}
+  }
 
   openDoorOne() {
     this.doorZuLayer.setAlpha(0);
