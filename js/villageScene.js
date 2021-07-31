@@ -105,27 +105,8 @@ export default class villageScene extends Phaser.Scene {
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         camera.setZoom(3.0);
 
-        // NPC
-        const npcs = this.physics.add.group({
-            classType: Npc
-        });
-        this.npc1 = npcs.get(20, 250, "npc");
-        this.anims.create({
-            key: 'idle',
-            repeat: -1,
-            frameRate: 5,
-            frames: this.anims.generateFrameNames('npc', {
-                prefix: 'tile',
-                suffix: '.png',
-                start: 4,
-                end: 5,
-                zeroPad: 3
-            })
-        });
-        this.npc1.play('idle');
-        npcs.children.entries[0].body.immovable = true;
-        this.physics.add.collider(this.player, npcs, () => this.createBox("Moin Servus Moin, wie gets? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero e"));
 
+        this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         // Tür nach Hause
         this.doorHome = map.createFromObjects('doors', { name: 'doorHome' });
@@ -183,7 +164,9 @@ export default class villageScene extends Phaser.Scene {
             schild.body.immovable = true;
         });
         this.physics.add.collider(this.player, this.schilde, (player, schild) => {
-            this.schildDialog(player, schild);
+            if (Phaser.Input.Keyboard.JustDown(this.space)) {
+                this.schildDialog(player, schild);
+            }
         });
 
         // Items hinzufügen
@@ -220,8 +203,11 @@ export default class villageScene extends Phaser.Scene {
             }
         });
 
+        
         this.physics.add.collider(this.player, this.bewohnerGroup, (player, bewohner) => {
-            this.bewohnerDialog(player, bewohner);
+            if (Phaser.Input.Keyboard.JustDown(this.space)) {
+                this.bewohnerDialog(player, bewohner);
+            }
         });
 
         this.wasd = this.input.keyboard.addKeys({
@@ -263,7 +249,7 @@ export default class villageScene extends Phaser.Scene {
                 bewohner.zumStrand.pause();
                 bewohner.anims.stop();
                 this.time.addEvent({
-                    delay: 8000,
+                    delay: 1000,
                     callback: function () { 
                         bewohner.zumStrand.resume()
                      },
@@ -276,7 +262,7 @@ export default class villageScene extends Phaser.Scene {
                 bewohner.zumStrand.pause();
                 bewohner.anims.stop();
                 this.time.addEvent({
-                    delay: 8000,
+                    delay: 1000,
                     callback: function () { 
                         bewohner.zumStrand.resume()
                      },
@@ -289,7 +275,7 @@ export default class villageScene extends Phaser.Scene {
                 bewohner.zumStrand.pause();
                 bewohner.anims.stop();
                 this.time.addEvent({
-                    delay: 8000,
+                    delay: 1000,
                     callback: function () { 
                         bewohner.zumStrand.resume()
                      },
