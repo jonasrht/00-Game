@@ -57,9 +57,7 @@ export default class villageScene extends Phaser.Scene {
         this.uiScene = this.scene.get('uiScene');
         this.invScene = this.scene.get('inventoryScene');
         this.dooropenSound = this.sound.add("dooropenSound");
-        if (this.startedOnce == false) {
-            this.scene.run('instructionsScene');
-        }
+
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.coinEmitter = new Phaser.Events.EventEmitter();
         var spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -83,7 +81,6 @@ export default class villageScene extends Phaser.Scene {
 
         // Spieler erstellen
         this.player = new Player(this, this.spawnX, this.spawnY, this.selectedCharacter);
-
         //Ebenen tiefe einstellen, so dass das "aboveLayer" über dem Spieler ist
         this.player.setDepth(10);
         this.aboveLayer.setDepth(11);
@@ -231,7 +228,6 @@ export default class villageScene extends Phaser.Scene {
             esc: Phaser.Input.Keyboard.KeyCodes.ESC,
             six: Phaser.Input.Keyboard.KeyCodes.SIX
         })
-        this.player.setMovement(false);
         if (this.startedOnce == false) {
             this.startScene();
         }
@@ -246,7 +242,7 @@ export default class villageScene extends Phaser.Scene {
 
     // Text, welcher ausgegeben wird wenn man mir einem Bewohner kollidiert
     bewohnerDialog(player, bewohner) {
-        player.setMovement(false);
+        //player.setMovement(false);
         player.anims.stop();
         if (bewohner.texture == "buergermeister") {
             if (this.uiScene.firstQuest != true) {
@@ -329,11 +325,12 @@ export default class villageScene extends Phaser.Scene {
 
     // Sequenz welche bei erstmalingen Start des Spiels ausgeführt wird
     startScene() {
+        this.player.setMovement(false);
         this.flaschenpost = this.add.image(626, 665, "flaschenpost");
         this.zumStrand = this.tweens.add({
             targets: this.player,
             onStart: function (tween, targets) {
-                targets[0].movement = false;
+                //targets[0].movement = false;
                 targets[0].anims.play('misa-front-walk')
             },
             onComplete: function (tween, targets) {
@@ -341,7 +338,7 @@ export default class villageScene extends Phaser.Scene {
                 targets[0].movement = true;
 
             },
-            delay: 2000,
+            delay: 200,
             duration: 4000,
             y: 647
         });
@@ -384,6 +381,8 @@ export default class villageScene extends Phaser.Scene {
                 this.uiScene.zeigeBrief();
                 // this.input.keyboard.removeCapture('ENTER');
                 // this.input.keyboard.removeKey('ENTER');
+                this.player.setMovement(true);
+                this.scene.run('instructionsScene');
                 this.input.keyboard.removeKey('ENTER');
             }, this);
         });
@@ -410,9 +409,6 @@ export default class villageScene extends Phaser.Scene {
     }
 
     update() {
-        if (this.game.config.test) {
-            this.player.movement = true
-        }
 
         if (Phaser.Input.Keyboard.JustDown(this.wasd.esc)) {
             this.scene.start('mainMenu');
