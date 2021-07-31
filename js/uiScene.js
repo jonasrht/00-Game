@@ -170,6 +170,7 @@ export default class uiScene extends Phaser.Scene {
         this.questText.forEach(element => {
             if (element.toString() === text) {
                 this.questText.pop();
+                this.undisplayQuest();
             }
         })
         this.displayQuest();
@@ -181,6 +182,8 @@ export default class uiScene extends Phaser.Scene {
             this.text = this.text + element.toString();
         });
         this.questTextDis = this.add.text(1080, 80, this.text, { fontSize: '64x', color: '#fffbed', stroke: '#62232f', align: 'left' });
+        //this.questTextDis.setVisible(true);
+        console.log(this.questText);
     }
 
     undisplayQuest() {
