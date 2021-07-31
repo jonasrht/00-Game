@@ -10,8 +10,9 @@ export default class Item extends Phaser.GameObjects.Sprite {
     }
 
     create(scene) {
+        console.log(this.itemID);
         if (this.itemID === 'coinIcon') {
-            this.coinItem();
+            this.scene.uiScene.updateMoney(10);
         } else {
             this.scene.physics.add.collider(this, this.scene.player, () => {
                 scene.invScene.itemToInventory(this);
