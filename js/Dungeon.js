@@ -106,12 +106,13 @@ export default class Dungeon extends Phaser.Scene {
             this.slimeGroup.push(this.slime)
         })
 
-        this.physics.add.collider(this.player, this.slimeGroup, (player, slime) => {
-            if (slime.texture == 'slimeRot') {
+        this.slimeCollide = this.physics.add.collider(this.player, this.slimeGroup, (player, slime) => {
+
+            if (slime.texture.key == 'slimeRot') {
                 this.uiScene.removeHearts(4);
                 this.player.pushBack();
             }
-            else if (slime.texture == 'slime') {
+            else if (slime.texture.key == 'slime') {
                 this.uiScene.removeHeart();
                 this.player.pushBack();
             }
@@ -119,7 +120,7 @@ export default class Dungeon extends Phaser.Scene {
                 this.uiScene.removeHearts(3);
                 this.player.pushBack();
             }
-            else if (slime.texture == 'slimeGruen') {
+            else if (slime.texture.key == 'slimeGruen') {
                 this.uiScene.removeHeart();
                 this.player.pushBack();
             }
@@ -185,6 +186,7 @@ export default class Dungeon extends Phaser.Scene {
     }
 
     handleGameover(){
+        this.slimeCollide.destroy();
         this.switchScene('homeScene', "Gameover");
     }
 
@@ -216,7 +218,6 @@ export default class Dungeon extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(this.six)) {
         }
-
 
         if (Phaser.Input.Keyboard.JustDown(this.q)) {
             if (this.counterArrow > 0) {
