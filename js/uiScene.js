@@ -170,6 +170,7 @@ export default class uiScene extends Phaser.Scene {
         this.questText.forEach(element => {
             if (element.toString() === text) {
                 this.questText.pop();
+                this.undisplayQuest();
             }
         })
         this.displayQuest();

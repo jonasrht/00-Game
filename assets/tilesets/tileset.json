@@ -156,6 +156,50 @@
         }, 
         {
          "draworder":"topdown",
+         "id":19,
+         "name":"noeintritt",
+         "objects":[
+                {
+                 "height":0,
+                 "id":22,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":807.333333333333,
+                 "y":436.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":23,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":423.666666666667,
+                 "y":420
+                }, 
+                {
+                 "height":0,
+                 "id":24,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1024.66666666667,
+                 "y":436.666666666667
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":16,
          "name":"bewohner",
          "objects":[
@@ -290,11 +334,11 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":19,
- "nextobjectid":22,
+ "nextlayerid":20,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.1",
+ "tiledversion":"1.5.0",
  "tileheight":16,
  "tilesets":[
         {
@@ -11830,6 +11874,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":1.5,
  "width":100
 }
