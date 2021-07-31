@@ -36,24 +36,19 @@ export default class Dungeon extends Phaser.Scene {
     this.worldLayer = map.createLayer("wand", tileset, 0, 0);
     this.chestLayer = map.createLayer("chest", tileset, 0, 0);
     this.saeulen = map.createLayer("saeulen", tileset, 0, 0);
-    //this.buttonLayer = map.createLayer("button", tileset, 0, 0);
-    //this.mobsLayer = map.createLayer("mobs", tileset, 0, 0);
     this.doorAufLayer = map.createLayer("doorAuf", tileset, 0, 0);
     this.doorZuLayer = map.createLayer("doorZu", tileset, 0, 0);
-    //this.doorZuLayer2 = map.createLayer("doorZu2", tileset, 0, 0);
     this.abovePlayer = map.createLayer("abovePlayer", tileset, 0, 0);
 
     this.doorZuLayer.setAlpha(1);
-    //this.doorZuLayer2.setAlpha(1);
     this.doorAufLayer.setPipeline("Light2D").setDepth(11);
     this.doorZuLayer.setPipeline("Light2D");
-    //this.doorZuLayer2.setPipeline('Light2D');
     this.worldLayer.setPipeline("Light2D");
     this.belowLayer.setPipeline("Light2D");
     this.saeulen.setPipeline("Light2D");
     this.abovePlayer.setDepth(11);
 
-    //fügt den buttons hinzu
+    //Fügt den buttons hinzu
     this.q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
     this.e = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this.six = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
@@ -73,7 +68,6 @@ export default class Dungeon extends Phaser.Scene {
     this.saeulen.setCollisionByProperty({ collides: true });
     this.chestLayer.setCollisionByProperty({ collides: true });
     this.doorZuLayer.setCollisionByProperty({ collides: true }).setDepth(11);
-    //this.doorZuLayer2.setCollisionByProperty({ collides: true }).setDepth(11);
 
     //spawnpoint in tiled festlegen
     this.spawnPoint = map.findObject(
@@ -95,9 +89,8 @@ export default class Dungeon extends Phaser.Scene {
       this.spawnPoint.y,
       "atlas"
     );
-    //this.player = new Player(this, 398, 321, this.selectedCharacter);
-    //Schalter
 
+    //Schalter
     this.schalterGrp = map.createFromObjects("Schalter");
     this.schalterGrp.forEach((schalter) => {
       this.schalter = new switches(
@@ -123,7 +116,6 @@ export default class Dungeon extends Phaser.Scene {
     );
     this.uiScene = this.scene.get("uiScene");
     this.physics.add.existing(this.heilmittel);
-    //this.heilmittel.setImmovable(true);
     this.doorCollide = this.physics.add.collider(
       this.player,
       this.heilmittel,
@@ -186,6 +178,7 @@ export default class Dungeon extends Phaser.Scene {
       this.player,
       this.doorZuLayer2
     );
+
     //Collider für die Slimes
     this.physics.add.collider(
       this.slimeGroup,
@@ -221,9 +214,7 @@ export default class Dungeon extends Phaser.Scene {
 
     this.projectiles = this.add.group();
 
-    // Einmal in der Scene
     this.audioManager = this.scene.get("audioManager");
-    // Für jeden Sound
     this.heartbeat = this.sound.add("herzschlag");
   }
 
@@ -236,6 +227,7 @@ export default class Dungeon extends Phaser.Scene {
       }
     );
   }
+  
   handleGameover() {
     this.slimeCollide.destroy();
     //this.bgMusic.stop();
@@ -284,7 +276,6 @@ export default class Dungeon extends Phaser.Scene {
   update(time, delta) {
     const speed = 175;
     const prevVelocity = this.player.body.velocity.clone();
-    // this.player.update(this.cursors, "atlas");
     this.player.update(this.cursors, this.selectedCharacter);
     this.slimeGroup.forEach((slime) => {
         slime.update(slime, this);
