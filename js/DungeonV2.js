@@ -227,10 +227,11 @@ export default class Dungeon extends Phaser.Scene {
       }
     );
   }
-  
+
   handleGameover() {
     this.slimeCollide.destroy();
-    //this.bgMusic.stop();
+    var dungeon = this.scene.get('Dungeon')
+    dungeon.bgMusic.stop();
     this.switchScene("homeScene", "Gameover");
     this.uiScene.addHeart();
     this.uiScene.addHeart();
@@ -273,12 +274,18 @@ export default class Dungeon extends Phaser.Scene {
     }
   }
 
+  // The End
+  gameFertig() {
+    this.scene.remove("uiScene");
+    this.scene.start("mainMenu");
+  }
+
   update(time, delta) {
     const speed = 175;
     const prevVelocity = this.player.body.velocity.clone();
     this.player.update(this.cursors, this.selectedCharacter);
     this.slimeGroup.forEach((slime) => {
-        slime.update(slime, this);
+      slime.update(slime, this);
     });
 
     // Licht verfolgt spieler
@@ -289,34 +296,34 @@ export default class Dungeon extends Phaser.Scene {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.q)) {
-        if (this.counterArrow > 0) {
-            this.counterArrow -= 1;
-            if (this.player.direction === "left") this.arrowDirection = "left";
-            if (this.player.direction === "right") this.arrowDirection = "right";
-            if (this.player.direction === "up") this.arrowDirection = "up";
-            if (this.player.direction === "down") this.arrowDirection = "down";
-            if (this.arrowDirection) this.shootArrow(this.arrowDirection);
-        }
+      if (this.counterArrow > 0) {
+        this.counterArrow -= 1;
+        if (this.player.direction === "left") this.arrowDirection = "left";
+        if (this.player.direction === "right") this.arrowDirection = "right";
+        if (this.player.direction === "up") this.arrowDirection = "up";
+        if (this.player.direction === "down") this.arrowDirection = "down";
+        if (this.arrowDirection) this.shootArrow(this.arrowDirection);
+      }
     }
 
     if (this.projectiles.getLength() > 0) {
-        this.projectiles.getChildren().forEach((arrow) => {
-            arrow.update(this.arrowDirection);
-        });
+      this.projectiles.getChildren().forEach((arrow) => {
+        arrow.update(this.arrowDirection);
+      });
     }
 
     this.rotation = Phaser.Math.Angle.Between(this.player, this.slimeGroup[0]);
 
     if (this.distance < 200) {
-        //this.angriff();
+      //this.angriff();
     }
     if (this.uiScene.heartContainer.length < 2) {
-        this.heartbeat.play();
-        this.heartbeat.setLoop(true);
+      this.heartbeat.play();
+      this.heartbeat.setLoop(true);
     } else {
-        this.heartbeat.stop();
+      this.heartbeat.stop();
     }
-}
+  }
 
   shootArrow(direction) {
     var arrow = new Arrow(this, direction);

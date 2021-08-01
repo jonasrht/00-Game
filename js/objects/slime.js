@@ -37,12 +37,7 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
   destroy() {
     this.moveEvent.destroy();
     super.destroy();
-    const slimeSound = Phaser.Math.Between(0, 1);
-    // if (slimeSound == 0) {
-    //   this.slime1.play();
-    // } else {
-    //   this.slime2.play();
-    // }
+
   }
 
   handleCollide() {
@@ -174,7 +169,7 @@ createAnims() {
   }
   
   update(slime, scene) {
-    const speed = 50;
+    const speed = 70;
     if (slime.health > 0) {
       switch (slime.direction) {
         case UP:
@@ -196,6 +191,11 @@ createAnims() {
 
     if (slime.health == 0) {
       slime.health = slime.health - 1;
+          const slimeSound = Phaser.Math.Between(0, 0);
+    if (slimeSound == 0) {
+      console.log(scene);
+    } else {
+    }
       this.itemDrop(slime, scene);
     }
     this.distance = Phaser.Math.Distance.BetweenPoints(this.target, this);
