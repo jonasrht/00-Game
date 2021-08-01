@@ -322,7 +322,7 @@ class UltState extends State {
                 
             });
             scene.time.addEvent({
-                delay: 3000,
+                delay: 6000,
                 callback: function () { 
                     scene.uiScene.ultCooldown(0);
                     hero.ultCooldown = false; 
