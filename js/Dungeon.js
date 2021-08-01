@@ -48,8 +48,10 @@ export default class Dungeon extends Phaser.Scene {
     this.doorZuLayer2 = map.createLayer("doorZu2", tileset, 0, 0);
     this.abovePlayer = map.createLayer("abovePlayer", tileset, 0, 0);
 
+
     this.doorZuLayer.setAlpha(1);
     this.doorZuLayer2.setAlpha(1);
+    // Lichter hinzufügen
     this.doorAufLayer.setPipeline("Light2D").setDepth(11);
     this.doorZuLayer.setPipeline("Light2D");
     this.doorZuLayer2.setPipeline("Light2D");
@@ -94,8 +96,7 @@ export default class Dungeon extends Phaser.Scene {
       this.spawnPoint.y,
       this.selectedCharacter
     );
-    //this.player = new Player(this, 320, 664, this.selectedCharacter);
-    
+
     //Schalter
     this.schalterGrp = map.createFromObjects("Schalter");
     this.schalterGrp.forEach((schalter) => {
